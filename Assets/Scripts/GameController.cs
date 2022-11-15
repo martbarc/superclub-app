@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private Team myTeam;
+    [SerializeField] public CameraController camera_main;
+    [SerializeField] public Team myTeam;
+
+    public int season_num;
 
     private void Awake()
     {
         Debug.Log("Awake");
         myTeam = new Team();
+
+        season_num = 1;
+
+        camera_main.UpdateText_Stage("Draft Day!");
     }
 
     // Start is called before the first frame update
@@ -23,4 +30,6 @@ public class GameController : MonoBehaviour
     {
         
     }
+
+    
 }

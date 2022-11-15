@@ -11,9 +11,9 @@ public class Team : MonoBehaviour
 
     Player goalie;
 
-    int att = 0;
-    int mid = 0;
-    int def = 0;
+    public int att = 0;
+    public int mid = 0;
+    public int def = 0;
 
     private void Awake()
     {
