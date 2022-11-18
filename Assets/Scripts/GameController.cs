@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awake");
+        
         myTeam = new Team();
 
         season_num = 1;
