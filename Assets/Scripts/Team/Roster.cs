@@ -11,6 +11,8 @@ public class Roster : MonoBehaviour
 
     [SerializeField] GameObject prefabPlayer;
     //[SerializeField] TMP_InputField inputField_AddPlayer;
+
+    public int totalPower = 0;
     
 
     // Start is called before the first frame update

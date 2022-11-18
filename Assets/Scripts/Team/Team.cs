@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Team : MonoBehaviour
 {
@@ -18,10 +19,10 @@ public class Team : MonoBehaviour
     public int mid = 0;
     public int def = 0;
 
-    [SerializeField] public Player prefabPlayer;
-
     [SerializeField] public Lineup lineup;
     [SerializeField] public Roster roster;
+
+    [SerializeField] public TextMeshProUGUI text_teamStats;
 
     private void Awake()
     {
@@ -34,10 +35,11 @@ public class Team : MonoBehaviour
 
     private void Start()
     {
-        
+        Recalc();
+        UpdateTeamStatsText();
     }
 
-    public int recalc()
+    public int Recalc()
     {
         foreach(Player p in attack)
         {
@@ -59,12 +61,10 @@ public class Team : MonoBehaviour
         return 0;
     }
 
-    // ------ PRIVATE ------
-    private GameObject SpawnPlayer(GameObject player, Vector3 location)
+    public void UpdateTeamStatsText()
     {
-        GameObject obj = Instantiate(player, location, Quaternion.identity);
-
-        return obj;
+        text_teamStats.text = $"Att: {att}\nMid: {mid}\nDef: {def}\nTotal: {roster.totalPower}";
     }
 
+    //Panel controller
 }
