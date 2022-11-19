@@ -1,69 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Team : MonoBehaviour
 {
-    // All
-    //public List<Player> roster; //11 + 12 = 23
-
-    // Lineup
-    public List<Player> attack;
-    public List<Player> midfield;
-    public List<Player> defender;
-
-    public Player goalie;
-
-    public int att = 0;
-    public int mid = 0;
-    public int def = 0;
-
     [SerializeField] public Lineup lineup;
     [SerializeField] public Roster roster;
 
     [SerializeField] public TextMeshProUGUI text_teamStats;
+    [SerializeField] public Button button_Update;
 
     private void Awake()
     {
-        attack = new List<Player>(4);
-        midfield = new List<Player>(5);
-        defender = new List<Player>(4);
-
-        goalie = new Player();
+        button_Update.onClick.AddListener(UpdateAll);
     }
 
     private void Start()
     {
-        Recalc();
         UpdateTeamStatsText();
     }
 
-    public int Recalc()
+    private void UpdateAll()
     {
-        foreach(Player p in attack)
-        {
-            att += p.power;
-        }
+        lineup.Recalc();
 
-        foreach(Player p in midfield)
-        {
-            mid += p.power;
-        }
-
-        foreach(Player p in defender)
-        {
-            def += p.power;
-        }
-
-        def += goalie.power;
-
-        return 0;
+        UpdateTeamStatsText();
     }
 
     public void UpdateTeamStatsText()
     {
-        text_teamStats.text = $"Att: {att}\nMid: {mid}\nDef: {def}\nTotal: {roster.totalPower}";
+        text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}\nTotal: {roster.totalPower}";
     }
 
     //Panel controller

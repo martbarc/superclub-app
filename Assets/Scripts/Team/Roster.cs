@@ -7,18 +7,48 @@ using UnityEngine.UI;
 
 public class Roster : MonoBehaviour
 {
-    public List<Player> roster; //11 + 12 = 23
+    [SerializeField] Team team;
 
     [SerializeField] GameObject prefabPlayer;
-    //[SerializeField] TMP_InputField inputField_AddPlayer;
+    [SerializeField] GameObject defaultGoalie;
+
+    [SerializeField] Button button_AddPlayer;
+
+    public List<GameObject> playerObjectList;
+
 
     public int totalPower = 0;
     
-
     // Start is called before the first frame update
     void Awake()
     {
-        roster = new List<Player>(23);
+        playerObjectList = new List<GameObject>();
+
+        button_AddPlayer.onClick.AddListener(AddPlayerToRoster);
+    }
+
+    private void Start()
+    {
+        playerObjectList.Add(defaultGoalie);
+        Player dGoalie = defaultGoalie.GetComponent<Player>();
+        dGoalie.AssignToTeam(team);
+        dGoalie.position = "G";
+        dGoalie.positionAct = "Def";
+        dGoalie.power = 1;
+        dGoalie.UpdateText();
+
+        Recalc();
+    }
+
+    public void Recalc()
+    {
+        totalPower = 0;
+        foreach(GameObject pObj in playerObjectList)
+        {
+            Player p = pObj.GetComponent<Player>();
+
+            totalPower += p.power;
+        }
     }
 
     public void AddPlayerToRoster()
@@ -29,10 +59,15 @@ public class Roster : MonoBehaviour
 
         GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
         newPlayerObject.transform.parent = this.transform;
+
         Player newPlayer = newPlayerObject.GetComponent<Player>();
+        newPlayer.AssignToTeam(team);
+        newPlayer.power = 1;
         //Player newPlayer = new Player();
 
-        roster.Add(newPlayer);
+        playerObjectList.Add(newPlayerObject);
+
+        Recalc();
 
         Debug.Log("Added player to roster");
     }

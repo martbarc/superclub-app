@@ -8,11 +8,14 @@ public class PanelController : MonoBehaviour
     [SerializeField] public Button button_close;
     [SerializeField] public Button button_open;
 
-
-    private void Start()
+    private void Awake()
     {
         button_close.onClick.AddListener(HidePanel);
         button_open.onClick.AddListener(ShowPanel);
+    }
+    private void Start()
+    {
+        HidePanel();
     }
 
     public void HidePanel()
