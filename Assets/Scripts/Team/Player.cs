@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
     [SerializeField] public Button button_def;
     [SerializeField] public Button button_bench;
 
+    [SerializeField] public Button button_incSlot;
+    [SerializeField] public Button button_decSlot;
+
+    [SerializeField] public TextMeshProUGUI text_slot;
+
     public Team team;
 
     public int power;
@@ -25,15 +30,11 @@ public class Player : MonoBehaviour
 
     public bool selected;
     public string positionAct;
+    public int perferredSlot;
 
     void Awake()
     {
-        power = 0;
-        myName = "Default";
-        selected = false;
-        position = "Att";
-
-        positionAct = "Bench";
+        Init();
 
         button_close.onClick.AddListener(HidePanel);
         select.onClick.AddListener(ShowPanel);
@@ -42,6 +43,9 @@ public class Player : MonoBehaviour
         button_mid.onClick.AddListener(MoveToMid);
         button_def.onClick.AddListener(MoveToDef);
         button_bench.onClick.AddListener(MoveToBench);
+
+        button_incSlot.onClick.AddListener(IncSlotNum);
+        button_decSlot.onClick.AddListener(DecSlotNum);
     }
 
     void Start()
@@ -51,8 +55,21 @@ public class Player : MonoBehaviour
         HidePanel();
     }
 
+    public void Init()
+    {
+        power = 0;
+        myName = "Default";
+        selected = false;
+        position = "Att";
+
+        positionAct = "Bench";
+        perferredSlot = 0;
+    }
+
     public void Init(Player fromP)
     {
+        Init();
+
         power = fromP.power;
         myName = fromP.myName;
         selected = false;
@@ -69,36 +86,51 @@ public class Player : MonoBehaviour
     public void UpdateText()
     {
         text_stats.text = $"Name: {myName}\nStars: {power}\nPosition: {position}\nLineup: {positionAct}";
+        text_slot.text = $"( {perferredSlot} )";
     }
 
     //private
+
+    private void DecSlotNum()
+    {
+        if (perferredSlot <= 0)
+        {
+            perferredSlot = 0;
+            return;
+        }
+
+        perferredSlot -= 1;
+        UpdateText();
+    }
+
+    private void IncSlotNum()
+    {
+        perferredSlot += 1;
+        UpdateText();
+    }
 
     private void MoveToAtt()
     {
         positionAct = "Att";
         UpdateText();
-        HidePanel();
     }
 
     private void MoveToMid()
     {
         positionAct = "Mid";
         UpdateText();
-        HidePanel();
     }
 
     private void MoveToDef()
     {
         positionAct = "Def";
         UpdateText();
-        HidePanel();
     }
 
     private void MoveToBench()
     {
         positionAct = "Bench";
         UpdateText();
-        HidePanel();
     }
 
     private void HidePanel()
