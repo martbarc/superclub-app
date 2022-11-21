@@ -40,7 +40,11 @@ public class Lineup : MonoBehaviour
 
     private void AddToLineup(GameObject pObj)
     {
-        Debug.Log("Added player to lineup");
+        if (pObj == null)
+        {
+            Debug.Log("ERR: pObj null, check internal player list");
+            return;
+        }
 
         Player oldStuff = pObj.GetComponent<Player> ();
 
@@ -73,6 +77,8 @@ public class Lineup : MonoBehaviour
                 
                 break;
         }
+
+        Debug.Log("Added player to lineup");
     }
 
     private void ClearLineup()
@@ -121,6 +127,11 @@ public class Lineup : MonoBehaviour
                     break;
             }
         }
+
+        //Calc power
+        att = 0;
+        mid = 0;
+        def = 0;
 
         foreach (Player p in attackers)
         {

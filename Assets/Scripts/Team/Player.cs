@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -10,17 +11,19 @@ public class Player : MonoBehaviour
 
     //Selected panel
     [SerializeField] public GameObject panel_selected;
-    [SerializeField] public Button button_close;
+    //[SerializeField] public Button button_close;
 
-    [SerializeField] public Button button_att;
-    [SerializeField] public Button button_mid;
-    [SerializeField] public Button button_def;
-    [SerializeField] public Button button_bench;
+    [SerializeField] public TMP_Dropdown dropdown_positionAct;
 
-    [SerializeField] public Button button_incSlot;
-    [SerializeField] public Button button_decSlot;
+    //[SerializeField] public Button button_att;
+    //[SerializeField] public Button button_mid;
+    //[SerializeField] public Button button_def;
+    //[SerializeField] public Button button_bench;
 
-    [SerializeField] public TextMeshProUGUI text_slot;
+    //[SerializeField] public Button button_incSlot;
+    //[SerializeField] public Button button_decSlot;
+
+    //[SerializeField] public TextMeshProUGUI text_slot;
 
     public Team team;
 
@@ -36,16 +39,9 @@ public class Player : MonoBehaviour
     {
         Init();
 
-        button_close.onClick.AddListener(HidePanel);
         select.onClick.AddListener(ShowPanel);
 
-        button_att.onClick.AddListener(MoveToAtt);
-        button_mid.onClick.AddListener(MoveToMid);
-        button_def.onClick.AddListener(MoveToDef);
-        button_bench.onClick.AddListener(MoveToBench);
-
-        button_incSlot.onClick.AddListener(IncSlotNum);
-        button_decSlot.onClick.AddListener(DecSlotNum);
+        dropdown_positionAct.onValueChanged.AddListener(PositionActChanged);
     }
 
     void Start()
@@ -86,51 +82,15 @@ public class Player : MonoBehaviour
     public void UpdateText()
     {
         text_stats.text = $"Name: {myName}\nStars: {power}\nPosition: {position}\nLineup: {positionAct}";
-        text_slot.text = $"( {perferredSlot} )";
+        //text_slot.text = $"( {perferredSlot} )";
     }
 
     //private
-
-    private void DecSlotNum()
+    private void PositionActChanged(int arg0)
     {
-        if (perferredSlot <= 0)
-        {
-            perferredSlot = 0;
-            return;
-        }
-
-        perferredSlot -= 1;
+        positionAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
         UpdateText();
-    }
-
-    private void IncSlotNum()
-    {
-        perferredSlot += 1;
-        UpdateText();
-    }
-
-    private void MoveToAtt()
-    {
-        positionAct = "Att";
-        UpdateText();
-    }
-
-    private void MoveToMid()
-    {
-        positionAct = "Mid";
-        UpdateText();
-    }
-
-    private void MoveToDef()
-    {
-        positionAct = "Def";
-        UpdateText();
-    }
-
-    private void MoveToBench()
-    {
-        positionAct = "Bench";
-        UpdateText();
+        HidePanel();
     }
 
     private void HidePanel()

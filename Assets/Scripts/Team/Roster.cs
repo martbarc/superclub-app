@@ -9,13 +9,13 @@ public class Roster : MonoBehaviour
 {
     [SerializeField] Team team;
 
+    // Prefabs
     [SerializeField] GameObject prefabPlayer;
-    [SerializeField] GameObject defaultGoalie;
 
+    // UI
     [SerializeField] Button button_AddPlayer;
 
     public List<GameObject> playerObjectList;
-
 
     public int totalPower = 0;
     
@@ -29,13 +29,16 @@ public class Roster : MonoBehaviour
 
     private void Start()
     {
-        playerObjectList.Add(defaultGoalie);
+        GameObject defaultGoalie = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
         Player dGoalie = defaultGoalie.GetComponent<Player>();
         dGoalie.AssignToTeam(team);
         dGoalie.position = "G";
         dGoalie.positionAct = "Def";
         dGoalie.power = 1;
         dGoalie.UpdateText();
+
+        defaultGoalie.transform.parent = this.transform;
+        playerObjectList.Add(defaultGoalie);
 
         Recalc();
     }
@@ -63,12 +66,24 @@ public class Roster : MonoBehaviour
         Player newPlayer = newPlayerObject.GetComponent<Player>();
         newPlayer.AssignToTeam(team);
         newPlayer.power = 1;
-        //Player newPlayer = new Player();
 
         playerObjectList.Add(newPlayerObject);
 
         Recalc();
+        Debug.Log("Added player to roster");
+    }
 
+    public void AddPlayer(Player newPlayer)
+    {
+        newPlayer.AssignToTeam(team);
+
+        GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
+        newPlayerObject.transform.parent = this.transform;
+        newPlayerObject.GetComponent<Player>().Init(newPlayer);
+        
+        playerObjectList.Add(newPlayerObject);
+
+        Recalc();
         Debug.Log("Added player to roster");
     }
 

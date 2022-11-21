@@ -12,13 +12,28 @@ public class Team : MonoBehaviour
     [SerializeField] public TextMeshProUGUI text_teamStats;
     [SerializeField] public Button button_Update;
 
+    //Panels
+    [SerializeField] public GameObject panel_roster;
+    [SerializeField] public GameObject panel_lineup;
+    [SerializeField] public GameObject panel_season;
+
+    [SerializeField] public Button button_roster;
+    [SerializeField] public Button button_lineup;
+    [SerializeField] public Button button_season;
+
     private void Awake()
     {
         button_Update.onClick.AddListener(UpdateAll);
+
+        button_roster.onClick.AddListener(ShowRoster);
+        button_lineup.onClick.AddListener(ShowLineup);
+        button_season.onClick.AddListener(ShowSeason);
     }
 
     private void Start()
     {
+        ShowRoster();
+
         UpdateTeamStatsText();
     }
 
@@ -35,4 +50,28 @@ public class Team : MonoBehaviour
     }
 
     //Panel controller
+    public void HideAll()
+    {
+        panel_roster.gameObject.SetActive(false);
+        panel_lineup.gameObject.SetActive(false);
+        panel_season.gameObject.SetActive(false);
+    }
+
+    public void ShowRoster()
+    {
+        HideAll();
+        panel_roster.gameObject.SetActive(true);
+    }
+
+    public void ShowLineup()
+    {
+        HideAll();
+        panel_lineup.gameObject.SetActive(true);
+    }
+
+    public void ShowSeason()
+    {
+        HideAll();
+        panel_season.gameObject.SetActive(true);
+    }
 }
