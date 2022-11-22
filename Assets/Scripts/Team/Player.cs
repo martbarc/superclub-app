@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     //[SerializeField] public Button button_close;
 
     [SerializeField] public TMP_Dropdown dropdown_positionAct;
+    [SerializeField] public TMP_Dropdown dropdown_slot;
 
     //[SerializeField] public Button button_att;
     //[SerializeField] public Button button_mid;
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         select.onClick.AddListener(ShowPanel);
 
         dropdown_positionAct.onValueChanged.AddListener(PositionActChanged);
+        dropdown_slot.onValueChanged.AddListener(SlotChanged);
     }
 
     void Start()
@@ -92,6 +94,13 @@ public class Player : MonoBehaviour
         UpdateText();
         HidePanel();
     }
+
+    private void SlotChanged(int arg0)
+    {
+        perferredSlot = dropdown_positionAct.value;
+        UpdateText();
+        HidePanel();
+    }    
 
     private void HidePanel()
     {
