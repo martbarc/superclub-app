@@ -51,7 +51,7 @@ public class Lineup : MonoBehaviour
         GameObject newPlayerObj = Instantiate(pObj);
         Player newPlayer = newPlayerObj.GetComponent<Player>();
 
-        newPlayer.Init(oldStuff);
+        //newPlayer.Init(oldStuff);
 
         switch (newPlayer.positionAct)
         {

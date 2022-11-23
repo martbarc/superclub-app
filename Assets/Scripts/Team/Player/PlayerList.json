@@ -1,0 +1,21 @@
+﻿{
+    "playerlist":
+    [
+        {
+            "firstName": "John",
+            "position": "Att"
+        },
+        {
+            "firstName": "Anna",
+            "position": "Mid"
+        },
+        {
+            "firstName": "Peter",
+            "position": "Def"
+        },
+        {
+            "firstName": "Billy",
+            "position": "G"
+        }
+    ]
+}

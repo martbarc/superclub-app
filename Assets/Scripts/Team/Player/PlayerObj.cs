@@ -1,10 +1,8 @@
-
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class PlayerObj : MonoBehaviour
 {
     [SerializeField] public Button select;
     [SerializeField] public TextMeshProUGUI text_stats;
@@ -26,21 +24,18 @@ public class Player : MonoBehaviour
 
     //[SerializeField] public TextMeshProUGUI text_slot;
 
+    public Player p;
     public Team team;
 
-    public int power;
-    public string myName;
-    public string position;
-
     public bool selected;
-    public string positionAct;
-    public int perferredSlot;
+    public bool rostered;
 
     void Awake()
     {
-        Init();
+        p = new Player();
+        selected = false;
 
-        select.onClick.AddListener(ShowPanel);
+        select.onClick.AddListener(onPlayerSelected);
 
         dropdown_positionAct.onValueChanged.AddListener(PositionActChanged);
         dropdown_slot.onValueChanged.AddListener(SlotChanged);
@@ -53,27 +48,10 @@ public class Player : MonoBehaviour
         HidePanel();
     }
 
-    public void Init()
+    public void InitPlayer(Team team, string name, string pos, int power)
     {
-        power = 0;
-        myName = "Default";
-        selected = false;
-        position = "Att";
-
-        positionAct = "Bench";
-        perferredSlot = 0;
-    }
-
-    public void Init(Player fromP)
-    {
-        Init();
-
-        power = fromP.power;
-        myName = fromP.myName;
-        selected = false;
-        position = fromP.position;
-
-        positionAct = fromP.positionAct;
+        this.team = team;
+        p = new Player(name, pos, power);
     }
 
     public void AssignToTeam(Team assignedTeam)
@@ -83,24 +61,35 @@ public class Player : MonoBehaviour
 
     public void UpdateText()
     {
-        text_stats.text = $"Name: {myName}\nStars: {power}\nPosition: {position}\nLineup: {positionAct}";
+        text_stats.text = $"Name: {p.firstName}\nStars: {p.power}\nPosition: {p.position}\nLineup: {p.positionAct}";
         //text_slot.text = $"( {perferredSlot} )";
+    }
+
+    public void SetActive(bool a)
+    {
+        this.gameObject.SetActive(a);
     }
 
     //private
     private void PositionActChanged(int arg0)
     {
-        positionAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
+        p.positionAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
         UpdateText();
         HidePanel();
     }
 
     private void SlotChanged(int arg0)
     {
-        perferredSlot = dropdown_positionAct.value;
+        p.perferredSlot = dropdown_positionAct.value;
         UpdateText();
         HidePanel();
-    }    
+    }
+
+    private void onPlayerSelected()
+    {
+
+        this.gameObject.transform.parent = team.roster.transform;
+    }
 
     private void HidePanel()
     {
@@ -112,3 +101,5 @@ public class Player : MonoBehaviour
         panel_selected.gameObject.SetActive(true);
     }
 }
+
+

@@ -1194,7 +1194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2873728203031160491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1883,7 +1883,7 @@ GameObject:
   - component: {fileID: 5401430868378961666}
   - component: {fileID: 5401430868378961664}
   - component: {fileID: 5401430868378961667}
-  - component: {fileID: 5401430868378961665}
+  - component: {fileID: 4386747976351869793}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -1952,7 +1952,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5401430868378961665
+--- !u!114 &4386747976351869793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1961,20 +1961,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5401430868378961677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b93b15a6db4f6c9ebd68ddc35ae4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 327b4c021a1604b50ad993e972e8a5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   select: {fileID: 1521183123353996247}
   text_stats: {fileID: 6159588353878027113}
   panel_selected: {fileID: 3749055409407198797}
   dropdown_positionAct: {fileID: 1651269036918806052}
+  dropdown_slot: {fileID: 4627671276415355388}
+  p:
+    firstName: 
+    position: 
+    power: 0
+    positionAct: 
+    perferredSlot: 0
+    init: 0
   team: {fileID: 0}
-  power: 0
-  myName: 
-  position: 
   selected: 0
-  positionAct: 
-  perferredSlot: 0
 --- !u!1 &6297639577007877135
 GameObject:
   m_ObjectHideFlags: 0

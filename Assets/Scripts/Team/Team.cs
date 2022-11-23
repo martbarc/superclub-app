@@ -16,10 +16,12 @@ public class Team : MonoBehaviour
     [SerializeField] public GameObject panel_roster;
     [SerializeField] public GameObject panel_lineup;
     [SerializeField] public GameObject panel_season;
+    [SerializeField] public GameObject panel_playerpool;
 
     [SerializeField] public Button button_roster;
     [SerializeField] public Button button_lineup;
     [SerializeField] public Button button_season;
+    [SerializeField] public Button button_add;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class Team : MonoBehaviour
         button_roster.onClick.AddListener(ShowRoster);
         button_lineup.onClick.AddListener(ShowLineup);
         button_season.onClick.AddListener(ShowSeason);
+        button_add.onClick.AddListener(ShowPlayerPool);
     }
 
     private void Start()
@@ -55,6 +58,7 @@ public class Team : MonoBehaviour
         panel_roster.gameObject.SetActive(false);
         panel_lineup.gameObject.SetActive(false);
         panel_season.gameObject.SetActive(false);
+        panel_playerpool.gameObject.SetActive(false);
     }
 
     public void ShowRoster()
@@ -73,5 +77,11 @@ public class Team : MonoBehaviour
     {
         HideAll();
         panel_season.gameObject.SetActive(true);
+    }
+
+    public void ShowPlayerPool()
+    {
+        HideAll();
+        panel_playerpool.gameObject.SetActive(true);
     }
 }
