@@ -34,6 +34,7 @@ public class PlayerObj : MonoBehaviour
     {
         p = new Player();
         selected = false;
+        rostered = false;
 
         select.onClick.AddListener(onPlayerSelected);
 
@@ -74,6 +75,28 @@ public class PlayerObj : MonoBehaviour
     private void PositionActChanged(int arg0)
     {
         p.positionAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
+
+        switch(p.positionAct)
+        {
+            case "Att":
+                this.gameObject.transform.parent = team.lineup.panel_attackers.transform;
+                break;
+            case "Mid":
+                this.gameObject.transform.parent = team.lineup.panel_middies.transform;
+                break;
+            case "Def":
+                this.gameObject.transform.parent = team.lineup.panel_defense.transform;
+                break;
+            case "G":
+                this.gameObject.transform.parent = team.lineup.panel_goalie.transform;
+                break;
+            default:
+                this.gameObject.transform.parent = team.roster.transform;
+                break;
+        }
+
+        Debug.Log("Player moved to lineup!");
+
         UpdateText();
         HidePanel();
     }
@@ -87,8 +110,15 @@ public class PlayerObj : MonoBehaviour
 
     private void onPlayerSelected()
     {
-
-        this.gameObject.transform.parent = team.roster.transform;
+        if (rostered == false)
+        {
+            this.gameObject.transform.parent = team.roster.transform;
+            rostered = true;
+        }
+        else
+        {
+            ShowPanel();
+        }
     }
 
     private void HidePanel()

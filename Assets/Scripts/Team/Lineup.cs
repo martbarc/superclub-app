@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Lineup : MonoBehaviour
 {
-    public List<Position> positions;
-
     [SerializeField] public Team team;
 
     [SerializeField] public GameObject panel_attackers;
@@ -24,8 +22,6 @@ public class Lineup : MonoBehaviour
 
     private void Awake()
     {
-        positions = new List<Position>();
-
         attackers = new List<Player>();
         middies = new List<Player>();
         defenders = new List<Player>();
@@ -38,114 +34,41 @@ public class Lineup : MonoBehaviour
         Recalc();
     }
 
-    private void AddToLineup(GameObject pObj)
-    {
-        if (pObj == null)
-        {
-            Debug.Log("ERR: pObj null, check internal player list");
-            return;
-        }
-
-        Player oldStuff = pObj.GetComponent<Player> ();
-
-        GameObject newPlayerObj = Instantiate(pObj);
-        Player newPlayer = newPlayerObj.GetComponent<Player>();
-
-        //newPlayer.Init(oldStuff);
-
-        switch (newPlayer.positionAct)
-        {
-            case "Att":
-                newPlayerObj.transform.parent = panel_attackers.transform;
-                attackers.Add(newPlayer);
-                break;
-            case "Mid":
-                newPlayerObj.transform.parent = panel_middies.transform;
-                middies.Add(newPlayer);
-                break;
-            case "Def":
-                if (newPlayer.position == "G")
-                {
-                    newPlayerObj.transform.parent = panel_goalie.transform;
-                    goalie = newPlayer;
-                }
-                else
-                {
-                    newPlayerObj.transform.parent = panel_defense.transform;
-                    defenders.Add(newPlayer);
-                }
-                
-                break;
-        }
-
-        Debug.Log("Added player to lineup");
-    }
-
-    private void ClearLineup()
-    {
-        attackers = new List<Player>();
-        middies = new List<Player>();
-        defenders = new List<Player>();
-        goalie = null;
-
-        foreach (Transform child in panel_attackers.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (Transform child in panel_middies.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (Transform child in panel_defense.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (Transform child in panel_goalie.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-    }
 
     public int Recalc()
     {
-        ClearLineup();
-
-        foreach (GameObject pObj in team.roster.playerObjectList)
-        {
-            Player p = pObj.GetComponent<Player>();
-
-            switch (p.positionAct)
-            {
-                case "Att":
-                case "Mid":
-                case "Def":
-                    AddToLineup(pObj);
-                    break;
-            }
-        }
+        attackers = GetChildrenInPosition(panel_attackers);
+        middies = GetChildrenInPosition(panel_middies);
+        defenders = GetChildrenInPosition(panel_defense);
+        goalie = GetChildrenInPosition(panel_goalie)[0];
 
         //Calc power
         att = 0;
         mid = 0;
         def = 0;
 
-        foreach (Player p in attackers)
+        if (attackers[0] != null)
         {
-            att += p.power;
+            foreach (Player p in attackers)
+            {
+                att += p.power;
+            }
         }
 
-        foreach (Player p in middies)
+        if (middies[0] != null)
         {
-            mid += p.power;
+            foreach (Player p in middies)
+            {
+                mid += p.power;
+            }
         }
 
-        foreach (Player p in defenders)
+        if (defenders[0] != null)
         {
-            def += p.power;
+            foreach (Player p in defenders)
+            {
+                def += p.power;
+            }
         }
 
         if (goalie != null)
@@ -157,28 +80,29 @@ public class Lineup : MonoBehaviour
         return 0;
     }
 
-    public void AssignPlayerToPosition(Player player, string position)
+    public List<Player> GetChildrenInPosition(GameObject position)
     {
-        switch (position)
-        {
-            case "Att":
-                attackers.Add(player);
-                break;
-            case "Mid":
-                middies.Add(player);
-                break;
-            case "Def":
-                defenders.Add(player);
-                break;
-            case "G":
-                goalie = player;
-                break;
-        }
-    }
+        int totalElements = position.transform.childCount;
 
-    public void AssignPlayerToPosition(Player player, int positionIndex)
-    {
-        positions[positionIndex].AssignPlayer(player);
+        List<Player> gObjs = new List<Player>();
+
+        for (int i = 0; i < totalElements; i++)
+        {
+            PlayerObj pTemp = position.transform.GetChild(i).GetComponent<PlayerObj>();
+
+            if(pTemp != null)
+            {
+                gObjs.Add(pTemp.p);
+            }
+        }
+
+        if (gObjs.Count == 0)
+        {
+            Debug.Log("Error: No players in position!");
+            gObjs.Add(null);
+        }
+
+        return gObjs;
     }
 
 }

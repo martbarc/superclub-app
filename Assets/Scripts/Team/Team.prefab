@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_Color: {r: 0.123398006, g: 0.4433962, b: 0.15599044, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2433,7 +2433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893b70d24e4054854b5175f57839fe3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positions: []
   team: {fileID: 6156860352644071413}
   panel_attackers: {fileID: 2762584784567672855}
   panel_middies: {fileID: 2910088738113214268}
