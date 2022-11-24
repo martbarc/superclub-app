@@ -22,16 +22,16 @@ public class PlayerPool : MonoBehaviour
 
         foreach (Player p in playersInJson.playerlist)
         {
-            AddPlayerToPool(p.firstName, p.position);
+            AddPlayerToPool(p.firstName, p.position, p.power);
         }
     }
 
-    public void AddPlayerToPool(string firstName, string position)
+    public void AddPlayerToPool(string firstName, string position, int power)
     {
         GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
         newPlayerObject.transform.parent = this.transform;
 
-        newPlayerObject.GetComponent<PlayerObj>().InitPlayer(team, firstName, position, 1);
+        newPlayerObject.GetComponent<PlayerObj>().InitPlayer(team, firstName, position, power);
 
         playerObjList.Add(newPlayerObject);
 

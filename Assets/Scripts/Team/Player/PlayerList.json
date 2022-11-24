@@ -3,19 +3,23 @@
     [
         {
             "firstName": "John",
-            "position": "Att"
+            "position": "Att",
+            "power": 4
         },
         {
             "firstName": "Anna",
-            "position": "Mid"
+            "position": "Mid",
+            "power":  1
         },
         {
             "firstName": "Peter",
-            "position": "Def"
+            "position": "Def",
+            "power":  2
         },
         {
             "firstName": "Billy",
-            "position": "G"
+            "position": "G",
+            "power": 3
         }
     ]
 }

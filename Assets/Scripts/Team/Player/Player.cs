@@ -10,7 +10,7 @@ public class Player
     public int power;
 
     public string positionAct;
-    public int perferredSlot;
+    public int slotAct;
 
     public bool init;
 
@@ -21,7 +21,7 @@ public class Player
         power = 0;
 
         positionAct = "Bench";
-        perferredSlot = 0;
+        slotAct = 0;
 
         init = false;
     }
@@ -33,7 +33,7 @@ public class Player
         this.power = power;
 
         positionAct = "Bench";
-        perferredSlot = 0;
+        slotAct = 0;
 
         init = true;
     }

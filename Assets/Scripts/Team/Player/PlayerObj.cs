@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerObj : MonoBehaviour
 {
+    [SerializeField] public Image image_back;
     [SerializeField] public Button select;
     [SerializeField] public TextMeshProUGUI text_stats;
 
@@ -12,17 +13,9 @@ public class PlayerObj : MonoBehaviour
     //[SerializeField] public Button button_close;
 
     [SerializeField] public TMP_Dropdown dropdown_positionAct;
-    [SerializeField] public TMP_Dropdown dropdown_slot;
 
-    //[SerializeField] public Button button_att;
-    //[SerializeField] public Button button_mid;
-    //[SerializeField] public Button button_def;
-    //[SerializeField] public Button button_bench;
-
-    //[SerializeField] public Button button_incSlot;
-    //[SerializeField] public Button button_decSlot;
-
-    //[SerializeField] public TextMeshProUGUI text_slot;
+    [SerializeField] public Button button_moveLeft;
+    [SerializeField] public Button button_moveRight;
 
     public Player p;
     public Team team;
@@ -39,7 +32,8 @@ public class PlayerObj : MonoBehaviour
         select.onClick.AddListener(onPlayerSelected);
 
         dropdown_positionAct.onValueChanged.AddListener(PositionActChanged);
-        dropdown_slot.onValueChanged.AddListener(SlotChanged);
+        button_moveLeft.onClick.AddListener(MoveLeft);
+        button_moveRight.onClick.AddListener(MoveRight);
     }
 
     void Start()
@@ -53,6 +47,25 @@ public class PlayerObj : MonoBehaviour
     {
         this.team = team;
         p = new Player(name, pos, power);
+        switch (p.position)
+        {
+            case "Att":
+                image_back.color = new Color32(0, 255, 0, 255);
+                break;
+            case "Mid":
+                image_back.color = new Color32(255, 255, 0, 255);
+                break;
+            case "Def":
+                image_back.color = new Color32(255, 0, 0, 255);
+                break;
+            case "G":
+                image_back.color = new Color32(255, 255, 225, 255);
+                break;
+            default:
+                image_back.color = new Color32(255, 255, 225, 255);
+                break;
+        }
+        
     }
 
     public void AssignToTeam(Team assignedTeam)
@@ -62,7 +75,11 @@ public class PlayerObj : MonoBehaviour
 
     public void UpdateText()
     {
-        text_stats.text = $"Name: {p.firstName}\nStars: {p.power}\nPosition: {p.position}\nLineup: {p.positionAct}";
+        text_stats.text = $"Name: {p.firstName}" +
+            $"\nStars: {p.power}" +
+            $"\nPosition: {p.position}" +
+            $"\nLineup: {p.positionAct}" +
+            $"\nSlot: {p.slotAct}";
         //text_slot.text = $"( {perferredSlot} )";
     }
 
@@ -90,8 +107,12 @@ public class PlayerObj : MonoBehaviour
             case "G":
                 this.gameObject.transform.parent = team.lineup.panel_goalie.transform;
                 break;
-            default:
+            case "Bench":
                 this.gameObject.transform.parent = team.roster.transform;
+                break;
+            default:
+                this.gameObject.transform.parent = team.playerPool.playerPool.transform;
+                rostered = false;
                 break;
         }
 
@@ -101,9 +122,27 @@ public class PlayerObj : MonoBehaviour
         HidePanel();
     }
 
+    public void MoveLeft()
+    {
+        this.transform.SetAsFirstSibling();
+        p.slotAct = transform.GetSiblingIndex();
+        UpdateText();
+        HidePanel();
+    }
+
+    public void MoveRight()
+    {
+        this.transform.SetAsLastSibling();
+        p.slotAct = transform.GetSiblingIndex();
+        UpdateText();
+        HidePanel();
+    }
+
     private void SlotChanged(int arg0)
     {
-        p.perferredSlot = dropdown_positionAct.value;
+        p.slotAct = dropdown_positionAct.value;
+        this.transform.SetSiblingIndex(p.slotAct);
+        Debug.Log($"Player moved to slot {p.slotAct}");
         UpdateText();
         HidePanel();
     }

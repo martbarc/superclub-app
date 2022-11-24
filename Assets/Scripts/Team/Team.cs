@@ -8,6 +8,7 @@ public class Team : MonoBehaviour
 {
     [SerializeField] public Lineup lineup;
     [SerializeField] public Roster roster;
+    [SerializeField] public PlayerPoolHandler playerPool;
 
     [SerializeField] public TextMeshProUGUI text_teamStats;
     [SerializeField] public Button button_Update;
