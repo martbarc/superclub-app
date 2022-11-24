@@ -24,6 +24,8 @@ public class Team : MonoBehaviour
     [SerializeField] public Button button_season;
     [SerializeField] public Button button_add;
 
+    public int totalPower;
+
     private void Awake()
     {
         button_Update.onClick.AddListener(UpdateAll);
@@ -32,6 +34,8 @@ public class Team : MonoBehaviour
         button_lineup.onClick.AddListener(ShowLineup);
         button_season.onClick.AddListener(ShowSeason);
         button_add.onClick.AddListener(ShowPlayerPool);
+
+        totalPower = 0;
     }
 
     private void Start()
@@ -44,13 +48,17 @@ public class Team : MonoBehaviour
     private void UpdateAll()
     {
         lineup.Recalc();
+        roster.Recalc();
+
+        totalPower = lineup.totalPower + roster.totalPower;
 
         UpdateTeamStatsText();
     }
 
     public void UpdateTeamStatsText()
     {
-        text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}\nTotal: {roster.totalPower}";
+        text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}" +
+            $"\nTotal: {totalPower}";
     }
 
     //Panel controller

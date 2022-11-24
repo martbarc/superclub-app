@@ -43,11 +43,11 @@ public class PlayerObj : MonoBehaviour
         HidePanel();
     }
 
-    public void InitPlayer(Team team, string name, string pos, int power)
+    public void InitPlayer(Team team, string name, string pos, int power, string chem)
     {
         this.team = team;
-        p = new Player(name, pos, power);
-        switch (p.position)
+        p = new Player(name, pos, power, chem);
+        switch (p.pos)
         {
             case "Att":
                 image_back.color = new Color32(0, 255, 0, 255);
@@ -65,7 +65,12 @@ public class PlayerObj : MonoBehaviour
                 image_back.color = new Color32(255, 255, 225, 255);
                 break;
         }
-        
+
+
+        if (p.id == "Place")
+        {
+            MoveToBench();
+        }
     }
 
     public void AssignToTeam(Team assignedTeam)
@@ -75,11 +80,7 @@ public class PlayerObj : MonoBehaviour
 
     public void UpdateText()
     {
-        text_stats.text = $"Name: {p.firstName}" +
-            $"\nStars: {p.power}" +
-            $"\nPosition: {p.position}" +
-            $"\nLineup: {p.positionAct}" +
-            $"\nSlot: {p.slotAct}";
+        text_stats.text = p.GetString();
         //text_slot.text = $"( {perferredSlot} )";
     }
 
@@ -91,9 +92,9 @@ public class PlayerObj : MonoBehaviour
     //private
     private void PositionActChanged(int arg0)
     {
-        p.positionAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
+        p.posAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
 
-        switch(p.positionAct)
+        switch(p.posAct)
         {
             case "Att":
                 this.gameObject.transform.parent = team.lineup.panel_attackers.transform;
@@ -108,9 +109,14 @@ public class PlayerObj : MonoBehaviour
                 this.gameObject.transform.parent = team.lineup.panel_goalie.transform;
                 break;
             case "Bench":
-                this.gameObject.transform.parent = team.roster.transform;
+                MoveToBench();
                 break;
             default:
+                if (p.id == "Place")
+                {
+                    MoveToBench();
+                    return;
+                }
                 this.gameObject.transform.parent = team.playerPool.playerPool.transform;
                 rostered = false;
                 break;
@@ -138,6 +144,12 @@ public class PlayerObj : MonoBehaviour
         HidePanel();
     }
 
+    public void MoveToBench()
+    {
+        this.gameObject.transform.parent = team.roster.transform;
+        rostered = true;
+    }
+
     private void SlotChanged(int arg0)
     {
         p.slotAct = dropdown_positionAct.value;
@@ -151,8 +163,7 @@ public class PlayerObj : MonoBehaviour
     {
         if (rostered == false)
         {
-            this.gameObject.transform.parent = team.roster.transform;
-            rostered = true;
+            MoveToBench();
         }
         else
         {

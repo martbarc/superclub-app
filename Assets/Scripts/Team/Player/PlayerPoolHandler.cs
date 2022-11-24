@@ -29,9 +29,9 @@ public class PlayerPoolHandler : MonoBehaviour
             searchedElements++;
 
             PlayerObj pObj = e.GetComponent<PlayerObj>();
-            if (pObj.p.firstName.Length >= searchTxtlength)
+            if (pObj.p.id.Length >= searchTxtlength)
             {
-                if (pObj.p.firstName.Substring(0, searchTxtlength).ToLower().Contains(SearchText.ToLower()))
+                if (pObj.p.id.Substring(0, searchTxtlength).ToLower().Contains(SearchText.ToLower()))
                 {
                     e.SetActive(true);
                 }

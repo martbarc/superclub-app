@@ -2,24 +2,34 @@
     "playerlist":
     [
         {
-            "firstName": "John",
-            "position": "Att",
-            "power": 4
+            "id": "Place",
+            "pos": "G",
+            "pow": 1,
+            "chem":  ""
         },
         {
-            "firstName": "Anna",
-            "position": "Mid",
-            "power":  1
+            "id": "Anna",
+            "pos": "Mid",
+            "pow": 1,
+            "chem": "LR"
         },
         {
-            "firstName": "Peter",
-            "position": "Def",
-            "power":  2
+            "id": "Peter",
+            "pos": "Def",
+            "pow": 2,
+            "chem": ""
         },
         {
-            "firstName": "Billy",
-            "position": "G",
-            "power": 3
+            "id": "Billy",
+            "pos": "Att",
+            "pow": 3,
+            "chem": "R"
+        },
+        {
+            "id": "David",
+            "pos": "Att",
+            "pow": 2,
+            "chem": "L"
         }
     ]
 }

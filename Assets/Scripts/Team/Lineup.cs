@@ -19,6 +19,7 @@ public class Lineup : MonoBehaviour
     public int att = 0;
     public int mid = 0;
     public int def = 0;
+    public int totalPower = 0;
 
     private void Awake()
     {
@@ -46,12 +47,14 @@ public class Lineup : MonoBehaviour
         att = 0;
         mid = 0;
         def = 0;
+        totalPower = 0;
 
         if (attackers[0] != null)
         {
             foreach (Player p in attackers)
             {
-                att += p.power;
+                att += p.pow;
+                totalPower += p.pow;
             }
         }
 
@@ -59,7 +62,8 @@ public class Lineup : MonoBehaviour
         {
             foreach (Player p in middies)
             {
-                mid += p.power;
+                mid += p.pow;
+                totalPower += p.pow;
             }
         }
 
@@ -67,13 +71,15 @@ public class Lineup : MonoBehaviour
         {
             foreach (Player p in defenders)
             {
-                def += p.power;
+                def += p.pow;
+                totalPower += p.pow;
             }
         }
 
         if (goalie != null)
         {
-            def += goalie.power;
+            def += goalie.pow;
+            totalPower += goalie.pow;
         }
         
 

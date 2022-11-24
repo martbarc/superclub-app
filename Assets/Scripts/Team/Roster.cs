@@ -42,7 +42,7 @@ public class Roster : MonoBehaviour
         {
             Player p = pObj.GetComponent<Player>();
 
-            totalPower += p.power;
+            totalPower += p.pow;
         }
     }
 
