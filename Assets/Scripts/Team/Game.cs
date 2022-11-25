@@ -22,9 +22,9 @@ public class Game : MonoBehaviour
     int rollDef0;
     int rollDef1;
 
-    public int simAtt;
-    public int simMid;
-    public int simDef;
+    public float simAtt;
+    public float simMid;
+    public float simDef;
 
     public string gameText;
 

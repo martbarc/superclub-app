@@ -7,7 +7,7 @@ public class Player
 {
     public string id;
     public string pos;
-    public int pow;
+    public float pow;
     public string chem;
 
     public string posAct;
@@ -21,7 +21,7 @@ public class Player
     {
         id = "Default";
         pos = "Att";
-        pow = 0;
+        pow = 0f;
         chem = "";
 
         posAct = "Bench";
@@ -30,7 +30,7 @@ public class Player
         init = false;
     }
 
-    public Player(string name, string position, int power, string chemistry)
+    public Player(string name, string position, float power, string chemistry)
     {
         this.id = name;
         this.pos = position;
@@ -54,6 +54,58 @@ public class Player
             $"\nLineup: {posAct}" +
             $"\nSlot: {slotAct}";
         return playerString;
+    }
+
+    public float GetPositionPower(string targetPosition)
+    {
+        float power = pow;
+
+        if (pos == targetPosition || pos == "W" || pos == "G")
+        {
+            return power;
+        }
+        else
+        {
+            switch (pos)
+            {
+                case "Att":
+                    if (targetPosition == "Mid")
+                    {
+                        power -= 0.5f;
+                    }
+                    else if (targetPosition == "Def")
+                    {
+                        power -= 1f;
+                    }
+                    break;
+                case "Mid":
+                    if (targetPosition == "Att")
+                    {
+                        power -= 0.5f;
+                    }
+                    else if (targetPosition == "Def")
+                    {
+                        power -= 0.5f;
+                    }
+                    break;
+                case "Def":
+                    if (targetPosition == "Mid")
+                    {
+                        power -= 0.5f;
+                    }
+                    else if (targetPosition == "Att")
+                    {
+                        power -= 1f;
+                    }
+                    break;
+                default:
+                    
+                    break;
+            }
+        }
+
+
+        return power;
     }
 
     public void CopyPlayer(Player p)

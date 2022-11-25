@@ -24,7 +24,7 @@ public class Team : MonoBehaviour
     [SerializeField] public Button button_season;
     [SerializeField] public Button button_add;
 
-    public int totalPower;
+    public float totalPower;
 
     private void Awake()
     {

@@ -43,7 +43,7 @@ public class PlayerObj : MonoBehaviour
         HidePanel();
     }
 
-    public void InitPlayer(Team team, string name, string pos, int power, string chem)
+    public void InitPlayer(Team team, string name, string pos, float power, string chem)
     {
         this.team = team;
         p = new Player(name, pos, power, chem);
@@ -92,6 +92,7 @@ public class PlayerObj : MonoBehaviour
     //private
     private void PositionActChanged(int arg0)
     {
+
         p.posAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
 
         switch(p.posAct)
@@ -106,6 +107,8 @@ public class PlayerObj : MonoBehaviour
                 this.gameObject.transform.parent = team.lineup.panel_defense.transform;
                 break;
             case "G":
+                //Swap current goalie out
+
                 this.gameObject.transform.parent = team.lineup.panel_goalie.transform;
                 break;
             case "Bench":

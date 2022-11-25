@@ -16,10 +16,10 @@ public class Lineup : MonoBehaviour
     public List<Player> defenders;
     public Player goalie;
 
-    public int att = 0;
-    public int mid = 0;
-    public int def = 0;
-    public int totalPower = 0;
+    public float att = 0;
+    public float mid = 0;
+    public float def = 0;
+    public float totalPower = 0;
 
     private void Awake()
     {
@@ -44,43 +44,68 @@ public class Lineup : MonoBehaviour
         goalie = GetChildrenInPosition(panel_goalie)[0];
 
         //Calc power
-        att = 0;
-        mid = 0;
-        def = 0;
+        att = 0f;
+        mid = 0f;
+        def = 0f;
         totalPower = 0;
 
+        string lastChem = "";
         if (attackers[0] != null)
         {
             foreach (Player p in attackers)
             {
-                att += p.pow;
+                if (lastChem.Contains("R") && p.chem.Contains("L"))
+                {
+                    att += 1;
+                }
+                att += p.GetPositionPower("Att");
                 totalPower += p.pow;
+
+                lastChem = p.chem;
             }
         }
 
+        lastChem = "";
         if (middies[0] != null)
         {
             foreach (Player p in middies)
             {
-                mid += p.pow;
+                if (lastChem.Contains("R") && p.chem.Contains("L"))
+                {
+                    mid += 1;
+                }
+                mid += p.GetPositionPower("Mid");
                 totalPower += p.pow;
+
+                lastChem = p.chem;
             }
+        }
+
+        lastChem = "";
+        if (goalie != null)
+        {
+            def += goalie.GetPositionPower("G");
+            totalPower += goalie.pow;
+
+            lastChem = goalie.chem;
         }
 
         if (defenders[0] != null)
         {
             foreach (Player p in defenders)
             {
-                def += p.pow;
+                if (lastChem.Contains("R") && p.chem.Contains("L"))
+                {
+                    def += 1;
+                }
+                def += p.GetPositionPower("Def");
                 totalPower += p.pow;
+
+                lastChem = p.chem;
             }
         }
 
-        if (goalie != null)
-        {
-            def += goalie.pow;
-            totalPower += goalie.pow;
-        }
+
         
 
         return 0;

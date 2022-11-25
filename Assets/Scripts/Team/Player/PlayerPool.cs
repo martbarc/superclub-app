@@ -26,7 +26,7 @@ public class PlayerPool : MonoBehaviour
         }
     }
 
-    public void AddPlayerToPool(string firstName, string position, int power, string chem)
+    public void AddPlayerToPool(string firstName, string position, float power, string chem)
     {
         GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
         newPlayerObject.transform.parent = this.transform;

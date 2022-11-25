@@ -11,7 +11,7 @@ public class Roster : MonoBehaviour
 
     public List<GameObject> playerObjectList;
 
-    public int totalPower = 0;
+    public float totalPower = 0;
     
     // Start is called before the first frame update
     void Awake()
