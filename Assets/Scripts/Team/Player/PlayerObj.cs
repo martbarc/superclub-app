@@ -43,31 +43,35 @@ public class PlayerObj : MonoBehaviour
         HidePanel();
     }
 
-    public void InitPlayer(Team team, string name, string pos, float power, string chem)
+    public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem)
     {
         this.team = team;
-        p = new Player(name, pos, power, chem);
-        switch (p.pos)
+        p = new Player(id, name, pos, power, chem);
+
+        Pos tpos = p.GetPos();
+        switch (tpos)
         {
-            case "Att":
+            case Pos.Attacker:
                 image_back.color = new Color32(0, 255, 0, 255);
                 break;
-            case "Mid":
+            case Pos.Midfielder:
                 image_back.color = new Color32(255, 255, 0, 255);
                 break;
-            case "Def":
+            case Pos.Defender:
                 image_back.color = new Color32(255, 0, 0, 255);
                 break;
-            case "G":
+            case Pos.Goalie:
                 image_back.color = new Color32(255, 255, 225, 255);
                 break;
+            case Pos.Wild:
+                image_back.color = new Color32(221, 160, 221, 255);
+                break;
             default:
-                image_back.color = new Color32(255, 255, 225, 255);
+                image_back.color = new Color32(0, 0, 0, 255);
                 break;
         }
 
-
-        if (p.id == "Place")
+        if (p.id == 0)//(p.n == "Given")
         {
             MoveToBench();
         }
@@ -93,29 +97,30 @@ public class PlayerObj : MonoBehaviour
     private void PositionActChanged(int arg0)
     {
 
-        p.posAct = dropdown_positionAct.options[dropdown_positionAct.value].text;
+        p.SetPosAct(dropdown_positionAct.options[dropdown_positionAct.value].text);
+        Pos t = p.GetPosAct();
 
-        switch(p.posAct)
+        switch(t)
         {
-            case "Att":
+            case Pos.Attacker:
                 this.gameObject.transform.parent = team.lineup.panel_attackers.transform;
                 break;
-            case "Mid":
+            case Pos.Midfielder:
                 this.gameObject.transform.parent = team.lineup.panel_middies.transform;
                 break;
-            case "Def":
+            case Pos.Defender:
                 this.gameObject.transform.parent = team.lineup.panel_defense.transform;
                 break;
-            case "G":
+            case Pos.Goalie:
                 //Swap current goalie out
 
                 this.gameObject.transform.parent = team.lineup.panel_goalie.transform;
                 break;
-            case "Bench":
+            case Pos.Bench:
                 MoveToBench();
                 break;
             default:
-                if (p.id == "Place")
+                if (p.id == 0)
                 {
                     MoveToBench();
                     return;
@@ -134,7 +139,7 @@ public class PlayerObj : MonoBehaviour
     public void MoveLeft()
     {
         this.transform.SetAsFirstSibling();
-        p.slotAct = transform.GetSiblingIndex();
+        p.slotAct = (ushort) transform.GetSiblingIndex();
         UpdateText();
         HidePanel();
     }
@@ -142,7 +147,7 @@ public class PlayerObj : MonoBehaviour
     public void MoveRight()
     {
         this.transform.SetAsLastSibling();
-        p.slotAct = transform.GetSiblingIndex();
+        p.slotAct = (ushort)transform.GetSiblingIndex();
         UpdateText();
         HidePanel();
     }
@@ -155,7 +160,7 @@ public class PlayerObj : MonoBehaviour
 
     private void SlotChanged(int arg0)
     {
-        p.slotAct = dropdown_positionAct.value;
+        p.slotAct = (ushort) dropdown_positionAct.value;
         this.transform.SetSiblingIndex(p.slotAct);
         Debug.Log($"Player moved to slot {p.slotAct}");
         UpdateText();

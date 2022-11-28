@@ -1296,13 +1296,13 @@ MonoBehaviour:
     m_Options:
     - m_Text: Bench
       m_Image: {fileID: 0}
-    - m_Text: Att
+    - m_Text: Attacker
       m_Image: {fileID: 0}
-    - m_Text: Mid
+    - m_Text: Midfielder
       m_Image: {fileID: 0}
-    - m_Text: Def
+    - m_Text: Defender
       m_Image: {fileID: 0}
-    - m_Text: G
+    - m_Text: Goalie
       m_Image: {fileID: 0}
     - m_Text: Remove
       m_Image: {fileID: 0}
@@ -1502,12 +1502,19 @@ MonoBehaviour:
   button_moveLeft: {fileID: 2439847352137529550}
   button_moveRight: {fileID: 6120918208528490086}
   p:
-    firstName: 
-    position: 
-    power: 0
-    positionAct: 
+    id: 0
+    n: 
+    pos: 0
+    pow: 0
+    mpow: 0
+    chem: 0
+    tval: 0
+    sval: 0
+    game: 0
+    posAct: 0
     slotAct: 0
     init: 0
+    playerString: 
   team: {fileID: 0}
   selected: 0
   rostered: 0

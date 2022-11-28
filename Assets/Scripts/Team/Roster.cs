@@ -38,12 +38,31 @@ public class Roster : MonoBehaviour
     public void Recalc()
     {
         totalPower = 0;
-        foreach(GameObject pObj in playerObjectList)
-        {
-            Player p = pObj.GetComponent<Player>();
+        //int numChildren = this.transform.childCount;
 
-            totalPower += p.pow;
+        //Array to hold all child obj
+        //GameObject[] allChildren = new GameObject[transform.childCount];
+
+        //for (int i = 0; i < numChildren; i++)
+        //{
+        //    Player p = transform.GetChild(i).GetComponent<Player>();
+
+        //    if (p != null)
+        //    {
+        //        totalPower += p.pow;
+        //    }
+        //}
+        //Find all child obj and store to that array
+        foreach (Transform child in transform)
+        {
+            PlayerObj p = child.gameObject.GetComponent<PlayerObj>();
+
+            if (p != null)
+            {
+                totalPower += p.p.pow;
+            }
         }
+
     }
 
     // ------ PRIVATE ------

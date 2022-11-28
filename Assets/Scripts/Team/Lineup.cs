@@ -49,59 +49,59 @@ public class Lineup : MonoBehaviour
         def = 0f;
         totalPower = 0;
 
-        string lastChem = "";
+        Chem lastChem = Chem.None;
         if (attackers[0] != null)
         {
             foreach (Player p in attackers)
             {
-                if (lastChem.Contains("R") && p.chem.Contains("L"))
+                if (lastChem == Chem.Right && p.GetChem() == Chem.Left)
                 {
                     att += 1;
                 }
-                att += p.GetPositionPower("Att");
+                att += p.GetPositionPower(Pos.Attacker);
                 totalPower += p.pow;
 
-                lastChem = p.chem;
+                lastChem = p.GetChem();
             }
         }
 
-        lastChem = "";
+        lastChem = Chem.None;
         if (middies[0] != null)
         {
             foreach (Player p in middies)
             {
-                if (lastChem.Contains("R") && p.chem.Contains("L"))
+                if (lastChem == Chem.Right && p.GetChem() == Chem.Left)
                 {
                     mid += 1;
                 }
-                mid += p.GetPositionPower("Mid");
+                mid += p.GetPositionPower(Pos.Midfielder);
                 totalPower += p.pow;
 
-                lastChem = p.chem;
+                lastChem = p.GetChem();
             }
         }
 
-        lastChem = "";
+        lastChem = Chem.None;
         if (goalie != null)
         {
-            def += goalie.GetPositionPower("G");
+            def += goalie.GetPositionPower(Pos.Goalie);
             totalPower += goalie.pow;
 
-            lastChem = goalie.chem;
+            lastChem = goalie.GetChem();
         }
 
         if (defenders[0] != null)
         {
             foreach (Player p in defenders)
             {
-                if (lastChem.Contains("R") && p.chem.Contains("L"))
+                if (lastChem == Chem.Right && p.GetChem() == Chem.Left)
                 {
                     def += 1;
                 }
-                def += p.GetPositionPower("Def");
+                def += p.GetPositionPower(Pos.Defender);
                 totalPower += p.pow;
 
-                lastChem = p.chem;
+                lastChem = p.GetChem();
             }
         }
 

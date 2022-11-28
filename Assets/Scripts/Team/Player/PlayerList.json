@@ -1,35 +1,125 @@
 ﻿{
-    "playerlist":
-    [
+    "playerlist": [
         {
-            "id": "Place",
-            "pos": "G",
+            "id":  0,
+            "n": "Given",
+            "pos": 6,
             "pow": 1,
-            "chem":  ""
+            "mpow": -1,
+            "chem": 0,
+            "tval": 0,
+            "sval": 0,
+            "game": 0
         },
         {
-            "id": "Anna",
-            "pos": "Mid",
+            "id": 1,
+            "n": "Dodson",
+            "pos": 3,
             "pow": 1,
-            "chem": "LR"
+            "mpow": -1,
+            "chem": 0,
+            "tval": 20,
+            "sval": 10,
+            "game": 0
         },
         {
-            "id": "Peter",
-            "pos": "Def",
-            "pow": 2,
-            "chem": ""
+            "id": 2,
+            "n": "Judge",
+            "pos": 5,
+            "pow": 1,
+            "mpow": -1,
+            "chem": 0,
+            "tval": 10,
+            "sval": 5,
+            "game": 0
         },
         {
-            "id": "Billy",
-            "pos": "Att",
+            "id": 3,
+            "n": "Ernst",
+            "pos": 5,
+            "pow": 1,
+            "mpow": -1,
+            "chem": 2,
+            "tval": 10,
+            "sval": 5,
+            "game": 0
+        },
+        {
+            "id": 4,
+            "n": "Fonnely",
+            "pos": 6,
             "pow": 3,
-            "chem": "R"
+            "mpow": -1,
+            "chem": 0,
+            "tval": 30,
+            "sval": 15,
+            "game": 0
         },
         {
-            "id": "David",
-            "pos": "Att",
+            "id": 5,
+            "n": "Aguilar",
+            "pos": 4,
+            "pow": 1,
+            "mpow": 4,
+            "chem": 0,
+            "tval": 14,
+            "sval": 9,
+            "game": 0
+        },
+        {
+            "id": 6,
+            "n": "Bredalini",
+            "pos": 4,
             "pow": 2,
-            "chem": "L"
+            "mpow": 4,
+            "chem": 1,
+            "tval": 24,
+            "sval": 14,
+            "game": 0
+        },
+        {
+            "id": 7,
+            "n": "Bumgarner",
+            "pos": 4,
+            "pow": 1,
+            "mpow": 5,
+            "chem": 3,
+            "tval": 15,
+            "sval": 10,
+            "game": 0
+        },
+        {
+            "id": 8,
+            "n": "Nuzum",
+            "pos": 3,
+            "pow": 3,
+            "mpow": 4,
+            "chem": 3,
+            "tval": 34,
+            "sval": 19,
+            "game": 0
+        },
+        {
+            "id": 9,
+            "n": "Tata",
+            "pos": 2,
+            "pow": 3,
+            "mpow": 0,
+            "chem": 1,
+            "tval": 30,
+            "sval": 15,
+            "game": 0
+        },
+        {
+            "id": 10,
+            "n": "Demir",
+            "pos": 3,
+            "pow": 3,
+            "mpow": 0,
+            "chem": 0,
+            "tval": 30,
+            "sval": 15,
+            "game": 0
         }
     ]
 }

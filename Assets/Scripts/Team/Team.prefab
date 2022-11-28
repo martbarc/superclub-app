@@ -2577,15 +2577,23 @@ MonoBehaviour:
   middies: []
   defenders: []
   goalie:
-    firstName: 
-    position: 
-    power: 0
-    positionAct: 
+    id: 0
+    n: 
+    pos: 0
+    pow: 0
+    mpow: 0
+    chem: 0
+    tval: 0
+    sval: 0
+    game: 0
+    posAct: 0
     slotAct: 0
     init: 0
+    playerString: 
   att: 0
   mid: 0
   def: 0
+  totalPower: 0
 --- !u!1 &5907886142855564644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,6 +2745,7 @@ MonoBehaviour:
   button_lineup: {fileID: 1271115717882284827}
   button_season: {fileID: 8925246532088329493}
   button_add: {fileID: 2574523861445136629}
+  totalPower: 0
 --- !u!1 &6156860353244639148
 GameObject:
   m_ObjectHideFlags: 0
