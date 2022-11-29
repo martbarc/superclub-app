@@ -1,125 +1,2187 @@
 ﻿{
     "playerlist": [
-        {
-            "id":  0,
-            "n": "Given",
-            "pos": 6,
-            "pow": 1,
-            "mpow": -1,
-            "chem": 0,
-            "tval": 0,
-            "sval": 0,
-            "game": 0
-        },
-        {
-            "id": 1,
-            "n": "Dodson",
-            "pos": 3,
-            "pow": 1,
-            "mpow": -1,
-            "chem": 0,
-            "tval": 20,
-            "sval": 10,
-            "game": 0
-        },
-        {
-            "id": 2,
-            "n": "Judge",
-            "pos": 5,
-            "pow": 1,
-            "mpow": -1,
-            "chem": 0,
-            "tval": 10,
-            "sval": 5,
-            "game": 0
-        },
-        {
-            "id": 3,
-            "n": "Ernst",
-            "pos": 5,
-            "pow": 1,
-            "mpow": -1,
-            "chem": 2,
-            "tval": 10,
-            "sval": 5,
-            "game": 0
-        },
-        {
-            "id": 4,
-            "n": "Fonnely",
-            "pos": 6,
-            "pow": 3,
-            "mpow": -1,
-            "chem": 0,
-            "tval": 30,
-            "sval": 15,
-            "game": 0
-        },
-        {
-            "id": 5,
-            "n": "Aguilar",
-            "pos": 4,
-            "pow": 1,
-            "mpow": 4,
-            "chem": 0,
-            "tval": 14,
-            "sval": 9,
-            "game": 0
-        },
-        {
-            "id": 6,
-            "n": "Bredalini",
-            "pos": 4,
-            "pow": 2,
-            "mpow": 4,
-            "chem": 1,
-            "tval": 24,
-            "sval": 14,
-            "game": 0
-        },
-        {
-            "id": 7,
-            "n": "Bumgarner",
-            "pos": 4,
-            "pow": 1,
-            "mpow": 5,
-            "chem": 3,
-            "tval": 15,
-            "sval": 10,
-            "game": 0
-        },
-        {
-            "id": 8,
-            "n": "Nuzum",
-            "pos": 3,
-            "pow": 3,
-            "mpow": 4,
-            "chem": 3,
-            "tval": 34,
-            "sval": 19,
-            "game": 0
-        },
-        {
-            "id": 9,
-            "n": "Tata",
-            "pos": 2,
-            "pow": 3,
-            "mpow": 0,
-            "chem": 1,
-            "tval": 30,
-            "sval": 15,
-            "game": 0
-        },
-        {
-            "id": 10,
-            "n": "Demir",
-            "pos": 3,
-            "pow": 3,
-            "mpow": 0,
-            "chem": 0,
-            "tval": 30,
-            "sval": 15,
-            "game": 0
-        }
-    ]
+            {
+                "id": 0,
+                "n": "Given",
+                "pos": 6,
+                "pow": 1,
+                "mpow": -1,
+                "chem": 0,
+                "tval": 0,
+                "sval": 0,
+                "game": 0
+            },
+            {
+                "id": 1,
+                "n": "Test",
+                "pos": 3,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 2,
+                "n": "Balog",
+                "pos": 5,
+                "pow": 5,
+                "chem": 2,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 3,
+                "n": "Vanwinkle",
+                "pos": 5,
+                "pow": 5,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 4,
+                "n": "Petrie",
+                "pos": 5,
+                "pow": 4,
+                "chem": 2,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 5,
+                "n": "Tapia",
+                "pos": 5,
+                "pow": 4,
+                "mpow": 5,
+                "tval": 45,
+                "sval": 25,
+                "game": 0
+            },
+            {
+                "id": 6,
+                "n": "Senko",
+                "pos": 5,
+                "pow": 4,
+                "chem": 3,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 7,
+                "n": "Havens",
+                "pos": 5,
+                "pow": 4,
+                "chem": 1,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 8,
+                "n": "Parra",
+                "pos": 5,
+                "pow": 4,
+                "mpow": 5,
+                "chem": 1,
+                "tval": 45,
+                "sval": 25,
+                "game": 0
+            },
+            {
+                "id": 9,
+                "n": "Graf",
+                "pos": 5,
+                "pow": 3,
+                "mpow": 4,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 10,
+                "n": "Diaz",
+                "pos": 5,
+                "pow": 3,
+                "mpow": 4,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 11,
+                "n": "Gamble",
+                "pos": 5,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 12,
+                "n": "Goosens",
+                "pos": 5,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 13,
+                "n": "Ocasio",
+                "pos": 5,
+                "pow": 3,
+                "mpow": 4,
+                "chem": 2,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 14,
+                "n": "Plunkett",
+                "pos": 5,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 15,
+                "n": "Rector",
+                "pos": 5,
+                "pow": 3,
+                "mpow": 5,
+                "chem": 3,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 16,
+                "n": "Tremblay",
+                "pos": 5,
+                "pow": 3,
+                "mpow": 5,
+                "chem": 3,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 17,
+                "n": "Alfredo",
+                "pos": 5,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 18,
+                "n": "Vettel",
+                "pos": 5,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 19,
+                "n": "Ngige",
+                "pos": 5,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 20,
+                "n": "Wong",
+                "pos": 5,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 21,
+                "n": "Lysenko",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 4,
+                "chem": 1,
+                "tval": 24,
+                "sval": 14,
+                "game": 0
+            },
+            {
+                "id": 22,
+                "n": "Sands",
+                "pos": 5,
+                "pow": 2,
+                "chem": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 23,
+                "n": "Knox",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 3,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 24,
+                "n": "Nix",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 5,
+                "tval": 25,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 25,
+                "n": "Hawk",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 5,
+                "chem": 2,
+                "tval": 25,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 26,
+                "n": "Cazzola",
+                "pos": 5,
+                "pow": 2,
+                "chem": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 27,
+                "n": "Kocyk",
+                "pos": 5,
+                "pow": 2,
+                "chem": 1,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 28,
+                "n": "Neffy",
+                "pos": 5,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 29,
+                "n": "Verbic",
+                "pos": 5,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 30,
+                "n": "Mosso",
+                "pos": 5,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 31,
+                "n": "Rammelkamp",
+                "pos": 5,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 32,
+                "n": "Piar",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 3,
+                "chem": 1,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 33,
+                "n": "Lightfoot",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 4,
+                "chem": 2,
+                "tval": 24,
+                "sval": 14,
+                "game": 0
+            },
+            {
+                "id": 34,
+                "n": "Eppling",
+                "pos": 5,
+                "pow": 2,
+                "chem": 1,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 35,
+                "n": "Krieger",
+                "pos": 5,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 36,
+                "n": "Friesta",
+                "pos": 5,
+                "pow": 2,
+                "mpow": 3,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 37,
+                "n": "Contee",
+                "pos": 5,
+                "pow": 2,
+                "chem": 3,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 38,
+                "n": "Valery",
+                "pos": 5,
+                "pow": 2,
+                "chem": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 39,
+                "n": "Judge",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 40,
+                "n": "Ernst",
+                "pos": 5,
+                "pow": 1,
+                "chem": 2,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 41,
+                "n": "Dimka",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 42,
+                "n": "Grice",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 43,
+                "n": "Tanaka",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 4,
+                "chem": 2,
+                "tval": 14,
+                "sval": 9,
+                "game": 0
+            },
+            {
+                "id": 44,
+                "n": "Fugua",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 2,
+                "tval": 12,
+                "sval": 7,
+                "game": 0
+            },
+            {
+                "id": 45,
+                "n": "Jolly",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 3,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 46,
+                "n": "Irish",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 47,
+                "n": "Azikiwe",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 48,
+                "n": "Morel",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 49,
+                "n": "Singh",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 50,
+                "n": "Sesay",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 51,
+                "n": "Turunen",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 5,
+                "chem": 1,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 52,
+                "n": "Stone",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 53,
+                "n": "Jakande",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 54,
+                "n": "Holsen",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 5,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 55,
+                "n": "Henke",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 56,
+                "n": "Mazur",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 4,
+                "chem": 1,
+                "tval": 14,
+                "sval": 9,
+                "game": 0
+            },
+            {
+                "id": 57,
+                "n": "Bert",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 3,
+                "chem": 3,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 58,
+                "n": "Uribe",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 5,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 59,
+                "n": "Jensen",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 3,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 60,
+                "n": "Solarin",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 61,
+                "n": "Uba",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 62,
+                "n": "Nguyen",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 63,
+                "n": "Leroy",
+                "pos": 5,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 64,
+                "n": "Aguda",
+                "pos": 5,
+                "pow": 1,
+                "chem": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 65,
+                "n": "Butcher",
+                "pos": 5,
+                "pow": 1,
+                "mpow": 3,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 66,
+                "n": "Hoti",
+                "pos": 4,
+                "pow": 5,
+                "chem": 3,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 67,
+                "n": "Novak",
+                "pos": 4,
+                "pow": 5,
+                "mpow": 6,
+                "tval": 56,
+                "sval": 36,
+                "game": 0
+            },
+            {
+                "id": 68,
+                "n": "Parker",
+                "pos": 4,
+                "pow": 5,
+                "chem": 2,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 69,
+                "n": "Boelsmand",
+                "pos": 4,
+                "pow": 4,
+                "chem": 2,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 70,
+                "n": "Fink",
+                "pos": 4,
+                "pow": 4,
+                "chem": 1,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 71,
+                "n": "Aiken",
+                "pos": 4,
+                "pow": 4,
+                "mpow": 6,
+                "tval": 46,
+                "sval": 26,
+                "game": 0
+            },
+            {
+                "id": 72,
+                "n": "Ferraro",
+                "pos": 4,
+                "pow": 4,
+                "mpow": 6,
+                "tval": 46,
+                "sval": 26,
+                "game": 0
+            },
+            {
+                "id": 73,
+                "n": "Green",
+                "pos": 4,
+                "pow": 4,
+                "chem": 1,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 74,
+                "n": "Hyde",
+                "pos": 4,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 75,
+                "n": "Duarte",
+                "pos": 4,
+                "pow": 4,
+                "mpow": 5,
+                "tval": 45,
+                "sval": 25,
+                "game": 0
+            },
+            {
+                "id": 76,
+                "n": "Falcon",
+                "pos": 4,
+                "pow": 4,
+                "chem": 2,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 77,
+                "n": "Egan",
+                "pos": 4,
+                "pow": 4,
+                "mpow": 5,
+                "tval": 45,
+                "sval": 25,
+                "game": 0
+            },
+            {
+                "id": 78,
+                "n": "Barbosa",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 6,
+                "tval": 36,
+                "sval": 21,
+                "game": 0
+            },
+            {
+                "id": 79,
+                "n": "Escamilla",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 5,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 80,
+                "n": "Popa",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 6,
+                "chem": 1,
+                "tval": 36,
+                "sval": 21,
+                "game": 0
+            },
+            {
+                "id": 81,
+                "n": "Heriksson",
+                "pos": 4,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 82,
+                "n": "Gustave",
+                "pos": 4,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 83,
+                "n": "Nielsen",
+                "pos": 4,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 84,
+                "n": "Zavala",
+                "pos": 4,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 85,
+                "n": "Roux",
+                "pos": 4,
+                "pow": 3,
+                "chem": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 86,
+                "n": "Harris",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 4,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 87,
+                "n": "Harold",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 4,
+                "chem": 1,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 88,
+                "n": "Heddad",
+                "pos": 4,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 89,
+                "n": "Barrabarra",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 4,
+                "chem": 2,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 90,
+                "n": "Guns",
+                "pos": 4,
+                "pow": 3,
+                "chem": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 91,
+                "n": "Tamm",
+                "pos": 4,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 92,
+                "n": "Sigri",
+                "pos": 4,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 93,
+                "n": "Siversten",
+                "pos": 4,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 94,
+                "n": "Vega",
+                "pos": 4,
+                "pow": 3,
+                "mpow": 5,
+                "chem": 2,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 95,
+                "n": "Pace",
+                "pos": 4,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 96,
+                "n": "Crews",
+                "pos": 4,
+                "pow": 2,
+                "chem": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 97,
+                "n": "Dybevic",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 3,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 98,
+                "n": "Contreras",
+                "pos": 4,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 99,
+                "n": "Mehta",
+                "pos": 4,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 100,
+                "n": "Buck",
+                "pos": 4,
+                "pow": 2,
+                "chem": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 101,
+                "n": "Conger",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 4,
+                "tval": 24,
+                "sval": 14,
+                "game": 0
+            },
+            {
+                "id": 102,
+                "n": "Volkov",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 5,
+                "tval": 25,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 103,
+                "n": "Dejesus",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 6,
+                "chem": 2,
+                "tval": 26,
+                "sval": 16,
+                "game": 0
+            },
+            {
+                "id": 104,
+                "n": "Sylvester",
+                "pos": 4,
+                "pow": 2,
+                "chem": 1,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 105,
+                "n": "Serrano",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 3,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 106,
+                "n": "Styan",
+                "pos": 4,
+                "pow": 2,
+                "chem": 3,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 107,
+                "n": "Dangelo",
+                "pos": 4,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 108,
+                "n": "Fontana",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 3,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 109,
+                "n": "Snaper",
+                "pos": 4,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 110,
+                "n": "Khan",
+                "pos": 4,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 111,
+                "n": "Mordi",
+                "pos": 4,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 112,
+                "n": "Bredalini",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 4,
+                "chem": 1,
+                "tval": 24,
+                "sval": 14,
+                "game": 0
+            },
+            {
+                "id": 113,
+                "n": "Chamberlin",
+                "pos": 4,
+                "pow": 2,
+                "mpow": 5,
+                "chem": 2,
+                "tval": 25,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 114,
+                "n": "Coughlin",
+                "pos": 4,
+                "pow": 2,
+                "chem": 1,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 115,
+                "n": "Wright",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 116,
+                "n": "Cox",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 117,
+                "n": "Esposito",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 118,
+                "n": "Amos",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 6,
+                "tval": 16,
+                "sval": 11,
+                "game": 0
+            },
+            {
+                "id": 119,
+                "n": "Heinonen",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 2,
+                "tval": 12,
+                "sval": 7,
+                "game": 0
+            },
+            {
+                "id": 120,
+                "n": "Mafacca",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 4,
+                "tval": 14,
+                "sval": 9,
+                "game": 0
+            },
+            {
+                "id": 121,
+                "n": "Boatwright",
+                "pos": 4,
+                "pow": 1,
+                "chem": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 122,
+                "n": "Braun",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 5,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 123,
+                "n": "Valez",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 124,
+                "n": "Soares",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 125,
+                "n": "Regens",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 126,
+                "n": "Basse",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 127,
+                "n": "Cabrera",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 3,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 128,
+                "n": "O'Gallagher",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 3,
+                "chem": 1,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 129,
+                "n": "Hancock",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 130,
+                "n": "Russo",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 131,
+                "n": "Patel",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 132,
+                "n": "Zhang",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 133,
+                "n": "Ali",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 134,
+                "n": "Testa",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 135,
+                "n": "Dekker",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 136,
+                "n": "Bos",
+                "pos": 4,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 137,
+                "n": "Aguilar",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 4,
+                "tval": 14,
+                "sval": 9,
+                "game": 0
+            },
+            {
+                "id": 138,
+                "n": "Bumgarner",
+                "pos": 4,
+                "pow": 1,
+                "mpow": 5,
+                "chem": 3,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 139,
+                "n": "Garibaldi",
+                "pos": 3,
+                "pow": 6,
+                "chem": 3,
+                "tval": 60,
+                "sval": 40,
+                "game": 0
+            },
+            {
+                "id": 140,
+                "n": "Ciampi",
+                "pos": 3,
+                "pow": 5,
+                "chem": 2,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 141,
+                "n": "Sellers",
+                "pos": 3,
+                "pow": 5,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 142,
+                "n": "Blanco",
+                "pos": 3,
+                "pow": 5,
+                "mpow": 6,
+                "chem": 1,
+                "tval": 56,
+                "sval": 36,
+                "game": 0
+            },
+            {
+                "id": 143,
+                "n": "Mahmood",
+                "pos": 3,
+                "pow": 5,
+                "chem": 1,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 144,
+                "n": "Schneider",
+                "pos": 3,
+                "pow": 4,
+                "chem": 1,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 145,
+                "n": "Gytcher",
+                "pos": 3,
+                "pow": 4,
+                "chem": 3,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 146,
+                "n": "Golubev",
+                "pos": 3,
+                "pow": 4,
+                "mpow": 5,
+                "tval": 45,
+                "sval": 25,
+                "game": 0
+            },
+            {
+                "id": 147,
+                "n": "Lam",
+                "pos": 3,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 148,
+                "n": "Yoder",
+                "pos": 3,
+                "pow": 4,
+                "chem": 3,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 149,
+                "n": "Mahneke",
+                "pos": 3,
+                "pow": 4,
+                "mpow": 6,
+                "chem": 2,
+                "tval": 46,
+                "sval": 26,
+                "game": 0
+            },
+            {
+                "id": 150,
+                "n": "Bialas",
+                "pos": 3,
+                "pow": 4,
+                "mpow": 5,
+                "tval": 45,
+                "sval": 25,
+                "game": 0
+            },
+            {
+                "id": 151,
+                "n": "Abara",
+                "pos": 3,
+                "pow": 4,
+                "mpow": 6,
+                "chem": 2,
+                "tval": 46,
+                "sval": 26,
+                "game": 0
+            },
+            {
+                "id": 152,
+                "n": "Melnyk",
+                "pos": 3,
+                "pow": 4,
+                "chem": 2,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 153,
+                "n": "Baker",
+                "pos": 3,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 154,
+                "n": "Lima",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 5,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 155,
+                "n": "Cavaliere",
+                "pos": 3,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 156,
+                "n": "Michel",
+                "pos": 3,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 157,
+                "n": "Campion",
+                "pos": 3,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 158,
+                "n": "Lee",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 4,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 159,
+                "n": "Ramsay",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 4,
+                "chem": 1,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 160,
+                "n": "Fusco",
+                "pos": 3,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 161,
+                "n": "Sosa",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 5,
+                "chem": 2,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 162,
+                "n": "Bigdi",
+                "pos": 3,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 163,
+                "n": "Saldivia",
+                "pos": 3,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 164,
+                "n": "Nagy",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 5,
+                "tval": 35,
+                "sval": 20,
+                "game": 0
+            },
+            {
+                "id": 165,
+                "n": "Selmer",
+                "pos": 3,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 166,
+                "n": "Brisebois",
+                "pos": 3,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 167,
+                "n": "Schock",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 6,
+                "tval": 36,
+                "sval": 21,
+                "game": 0
+            },
+            {
+                "id": 168,
+                "n": "Demir",
+                "pos": 3,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 169,
+                "n": "Nuzum",
+                "pos": 3,
+                "pow": 3,
+                "mpow": 4,
+                "chem": 3,
+                "tval": 34,
+                "sval": 19,
+                "game": 0
+            },
+            {
+                "id": 170,
+                "n": "Peligrad",
+                "pos": 3,
+                "pow": 2,
+                "mpow": 4,
+                "chem": 2,
+                "tval": 24,
+                "sval": 14,
+                "game": 0
+            },
+            {
+                "id": 171,
+                "n": "Liu",
+                "pos": 3,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 172,
+                "n": "Choi",
+                "pos": 3,
+                "pow": 2,
+                "chem": 1,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 173,
+                "n": "Ross",
+                "pos": 3,
+                "pow": 2,
+                "mpow": 4,
+                "tval": 24,
+                "sval": 14,
+                "game": 0
+            },
+            {
+                "id": 174,
+                "n": "Kutzmark",
+                "pos": 3,
+                "pow": 2,
+                "mpow": 6,
+                "chem": 1,
+                "tval": 26,
+                "sval": 16,
+                "game": 0
+            },
+            {
+                "id": 175,
+                "n": "Dimitrov",
+                "pos": 3,
+                "pow": 2,
+                "mpow": 5,
+                "chem": 1,
+                "tval": 25,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 176,
+                "n": "Audundas",
+                "pos": 3,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 177,
+                "n": "Hattelwick",
+                "pos": 3,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 178,
+                "n": "Vance",
+                "pos": 3,
+                "pow": 2,
+                "chem": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 179,
+                "n": "Cruz",
+                "pos": 3,
+                "pow": 2,
+                "chem": 1,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 180,
+                "n": "Sunny",
+                "pos": 3,
+                "pow": 2,
+                "mpow": 3,
+                "tval": 23,
+                "sval": 13,
+                "game": 0
+            },
+            {
+                "id": 181,
+                "n": "Puntanen",
+                "pos": 3,
+                "pow": 2,
+                "mpow": 5,
+                "tval": 25,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 182,
+                "n": "Dodson",
+                "pos": 3,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 183,
+                "n": "Smirnov",
+                "pos": 3,
+                "pow": 1,
+                "mpow": 5,
+                "chem": 2,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 184,
+                "n": "Komine",
+                "pos": 3,
+                "pow": 1,
+                "chem": 2,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 185,
+                "n": "Gruber",
+                "pos": 3,
+                "pow": 1,
+                "mpow": 5,
+                "tval": 15,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 186,
+                "n": "Garza",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 187,
+                "n": "Perez",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 188,
+                "n": "O'Farrell",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 189,
+                "n": "Araya",
+                "pos": 3,
+                "pow": 1,
+                "mpow": 3,
+                "tval": 13,
+                "sval": 8,
+                "game": 0
+            },
+            {
+                "id": 190,
+                "n": "Todaro",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 191,
+                "n": "Rees",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 192,
+                "n": "Linzo",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 193,
+                "n": "Walter",
+                "pos": 3,
+                "pow": 1,
+                "chem": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 194,
+                "n": "Babel",
+                "pos": 3,
+                "pow": 1,
+                "mpow": 4,
+                "tval": 14,
+                "sval": 9,
+                "game": 0
+            },
+            {
+                "id": 195,
+                "n": "Snow",
+                "pos": 3,
+                "pow": 1,
+                "mpow": 6,
+                "tval": 16,
+                "sval": 11,
+                "game": 0
+            },
+            {
+                "id": 196,
+                "n": "Zabo",
+                "pos": 3,
+                "pow": 1,
+                "chem": 3,
+                "tval": 14,
+                "sval": 9,
+                "game": 0
+            },
+            {
+                "id": 197,
+                "n": "Pisano",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 198,
+                "n": "Sharma",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 199,
+                "n": "Regionaldo",
+                "pos": 3,
+                "pow": 1,
+                "tval": 10,
+                "sval": 5,
+                "game": 0
+            },
+            {
+                "id": 200,
+                "n": "Fujimoto",
+                "pos": 2,
+                "pow": 5,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 201,
+                "n": "Zanti",
+                "pos": 2,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 202,
+                "n": "Diallo",
+                "pos": 2,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 203,
+                "n": "Woss",
+                "pos": 2,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 204,
+                "n": "Lundstrom",
+                "pos": 2,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 205,
+                "n": "Solana",
+                "pos": 2,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 206,
+                "n": "Gurin",
+                "pos": 2,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 207,
+                "n": "O'Leary",
+                "pos": 2,
+                "pow": 3,
+                "chem": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 208,
+                "n": "Nemitz",
+                "pos": 2,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 209,
+                "n": "Ribeiro",
+                "pos": 2,
+                "pow": 3,
+                "chem": 2,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 210,
+                "n": "Tata",
+                "pos": 2,
+                "pow": 3,
+                "chem": 1,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 211,
+                "n": "Oscar",
+                "pos": 2,
+                "pow": 2,
+                "chem": 3,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 212,
+                "n": "Brewing",
+                "pos": 2,
+                "pow": 2,
+                "chem": 3,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 213,
+                "n": "Iqbal",
+                "pos": 6,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 214,
+                "n": "Paquette",
+                "pos": 6,
+                "pow": 4,
+                "tval": 40,
+                "sval": 22,
+                "game": 0
+            },
+            {
+                "id": 215,
+                "n": "Cassesso",
+                "pos": 6,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 216,
+                "n": "Fauski",
+                "pos": 6,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 217,
+                "n": "Bamba",
+                "pos": 6,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 218,
+                "n": "Djenie",
+                "pos": 6,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 219,
+                "n": "Fonnely",
+                "pos": 6,
+                "pow": 3,
+                "tval": 30,
+                "sval": 15,
+                "game": 0
+            },
+            {
+                "id": 220,
+                "n": "Solis",
+                "pos": 6,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 221,
+                "n": "Bankston",
+                "pos": 6,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 222,
+                "n": "Skalnik",
+                "pos": 6,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 223,
+                "n": "Zuliani",
+                "pos": 6,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            }
+        ]
 }
