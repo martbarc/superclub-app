@@ -78,12 +78,8 @@ public class Player
 
     public string GetString()
     {
-        playerString = $"Name: {n}" +
-            $"\nStars: {pow}" +
-            $"\nPosition: {pos}" +
-            $"\nChemistry: {chem}" +
-            $"\nLineup: {posAct}" +
-            $"\nSlot: {slotAct}";
+        playerString = $"{n}" + // name
+            $"\n{pow}"; // pow
         return playerString;
     }
 
@@ -130,9 +126,8 @@ public class Player
         return power;
     }
 
-    public void SetPosAct(string pos)
+    public void SetPosAct(Pos position)
     {
-        Enum.TryParse<Pos>(pos, out Pos t);
-        this.posAct = (ushort)t;
+        this.posAct = (ushort)position;
     }
 }

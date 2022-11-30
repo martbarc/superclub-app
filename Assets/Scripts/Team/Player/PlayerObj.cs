@@ -7,15 +7,7 @@ public class PlayerObj : MonoBehaviour
     [SerializeField] public Image image_back;
     [SerializeField] public Button select;
     [SerializeField] public TextMeshProUGUI text_stats;
-
-    //Selected panel
-    [SerializeField] public GameObject panel_selected;
-    //[SerializeField] public Button button_close;
-
-    [SerializeField] public TMP_Dropdown dropdown_positionAct;
-
-    [SerializeField] public Button button_moveLeft;
-    [SerializeField] public Button button_moveRight;
+    [SerializeField] public TextMeshProUGUI text_value;
 
     public Player p;
     public Team team;
@@ -30,17 +22,11 @@ public class PlayerObj : MonoBehaviour
         rostered = false;
 
         select.onClick.AddListener(onPlayerSelected);
-
-        dropdown_positionAct.onValueChanged.AddListener(PositionActChanged);
-        button_moveLeft.onClick.AddListener(MoveLeft);
-        button_moveRight.onClick.AddListener(MoveRight);
     }
 
     void Start()
     {
         UpdateText();
-
-        HidePanel();
     }
 
     public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem)
@@ -52,19 +38,19 @@ public class PlayerObj : MonoBehaviour
         switch (tpos)
         {
             case Pos.Attacker:
-                image_back.color = new Color32(0, 255, 0, 255);
+                image_back.color = new Color32(19, 87, 14, 255);
                 break;
             case Pos.Midfielder:
-                image_back.color = new Color32(255, 255, 0, 255);
+                image_back.color = new Color32(87, 78, 14, 255);
                 break;
             case Pos.Defender:
-                image_back.color = new Color32(255, 0, 0, 255);
+                image_back.color = new Color32(87, 19, 14, 255);
                 break;
             case Pos.Goalie:
-                image_back.color = new Color32(255, 255, 225, 255);
+                image_back.color = new Color32(158, 103, 103, 255);
                 break;
             case Pos.Wild:
-                image_back.color = new Color32(221, 160, 221, 255);
+                image_back.color = new Color32(47, 14, 87, 255);
                 break;
             default:
                 image_back.color = new Color32(0, 0, 0, 255);
@@ -88,33 +74,31 @@ public class PlayerObj : MonoBehaviour
         //text_slot.text = $"( {perferredSlot} )";
     }
 
-    public void SetActive(bool a)
-    {
-        this.gameObject.SetActive(a);
-    }
-
     //private
-    private void PositionActChanged(int arg0)
+    public void PositionActChanged(Pos position)
     {
-
-        p.SetPosAct(dropdown_positionAct.options[dropdown_positionAct.value].text);
+        p.SetPosAct(position);
         Pos t = p.GetPosAct();
 
         switch(t)
         {
             case Pos.Attacker:
-                this.gameObject.transform.parent = team.lineup.panel_attackers.transform;
+                this.gameObject.transform.SetParent(team.lineup.panel_attackers.transform);
                 break;
             case Pos.Midfielder:
-                this.gameObject.transform.parent = team.lineup.panel_middies.transform;
+                this.gameObject.transform.SetParent(team.lineup.panel_middies.transform);
                 break;
             case Pos.Defender:
-                this.gameObject.transform.parent = team.lineup.panel_defense.transform;
+                this.gameObject.transform.SetParent(team.lineup.panel_defense.transform);
                 break;
             case Pos.Goalie:
                 //Swap current goalie out
+                if (team.lineup.panel_goalie.transform.childCount > 0)
+                {
+                    team.lineup.panel_goalie.transform.GetChild(0).SetParent(team.roster.transform);
+                }
 
-                this.gameObject.transform.parent = team.lineup.panel_goalie.transform;
+                this.gameObject.transform.SetParent(team.lineup.panel_goalie.transform);
                 break;
             case Pos.Bench:
                 MoveToBench();
@@ -125,15 +109,13 @@ public class PlayerObj : MonoBehaviour
                     MoveToBench();
                     return;
                 }
-                this.gameObject.transform.parent = team.playerPool.playerPool.transform;
+                this.gameObject.transform.SetParent(team.playerPool.playerPool.transform);
                 rostered = false;
                 break;
         }
 
-        Debug.Log("Player moved to lineup!");
-
         UpdateText();
-        HidePanel();
+        team.panel_playerselect.HidePanel();
     }
 
     public void MoveLeft()
@@ -141,7 +123,7 @@ public class PlayerObj : MonoBehaviour
         this.transform.SetAsFirstSibling();
         p.slotAct = (ushort) transform.GetSiblingIndex();
         UpdateText();
-        HidePanel();
+        team.panel_playerselect.HidePanel();
     }
 
     public void MoveRight()
@@ -149,22 +131,13 @@ public class PlayerObj : MonoBehaviour
         this.transform.SetAsLastSibling();
         p.slotAct = (ushort)transform.GetSiblingIndex();
         UpdateText();
-        HidePanel();
+        team.panel_playerselect.HidePanel();
     }
 
     public void MoveToBench()
     {
-        this.gameObject.transform.parent = team.roster.transform;
+        this.transform.SetParent(team.roster.transform);
         rostered = true;
-    }
-
-    private void SlotChanged(int arg0)
-    {
-        p.slotAct = (ushort) dropdown_positionAct.value;
-        this.transform.SetSiblingIndex(p.slotAct);
-        Debug.Log($"Player moved to slot {p.slotAct}");
-        UpdateText();
-        HidePanel();
     }
 
     private void onPlayerSelected()
@@ -175,19 +148,10 @@ public class PlayerObj : MonoBehaviour
         }
         else
         {
-            ShowPanel();
+            team.panel_playerselect.ShowPanel(this);
         }
     }
 
-    private void HidePanel()
-    {
-        panel_selected.gameObject.SetActive(false);
-    }
-
-    private void ShowPanel()
-    {
-        panel_selected.gameObject.SetActive(true);
-    }
 }
 
 

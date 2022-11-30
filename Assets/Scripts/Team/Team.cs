@@ -13,23 +13,22 @@ public class Team : MonoBehaviour
 
     // HOME PANEL
     [SerializeField] public Button button_playGame;
-    [SerializeField] public TextMeshProUGUI text_game;
     [SerializeField] public TextMeshProUGUI text_teamStats;
 
     //Panels
     [SerializeField] public GameObject panel_home;
     [SerializeField] public GameObject panel_roster;
     [SerializeField] public GameObject panel_lineup;
-    [SerializeField] public GameObject panel_season;
     [SerializeField] public GameObject panel_playerpool;
 
     //Bottom Tabs
     [SerializeField] public Button button_home;
     [SerializeField] public Button button_roster;
     [SerializeField] public Button button_lineup;
-    [SerializeField] public Button button_season;
     [SerializeField] public Button button_add;
-    [SerializeField] public Button button_Update;
+    [SerializeField] public Button button_update;
+
+    [SerializeField] public PlayerSelectPanel panel_playerselect;
 
 
     public float totalPower;
@@ -53,12 +52,11 @@ public class Team : MonoBehaviour
 
     private void Awake()
     {
-        button_Update.onClick.AddListener(UpdateAll);
+        button_update.onClick.AddListener(UpdateAll);
 
         button_home.onClick.AddListener(ShowHome);
         button_roster.onClick.AddListener(ShowRoster);
         button_lineup.onClick.AddListener(ShowLineup);
-        button_season.onClick.AddListener(ShowSeason);
         button_add.onClick.AddListener(ShowPlayerPool);
 
         button_playGame.onClick.AddListener(PlayGame);
@@ -70,8 +68,6 @@ public class Team : MonoBehaviour
     {
         ResetGame();
         ShowHome();
-
-        UpdateTeamStatsText();
     }
 
     private void UpdateAll()
@@ -81,14 +77,24 @@ public class Team : MonoBehaviour
 
         totalPower = lineup.totalPower + roster.totalPower;
 
-        UpdateTeamStatsText();
+        UpdateText();
     }
 
-    public void UpdateTeamStatsText()
+    public void UpdateText()
     {
+        UpdateAll();
+        
+        gameText = $"Game: {gameNum}\n" +
+            "Total = Lineup + Roll1 + Roll2 + Lineup\n" + 
+            $"Att: {simAtt} = {lineup.att} + {rollAtt0} + {rollAtt1} \n" +
+            $"Mid: {simMid} = {lineup.mid} + {rollMid0} + {rollMid1}\n" +
+            $"Def: {simDef} = {lineup.def} + {rollDef0} + {rollDef1}\n";
+
         text_teamStats.text = $"Att: {lineup.att}\n" +
-         $"Mid: {lineup.mid} - Def: {lineup.def}" +
-            $"\nTotal: {totalPower}";
+            $"Mid: {lineup.mid}\n" +
+            $"Def: {lineup.def}\n" +
+            $"Total: {totalPower}\n\n" + 
+            gameText;
     }
 
     //Panel controller
@@ -97,7 +103,6 @@ public class Team : MonoBehaviour
         panel_home.gameObject.SetActive(false);
         panel_roster.gameObject.SetActive(false);
         panel_lineup.gameObject.SetActive(false);
-        panel_season.gameObject.SetActive(false);
         panel_playerpool.gameObject.SetActive(false);
     }
 
@@ -119,11 +124,11 @@ public class Team : MonoBehaviour
         panel_lineup.gameObject.SetActive(true);
     }
 
-    public void ShowSeason()
-    {
-        HideAll();
-        panel_season.gameObject.SetActive(true);
-    }
+    // public void ShowSeason()
+    // {
+    //     HideAll();
+    //     panel_season.gameObject.SetActive(true);
+    // }
 
     public void ShowPlayerPool()
     {
@@ -153,8 +158,6 @@ public class Team : MonoBehaviour
         simMid = rollMid0 + rollMid1 + lineup.mid;
         simDef = rollDef0 + rollDef1 + lineup.def;
 
-        ResetText();
-
         if (rollAtt0 == rollAtt1) 
         {
             gameText += $"*Injured Player: Att_{rollAtt0}\n";
@@ -176,22 +179,5 @@ public class Team : MonoBehaviour
     public int RollD6()
     {
         return Random.Range(1, 6);
-    }
-
-    public void ResetText()
-    {
-        gameText = $"Game: {gameNum}\n" +
-            "Pos: Total = Roll1 + Roll2 + Lineup\n" + 
-            $"Att: {simAtt} = {rollAtt0} + {rollAtt1} + {lineup.att}\n" +
-            $"Mid: {simMid} = {rollMid0} + {rollMid0} + {lineup.mid}\n" +
-            $"Def: {simDef} = {rollDef0} + {rollDef1} + {lineup.def}\n";
-    }
-
-    public void UpdateText()
-    {
-        if (text_game != null)
-        {
-            text_game.text = gameText;
-        }
     }
 }

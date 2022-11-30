@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 43204764}
   - component: {fileID: 43204763}
   - component: {fileID: 43204762}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,6 +1393,7 @@ GameObject:
   - component: {fileID: 900660053}
   - component: {fileID: 900660052}
   - component: {fileID: 900660051}
+  - component: {fileID: 900660054}
   m_Layer: 5
   m_Name: Roster
   m_TagString: Untagged
@@ -1435,7 +1436,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 236, y: 344}
+  m_CellSize: {x: 214, y: 344}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 3
@@ -1456,9 +1457,23 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &900660054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900660050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &922037598
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,7 +2173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1329133485}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2198,7 +2213,7 @@ GameObject:
   - component: {fileID: 1359969358}
   - component: {fileID: 1359969357}
   - component: {fileID: 1359969356}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2545,7 +2560,7 @@ GameObject:
   - component: {fileID: 1461336259}
   - component: {fileID: 1461336261}
   - component: {fileID: 1461336260}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2622,7 +2637,7 @@ GameObject:
   - component: {fileID: 1473610334}
   - component: {fileID: 1473610333}
   - component: {fileID: 1473610332}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2699,7 +2714,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 236, y: 344}
+  m_CellSize: {x: 214, y: 344}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2941,7 +2956,7 @@ GameObject:
   - component: {fileID: 1720366821}
   - component: {fileID: 1720366820}
   - component: {fileID: 1720366819}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3190,7 +3205,7 @@ GameObject:
   - component: {fileID: 1826334384}
   - component: {fileID: 1826334383}
   - component: {fileID: 1826334382}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3314,7 +3329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1854384395}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3817,7 +3832,7 @@ GameObject:
   - component: {fileID: 2102955909}
   - component: {fileID: 2102955911}
   - component: {fileID: 2102955910}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3900,7 +3915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106379910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4060,7 +4075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.25882354, g: 0.5568628, b: 0.27450982, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4982,7 +4997,7 @@ GameObject:
   - component: {fileID: 3781503276669552452}
   - component: {fileID: 5420574446254147336}
   - component: {fileID: 994667510238520021}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerPoolHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6023,6 +6038,7 @@ MonoBehaviour:
   button_lineup: {fileID: 1271115718782554734}
   button_add: {fileID: 2574523862289828224}
   button_update: {fileID: 175235756978491015}
+  panel_playerselect: {fileID: 2106379913}
   totalPower: 0
   gameNum: 0
   simAtt: 0
