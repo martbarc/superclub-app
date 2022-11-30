@@ -54,7 +54,8 @@ public class Lineup : MonoBehaviour
         {
             foreach (Player p in attackers)
             {
-                if (lastChem == Chem.Right && p.GetChem() == Chem.Left)
+                if ((lastChem == Chem.Right || lastChem == Chem.Both) 
+                && (p.GetChem() == Chem.Left || p.GetChem() == Chem.Both))
                 {
                     att += 1;
                 }
@@ -70,7 +71,8 @@ public class Lineup : MonoBehaviour
         {
             foreach (Player p in middies)
             {
-                if (lastChem == Chem.Right && p.GetChem() == Chem.Left)
+                if ((lastChem == Chem.Right || lastChem == Chem.Both)
+                    && (p.GetChem() == Chem.Left || p.GetChem() == Chem.Both))
                 {
                     mid += 1;
                 }
@@ -94,7 +96,8 @@ public class Lineup : MonoBehaviour
         {
             foreach (Player p in defenders)
             {
-                if (lastChem == Chem.Right && p.GetChem() == Chem.Left)
+                if ((lastChem == Chem.Right|| lastChem == Chem.Both)
+                    && (p.GetChem() == Chem.Left || p.GetChem() == Chem.Both))
                 {
                     def += 1;
                 }
@@ -129,7 +132,7 @@ public class Lineup : MonoBehaviour
 
         if (gObjs.Count == 0)
         {
-            Debug.Log("Error: No players in position!");
+            //Debug.Log("Error: No players in position!");
             gObjs.Add(null);
         }
 

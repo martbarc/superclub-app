@@ -13,6 +13,9 @@ public class PlayerSelectPanel : MonoBehaviour
     [SerializeField] public Button button_defense;
     [SerializeField] public Button button_goalie;
 
+    [SerializeField] public Button button_bench;
+    [SerializeField] public Button button_remove;
+
     [SerializeField] public Button button_moveLeft;
     [SerializeField] public Button button_moveRight;
 
@@ -29,6 +32,9 @@ public class PlayerSelectPanel : MonoBehaviour
         button_defense.onClick.AddListener(MoveToDef);
         button_goalie.onClick.AddListener(MoveToGoalie);
 
+        button_bench.onClick.AddListener(MoveToBench);
+        button_remove.onClick.AddListener(Remove);
+
         button_moveLeft.onClick.AddListener(MoveLeft);
         button_moveRight.onClick.AddListener(MoveRight);
     }
@@ -41,31 +47,49 @@ public class PlayerSelectPanel : MonoBehaviour
     public void MoveToAtt()
     {
         p.PositionActChanged(Pos.Attacker);
+        this.HidePanel();
     }
 
     public void MoveToMid()
     {
         p.PositionActChanged(Pos.Midfielder);
+        this.HidePanel();
     }
 
     public void MoveToDef()
     {
         p.PositionActChanged(Pos.Defender);
+        this.HidePanel();
     }
 
     public void MoveToGoalie()
     {
         p.PositionActChanged(Pos.Goalie);
+        this.HidePanel();
+    }
+
+    public void MoveToBench()
+    {
+        p.MoveToBench();
+        this.HidePanel();
+    }
+
+    public void Remove()
+    {
+        p.RemoveFromRoster();
+        this.HidePanel();
     }
 
     public void MoveLeft()
     {
         p.MoveLeft();
+        this.HidePanel();
     }
 
     public void MoveRight()
     {
         p.MoveRight();
+        this.HidePanel();
     }
 
     public void HidePanel()

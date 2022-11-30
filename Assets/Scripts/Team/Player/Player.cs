@@ -60,13 +60,15 @@ public class Player
         init = false;
     }
 
-    public Player(ushort id, string name, Pos position, float power, Chem chemistry)
+    public Player(ushort id, string name, Pos position, float power, Chem chemistry, ushort tval, ushort sval)
     {
         this.id = id;
         this.n = name;
         this.pos = (ushort)position;
         this.pow = power;
         this.chem = (ushort)chemistry;
+        this.tval = tval;
+        this.sval = sval;
 
         posAct = 0;
         slotAct = 0;
@@ -81,6 +83,12 @@ public class Player
         playerString = $"{n}" + // name
             $"\n{pow}"; // pow
         return playerString;
+    }
+
+    public string GetValueString()
+    {
+        string playerValue = $"T: {tval}M   S: {sval}M";
+        return playerValue;
     }
 
     public Pos GetPos()
@@ -123,7 +131,7 @@ public class Player
             return power - diff;
         }
 
-        return power;
+        //return power;
     }
 
     public void SetPosAct(Pos position)

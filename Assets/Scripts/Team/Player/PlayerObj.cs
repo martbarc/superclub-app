@@ -9,6 +9,9 @@ public class PlayerObj : MonoBehaviour
     [SerializeField] public TextMeshProUGUI text_stats;
     [SerializeField] public TextMeshProUGUI text_value;
 
+    [SerializeField] public Image image_leftChem;
+    [SerializeField] public Image image_rightChem;
+
     public Player p;
     public Team team;
 
@@ -29,10 +32,10 @@ public class PlayerObj : MonoBehaviour
         UpdateText();
     }
 
-    public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem)
+    public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem, ushort tval, ushort sval)
     {
         this.team = team;
-        p = new Player(id, name, pos, power, chem);
+        p = new Player(id, name, pos, power, chem, tval, sval);
 
         Pos tpos = p.GetPos();
         switch (tpos)
@@ -57,6 +60,30 @@ public class PlayerObj : MonoBehaviour
                 break;
         }
 
+        switch (chem)
+        {
+            case Chem.None:
+                image_leftChem.color = new Color32(0, 0, 0, 0);
+                image_rightChem.color = new Color32(0, 0, 0, 0);
+                break;
+            case Chem.Left:
+                image_leftChem.color = new Color32(0, 0, 0, 200);
+                image_rightChem.color = new Color32(0, 0, 0, 0);
+                break;
+            case Chem.Right:
+                image_leftChem.color = new Color32(0, 0, 0, 0);
+                image_rightChem.color = new Color32(0, 0, 0, 200);
+                break;
+            case Chem.Both:
+                image_leftChem.color = new Color32(0, 0, 0, 200);
+                image_rightChem.color = new Color32(0, 0, 0, 200);
+                break;
+            default:
+                image_leftChem.color = new Color32(0, 0, 0, 0);
+                image_rightChem.color = new Color32(0, 0, 0, 0);
+                break;
+        }
+
         if (p.id == 0)//(p.n == "Given")
         {
             MoveToBench();
@@ -71,6 +98,7 @@ public class PlayerObj : MonoBehaviour
     public void UpdateText()
     {
         text_stats.text = p.GetString();
+        text_value.text = p.GetValueString();
         //text_slot.text = $"( {perferredSlot} )";
     }
 
@@ -115,7 +143,6 @@ public class PlayerObj : MonoBehaviour
         }
 
         UpdateText();
-        team.panel_playerselect.HidePanel();
     }
 
     public void MoveLeft()
@@ -123,7 +150,6 @@ public class PlayerObj : MonoBehaviour
         this.transform.SetAsFirstSibling();
         p.slotAct = (ushort) transform.GetSiblingIndex();
         UpdateText();
-        team.panel_playerselect.HidePanel();
     }
 
     public void MoveRight()
@@ -131,13 +157,18 @@ public class PlayerObj : MonoBehaviour
         this.transform.SetAsLastSibling();
         p.slotAct = (ushort)transform.GetSiblingIndex();
         UpdateText();
-        team.panel_playerselect.HidePanel();
     }
 
     public void MoveToBench()
     {
         this.transform.SetParent(team.roster.transform);
         rostered = true;
+    }
+
+    public void RemoveFromRoster()
+    {
+        this.transform.SetParent(team.playerPool.transform);
+        rostered = false;
     }
 
     private void onPlayerSelected()

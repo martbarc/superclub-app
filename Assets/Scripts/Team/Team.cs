@@ -52,7 +52,7 @@ public class Team : MonoBehaviour
 
     private void Awake()
     {
-        button_update.onClick.AddListener(UpdateAll);
+        button_update.onClick.AddListener(Recalc);
 
         button_home.onClick.AddListener(ShowHome);
         button_roster.onClick.AddListener(ShowRoster);
@@ -70,7 +70,7 @@ public class Team : MonoBehaviour
         ShowHome();
     }
 
-    private void UpdateAll()
+    private void Recalc()
     {
         lineup.Recalc();
         roster.Recalc();
@@ -82,8 +82,6 @@ public class Team : MonoBehaviour
 
     public void UpdateText()
     {
-        UpdateAll();
-        
         gameText = $"Game: {gameNum}\n" +
             "Total = Lineup + Roll1 + Roll2 + Lineup\n" + 
             $"Att: {simAtt} = {lineup.att} + {rollAtt0} + {rollAtt1} \n" +
@@ -143,6 +141,8 @@ public class Team : MonoBehaviour
 
     public void PlayGame()
     {
+        Recalc();
+
         gameNum++;
 
         rollAtt0 = RollD6();
