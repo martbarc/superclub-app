@@ -179,7 +179,7 @@ public class PlayerObj : MonoBehaviour
         }
         else
         {
-            team.panel_playerselect.ShowPanel(this);
+            team.panel_playerSettings.ShowPanel(this);
         }
     }
 

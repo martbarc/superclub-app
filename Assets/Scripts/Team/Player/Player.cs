@@ -85,6 +85,13 @@ public class Player
         return playerString;
     }
 
+    public string GetStringSummary()
+    {
+        playerString = $"{n}" + // name
+            $"\n{pow}"; // pow
+        return playerString;
+    }
+
     public string GetValueString()
     {
         string playerValue = $"T: {tval}M   S: {sval}M";

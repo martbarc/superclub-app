@@ -52,6 +52,7 @@ public class Roster : MonoBehaviour
         //        totalPower += p.pow;
         //    }
         //}
+
         //Find all child obj and store to that array
         foreach (Transform child in transform)
         {

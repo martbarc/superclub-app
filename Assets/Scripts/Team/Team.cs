@@ -12,6 +12,7 @@ public class Team : MonoBehaviour
     [SerializeField] public PlayerPoolHandler playerPool;
 
     // HOME PANEL
+    [SerializeField] public GameObject seasonObj; //Contains games for that season
     [SerializeField] public Button button_playGame;
     [SerializeField] public TextMeshProUGUI text_teamStats;
 
@@ -28,8 +29,7 @@ public class Team : MonoBehaviour
     [SerializeField] public Button button_add;
     [SerializeField] public Button button_update;
 
-    [SerializeField] public PlayerSelectPanel panel_playerselect;
-
+    [SerializeField] public PlayerSelectPanel panel_playerSettings;
 
     public float totalPower;
 
@@ -82,16 +82,28 @@ public class Team : MonoBehaviour
 
     public void UpdateText()
     {
-        gameText = $"Game: {gameNum}\n" +
-            "Total = Lineup + Roll1 + Roll2 + Lineup\n" + 
-            $"Att: {simAtt} = {lineup.att} + {rollAtt0} + {rollAtt1} \n" +
-            $"Mid: {simMid} = {lineup.mid} + {rollMid0} + {rollMid1}\n" +
-            $"Def: {simDef} = {lineup.def} + {rollDef0} + {rollDef1}\n";
+        //$"Game: {gameNum}\n" +"Total = Lineup + Roll1 + Roll2 + Lineup\n" +
+        gameText = "";
+        gameText += $"Att: {simAtt}";
+        if ((rollAtt0 != 0) && (rollAtt0 == rollAtt1))
+        {
+            gameText += $" *[{rollAtt0}] ";
+        }
 
-        text_teamStats.text = $"Att: {lineup.att}\n" +
-            $"Mid: {lineup.mid}\n" +
-            $"Def: {lineup.def}\n" +
-            $"Total: {totalPower}\n\n" + 
+        gameText += $" - Mid: {simMid}";
+        if ((rollMid0 != 0) && (rollMid0 == rollMid1))
+        {
+            gameText += $"*[{rollMid0}] ";
+        }
+
+        gameText += $" - Def: {simDef}";
+        if ((rollDef0 != 0) && (rollDef0 == rollDef1))
+        {
+            gameText += $" *[{rollDef0}] ";
+        }
+
+        text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}" +
+            $" - Total: {totalPower}\n" + 
             gameText;
     }
 
@@ -158,20 +170,20 @@ public class Team : MonoBehaviour
         simMid = rollMid0 + rollMid1 + lineup.mid;
         simDef = rollDef0 + rollDef1 + lineup.def;
 
-        if (rollAtt0 == rollAtt1) 
-        {
-            gameText += $"*Injured Player: Att_{rollAtt0}\n";
-        }
+        //if (rollAtt0 == rollAtt1) 
+        //{
+        //    gameText += $"*Injured Player: Att_{rollAtt0}\n";
+        //}
 
-        if (rollMid0== rollMid1)
-        {
-            gameText += $"*Injured Player: Mid_{rollMid0}\n";
-        }
+        //if (rollMid0== rollMid1)
+        //{
+        //    gameText += $"*Injured Player: Mid_{rollMid0}\n";
+        //}
 
-        if (rollDef0 == rollDef1)
-        {
-            gameText += $"*Injured Player: Def_{rollDef0}\n";
-        }
+        //if (rollDef0 == rollDef1)
+        //{
+        //    gameText += $"*Injured Player: Def_{rollDef0}\n";
+        //}
 
         UpdateText();
     }
