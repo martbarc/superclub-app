@@ -12,7 +12,10 @@ public class Team : MonoBehaviour
     [SerializeField] public PlayerPoolHandler playerPool;
 
     // HOME PANEL
-    [SerializeField] public GameObject seasonObj; //Contains games for that season
+    [SerializeField] public Button button_saveTeam;
+    [SerializeField] public Button button_loadTeam;
+    [SerializeField] public TMP_InputField input_teamName;
+    [SerializeField] public SeasonObj seasonObj; //Contains games for that season
     [SerializeField] public Button button_playGame;
     [SerializeField] public TextMeshProUGUI text_teamStats;
 
@@ -30,6 +33,8 @@ public class Team : MonoBehaviour
     [SerializeField] public Button button_update;
 
     [SerializeField] public PlayerSelectPanel panel_playerSettings;
+
+    [SerializeField] public SaveManager saveManager;
 
     public float totalPower;
 
@@ -50,9 +55,17 @@ public class Team : MonoBehaviour
 
     public string gameText;
 
+
+    //TEAM PARAMS
+    public string teamName;
+    
+
     private void Awake()
     {
         button_update.onClick.AddListener(Recalc);
+        button_saveTeam.onClick.AddListener(SaveTeam);
+        button_loadTeam.onClick.AddListener(LoadTeam);
+        input_teamName.onEndEdit.AddListener(delegate {InputField_onNameChange(); });
 
         button_home.onClick.AddListener(ShowHome);
         button_roster.onClick.AddListener(ShowRoster);
@@ -68,6 +81,24 @@ public class Team : MonoBehaviour
     {
         ResetGame();
         ShowHome();
+
+        LoadTeam();
+        Recalc();
+    }
+
+    public void SaveTeam()
+    {
+        saveManager.Save();
+    }
+
+    public void LoadTeam()
+    {
+        saveManager.Load();
+    }
+
+    public void InputField_onNameChange()
+    {
+        teamName = input_teamName.text;
     }
 
     private void Recalc()
@@ -82,6 +113,14 @@ public class Team : MonoBehaviour
 
     public void UpdateText()
     {
+        //update team name
+        input_teamName.text = teamName;
+
+
+        //update season text
+        seasonObj.UpdateText();
+
+
         //$"Game: {gameNum}\n" +"Total = Lineup + Roll1 + Roll2 + Lineup\n" +
         gameText = "";
         gameText += $"Att: {simAtt}";

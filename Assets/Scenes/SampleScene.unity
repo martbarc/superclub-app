@@ -1456,7 +1456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: -0.000079530546}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &922037598
@@ -2060,7 +2060,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2090356211}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9994936
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3900,7 +3900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106379910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3981,6 +3981,8 @@ MonoBehaviour:
   button_midfield: {fileID: 1751392399}
   button_defense: {fileID: 268834386}
   button_goalie: {fileID: 36032016}
+  button_bench: {fileID: 0}
+  button_remove: {fileID: 0}
   button_moveLeft: {fileID: 367715060}
   button_moveRight: {fileID: 1082844697}
   t: {fileID: 0}
@@ -5802,7 +5804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4887c5cabe5296a4b98b8b9f5323b79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: {fileID: 6156860353493870208}
 --- !u!114 &5420574446254147336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6012,6 +6013,7 @@ MonoBehaviour:
   lineup: {fileID: 4286472597388268533}
   roster: {fileID: 900660051}
   playerPool: {fileID: 994667510238520021}
+  seasonObj: {fileID: 0}
   button_playGame: {fileID: 1823840833417184843}
   text_teamStats: {fileID: 2915163651618968735}
   panel_home: {fileID: 1987499677}
@@ -6023,6 +6025,7 @@ MonoBehaviour:
   button_lineup: {fileID: 1271115718782554734}
   button_add: {fileID: 2574523862289828224}
   button_update: {fileID: 175235756978491015}
+  panel_playerSettings: {fileID: 0}
   totalPower: 0
   gameNum: 0
   simAtt: 0

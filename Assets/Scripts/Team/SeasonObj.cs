@@ -53,7 +53,7 @@ public class SeasonObj : MonoBehaviour
         }
 
         NewSeason();
-        RefreshText();
+        UpdateText();
     }
 
     public void NewSeason()
@@ -72,7 +72,7 @@ public class SeasonObj : MonoBehaviour
             //Debug.Log("Loaded new game card");
         }
 
-        RefreshText();
+        UpdateText();
     }
 
     public void GameSelectWin()
@@ -116,7 +116,7 @@ public class SeasonObj : MonoBehaviour
             SetSeasonGames(seasonSelected);
         }
 
-        RefreshText();
+        UpdateText();
     }
 
     public void LastSeason()
@@ -131,10 +131,10 @@ public class SeasonObj : MonoBehaviour
 
         SetSeasonGames(seasonSelected);
 
-        RefreshText();
+        UpdateText();
     }
 
-    public void RefreshText()
+    public void UpdateText()
     {
         text_season.text = $"Season: {seasonSelected}";
 
@@ -165,6 +165,7 @@ public class SeasonObj : MonoBehaviour
         }
 
         string sStats = "";
+        sStats += $"{team.teamName}";
         sStats += $"W: {wins} - L: {loss} - D: {draw}\n";
         sStats += $"Season Total Points: {total}\n";
         sStats += $"Season + Team Roster: {total + team.totalPower}\n";
