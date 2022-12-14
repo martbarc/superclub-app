@@ -1,15 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Lineup : MonoBehaviour
 {
+    [SerializeField] public TMP_Dropdown dropdown_Formation;
+    [SerializeField] public GameObject prefab_lineupSlot;
+    public List<GameObject> lineupSlotList;
+
     [SerializeField] public Team team;
 
     [SerializeField] public GameObject panel_attackers;
     [SerializeField] public GameObject panel_middies;
     [SerializeField] public GameObject panel_defense;
     [SerializeField] public GameObject panel_goalie;
+
+    public int MAX_PLAYERS = 11;
 
     public List<Player> attackers;
     public List<Player> middies;
@@ -23,6 +32,10 @@ public class Lineup : MonoBehaviour
 
     private void Awake()
     {
+        dropdown_Formation.onValueChanged.AddListener(delegate {SetFormation(); });
+
+        lineupSlotList = new List<GameObject>();
+
         attackers = new List<Player>();
         middies = new List<Player>();
         defenders = new List<Player>();
@@ -32,9 +45,110 @@ public class Lineup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetFormation();
+    }
+
+    public void ClearFormation()
+    {
+        foreach(GameObject g in lineupSlotList)
+        {
+            g.GetComponent<LineupSlot>().BenchPlayer();
+        }
+
+        lineupSlotList = new List<GameObject>();
+
+        // clear place holders
+        foreach (Transform child in panel_goalie.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach (Transform child in panel_defense.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach (Transform child in panel_middies.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach (Transform child in panel_attackers.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public void SetFormation()
+    {
+        ClearFormation();
+
+        string selectedText = dropdown_Formation.options[dropdown_Formation.value].text;
+        List<GameObject> pInFormation = team.GetFormationSetting(selectedText);
+
+        string[] positions = selectedText.Split('-');
+        if (positions.Length != 3)
+        {
+            Debug.Log("ERROR: Can't read formation");
+            return;
+        }
+
+        int numDef = Int32.Parse(positions[0]);
+        int numMid = Int32.Parse(positions[1]);
+        int numAtt = Int32.Parse(positions[2]);
+
+        //slot 0 = goalie
+        for (int i = 0; i < MAX_PLAYERS; i++)
+        {
+            GameObject newSlot = Instantiate(prefab_lineupSlot, transform.position, Quaternion.identity);
+            newSlot.GetComponent<LineupSlot>().formation = selectedText;
+            newSlot.GetComponent<LineupSlot>().slot = i;
+            newSlot.GetComponent<LineupSlot>().UpdateText();
+            newSlot.GetComponent<LineupSlot>().team = team;
+
+            //Assign to proper parent
+            if (i == 0) // goalie
+            {
+                newSlot.transform.SetParent(panel_goalie.transform);
+            }
+            else if (i > 0 && i <= numDef) //defense 1, 2, 3, 4
+            {
+                newSlot.transform.SetParent(panel_defense.transform);
+            }
+            else if (i > numDef && i <= numDef + numMid) //mid 5, 6 ,6, 8
+            {
+                newSlot.transform.SetParent(panel_middies.transform);
+            }
+            else if (i > numDef + numMid && i < MAX_PLAYERS) //offense 9, 10
+            {
+                newSlot.transform.SetParent(panel_attackers.transform);
+            }
+
+           lineupSlotList.Add(newSlot);
+
+            //Debug.Log("Loaded new game card");
+        }
+
+        foreach (GameObject s in lineupSlotList)
+        {
+            foreach(GameObject g in pInFormation) //Check if any player is already tied to formation
+            {
+                PlayerObj pObj = g.GetComponent<PlayerObj>();
+                int slot = pObj.p.formationSetting[selectedText];
+
+                if (s.GetComponent<LineupSlot>().slot == slot)
+                {
+                    s.GetComponent<LineupSlot>().SlotPlayer(g);
+                }
+            }
+        }
+
+
         Recalc();
     }
 
+    public void AssignPlayerToPosition(GameObject g)
+    {
+        PlayerObj pObj = g.GetComponent<PlayerObj>();
+        //int slot = 
+    }
 
     public int Recalc()
     {
@@ -107,9 +221,6 @@ public class Lineup : MonoBehaviour
                 lastChem = p.GetChem();
             }
         }
-
-
-        
 
         return 0;
     }

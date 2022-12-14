@@ -7,9 +7,10 @@ using TMPro;
 public class Team : MonoBehaviour
 {
     // PUBLIC SETTINGS
+    [SerializeField] public PlayerPool pp;
     [SerializeField] public Lineup lineup;
     [SerializeField] public Roster roster;
-    [SerializeField] public PlayerPoolHandler playerPool;
+    [SerializeField] public PlayerPoolHandler playerPoolHandler;
 
     // HOME PANEL
     [SerializeField] public Button button_saveTeam;
@@ -21,13 +22,11 @@ public class Team : MonoBehaviour
 
     //Panels
     [SerializeField] public GameObject panel_home;
-    [SerializeField] public GameObject panel_roster;
     [SerializeField] public GameObject panel_lineup;
     [SerializeField] public GameObject panel_playerpool;
 
     //Bottom Tabs
     [SerializeField] public Button button_home;
-    [SerializeField] public Button button_roster;
     [SerializeField] public Button button_lineup;
     [SerializeField] public Button button_add;
     [SerializeField] public Button button_update;
@@ -58,7 +57,6 @@ public class Team : MonoBehaviour
 
     //TEAM PARAMS
     public string teamName;
-    
 
     private void Awake()
     {
@@ -68,7 +66,6 @@ public class Team : MonoBehaviour
         input_teamName.onEndEdit.AddListener(delegate {InputField_onNameChange(); });
 
         button_home.onClick.AddListener(ShowHome);
-        button_roster.onClick.AddListener(ShowRoster);
         button_lineup.onClick.AddListener(ShowLineup);
         button_add.onClick.AddListener(ShowPlayerPool);
 
@@ -99,6 +96,46 @@ public class Team : MonoBehaviour
     public void InputField_onNameChange()
     {
         teamName = input_teamName.text;
+    }
+
+    
+    public List<GameObject> GetFormationSetting(string formation)
+    {
+        List<GameObject> playersInFormation = new List<GameObject>();
+
+        foreach(GameObject g in pp.pObjList)
+        {
+            PlayerObj pObj = g.GetComponent<PlayerObj>();
+            if (pObj == null) continue;
+
+            if (pObj.rostered == false) continue;
+            
+            if (pObj.p.formationSetting.ContainsKey(formation))
+            {
+                int s = pObj.p.formationSetting[formation];
+                playersInFormation.Add(g);
+            }
+        }
+
+        return playersInFormation;
+    }
+
+    public GameObject GetFirstSelectedPlayer()
+    {
+        foreach(GameObject g in pp.pObjList)
+        {
+            PlayerObj pObj = g.GetComponent<PlayerObj>();
+            if (pObj == null) continue;
+
+            if (pObj.rostered == false) continue;
+            
+            if (pObj.selected)
+            {
+                return g;
+            }
+        }
+
+        return null;
     }
 
     private void Recalc()
@@ -150,7 +187,6 @@ public class Team : MonoBehaviour
     public void HideAll()
     {
         panel_home.gameObject.SetActive(false);
-        panel_roster.gameObject.SetActive(false);
         panel_lineup.gameObject.SetActive(false);
         panel_playerpool.gameObject.SetActive(false);
     }
@@ -161,23 +197,11 @@ public class Team : MonoBehaviour
         panel_home.gameObject.SetActive(true);
     }
 
-    public void ShowRoster()
-    {
-        HideAll();
-        panel_roster.gameObject.SetActive(true);
-    }
-
     public void ShowLineup()
     {
         HideAll();
         panel_lineup.gameObject.SetActive(true);
     }
-
-    // public void ShowSeason()
-    // {
-    //     HideAll();
-    //     panel_season.gameObject.SetActive(true);
-    // }
 
     public void ShowPlayerPool()
     {

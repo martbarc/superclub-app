@@ -90,6 +90,20 @@ public class PlayerObj : MonoBehaviour
         }
     }
 
+    public void AssignToFormation(string formation, int slot)
+    {
+        if (p.formationSetting.ContainsKey(formation))
+        {
+            p.formationSetting[formation] = slot;
+        }
+        else
+        {
+            p.formationSetting.Add(formation, slot);
+        }
+        selected = false;
+        UpdateText();
+    }
+
     public void AssignToTeam(Team assignedTeam)
     {
         this.team = assignedTeam;
@@ -97,7 +111,11 @@ public class PlayerObj : MonoBehaviour
 
     public void UpdateText()
     {
-        text_stats.text = p.GetString();
+        if (selected)
+            text_stats.text = p.GetString() + $"\n[SELECTED]";
+        else
+            text_stats.text = p.GetString();
+
         text_value.text = p.GetValueString();
         //text_slot.text = $"( {perferredSlot} )";
     }
@@ -137,7 +155,7 @@ public class PlayerObj : MonoBehaviour
                     MoveToBench();
                     return;
                 }
-                this.gameObject.transform.SetParent(team.playerPool.playerPool.transform);
+                this.gameObject.transform.SetParent(team.playerPoolHandler.playerPool.transform);
                 rostered = false;
                 break;
         }
@@ -167,7 +185,7 @@ public class PlayerObj : MonoBehaviour
 
     public void RemoveFromRoster()
     {
-        this.transform.SetParent(team.playerPool.transform);
+        this.transform.SetParent(team.playerPoolHandler.transform);
         rostered = false;
     }
 
@@ -179,8 +197,10 @@ public class PlayerObj : MonoBehaviour
         }
         else
         {
-            team.panel_playerSettings.ShowPanel(this);
+            selected = !selected;
+            //team.panel_playerSettings.ShowPanel(this);
         }
+        UpdateText();
     }
 
 }

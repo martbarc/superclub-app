@@ -25,6 +25,7 @@ public enum Chem : ushort
 [System.Serializable]
 public class Player
 {
+    // SERIALIZABLE PARAM
     public ushort id; //name or id
     public string n; //name
     public ushort pos; //position
@@ -35,14 +36,37 @@ public class Player
     public ushort sval; //scout value
     public ushort game; //base game (0) or expansion (1+)?
 
+    // NONSERIALIZABLE PARAM
+    public Dictionary<string, int> formationSetting;
     public ushort posAct; //actual position
     public ushort slotAct; //slot number
 
     public bool init;
-
     public string playerString;
 
     public Player()
+    {
+        InitPlayer();
+    }
+
+    public Player(ushort id, string name, Pos position, float power, Chem chemistry, ushort tval, ushort sval)
+    {
+        InitPlayer();
+
+        this.id = id;
+        this.n = name;
+        this.pos = (ushort)position;
+        this.pow = power;
+        this.chem = (ushort)chemistry;
+        this.tval = tval;
+        this.sval = sval;
+
+        init = true;
+
+        GetString();
+    }
+
+    public void InitPlayer()
     {
         id = 0;
         n = "";
@@ -54,28 +78,11 @@ public class Player
         sval = 0;
         game = 0;
 
+        formationSetting = new Dictionary<string, int>();
         posAct = 0;
         slotAct = 0;
 
         init = false;
-    }
-
-    public Player(ushort id, string name, Pos position, float power, Chem chemistry, ushort tval, ushort sval)
-    {
-        this.id = id;
-        this.n = name;
-        this.pos = (ushort)position;
-        this.pow = power;
-        this.chem = (ushort)chemistry;
-        this.tval = tval;
-        this.sval = sval;
-
-        posAct = 0;
-        slotAct = 0;
-
-        init = true;
-
-        GetString();
     }
 
     public string GetString()

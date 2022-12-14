@@ -7,16 +7,38 @@ public class PlayerPool : MonoBehaviour
     [SerializeField] public GameObject prefabPlayer;
     [SerializeField] public TextAsset playerListJson;
 
-    public List<GameObject> playerObjList;
+    //Init in playerpoolgrid
+    [SerializeField] public GameObject playerpoolgrid;
 
-    public Team team;
+    public List<GameObject> pObjList;
+
+    [SerializeField] public Team team;
 
     private void Awake()
     {
-        playerObjList = new List<GameObject>();
+        pObjList = new List<GameObject>();
     }
 
     void Start()
+    {
+        LoadNewPool();
+    }
+
+    public void AddPlayerToPool(ushort id, string n, ushort position, float power, ushort chem, ushort tval, ushort sval)
+    {
+        GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
+        newPlayerObject.name = n;
+        newPlayerObject.transform.SetParent(playerpoolgrid.transform);
+        //newPlayerObject.transform.SetParent(this.transform);
+
+        newPlayerObject.GetComponent<PlayerObj>().InitPlayer(team, id, n, (Pos)position, power, (Chem)chem, tval, sval);
+
+        pObjList.Add(newPlayerObject);
+
+        //Debug.Log("Loaded player: " + n + " " + position);
+    }
+
+    public void LoadNewPool()
     {
         PlayerList playersInJson = JsonUtility.FromJson<PlayerList>(playerListJson.text);
 
@@ -24,17 +46,5 @@ public class PlayerPool : MonoBehaviour
         {
             AddPlayerToPool(p.id, p.n, p.pos, p.pow, p.chem, p.tval, p.sval);
         }
-    }
-
-    public void AddPlayerToPool(ushort id, string n, ushort position, float power, ushort chem, ushort tval, ushort sval)
-    {
-        GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
-        newPlayerObject.transform.SetParent(this.transform);
-
-        newPlayerObject.GetComponent<PlayerObj>().InitPlayer(team, id, n, (Pos)position, power, (Chem)chem, tval, sval);
-
-        playerObjList.Add(newPlayerObject);
-
-        Debug.Log("Loaded player: " + n + " " + position);
     }
 }

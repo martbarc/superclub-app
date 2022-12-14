@@ -17,10 +17,18 @@ public class Roster : MonoBehaviour
     void Awake()
     {
         playerObjectList = new List<GameObject>();
+
+        // // clear place holders
+        // foreach (Transform child in this.transform)
+        // {
+        //     GameObject.Destroy(child.gameObject);
+        // }
     }
 
     private void Start()
     {
+
+
         //GameObject defaultGoalie = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
         //Player dGoalie = defaultGoalie.GetComponent<Player>();
         //dGoalie.AssignToTeam(team);

@@ -14,6 +14,12 @@ public class PlayerPoolHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // clear place holders
+        // foreach (Transform child in playerPool.transform)
+        // {
+        //     GameObject.Destroy(child.gameObject);
+        // }
+
         totalElements = playerPool.transform.childCount;
     }
 
@@ -24,7 +30,7 @@ public class PlayerPoolHandler : MonoBehaviour
 
         int searchedElements = 0;
 
-        foreach (GameObject e in playerPool.playerObjList)
+        foreach (GameObject e in playerPool.pObjList)
         {
             searchedElements++;
 
