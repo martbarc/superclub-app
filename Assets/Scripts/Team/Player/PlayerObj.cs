@@ -32,6 +32,14 @@ public class PlayerObj : MonoBehaviour
         UpdateText();
     }
 
+    //  void OnMouseDrag()
+    //  {
+    //      Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+    //      Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+ 
+    //      transform.position = objPosition;
+    //  }
+
     public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem, ushort tval, ushort sval)
     {
         this.team = team;
