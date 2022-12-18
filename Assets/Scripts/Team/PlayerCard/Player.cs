@@ -87,8 +87,7 @@ public class Player
 
     public string GetString()
     {
-        playerString = $"{n}" + // name
-            $"\n{pow}"; // pow
+        playerString = $"{pow}"; // pow
         return playerString;
     }
 

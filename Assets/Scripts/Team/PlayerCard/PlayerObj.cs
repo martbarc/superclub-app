@@ -6,6 +6,7 @@ public class PlayerObj : MonoBehaviour
 {
     [SerializeField] public Image image_back;
     [SerializeField] public Button select;
+    [SerializeField] public TextMeshProUGUI text_name;
     [SerializeField] public TextMeshProUGUI text_stats;
     [SerializeField] public TextMeshProUGUI text_value;
 
@@ -24,7 +25,7 @@ public class PlayerObj : MonoBehaviour
         selected = false;
         rostered = false;
 
-        select.onClick.AddListener(onPlayerSelected);
+        if (select != null) select.onClick.AddListener(onPlayerSelected);
     }
 
     void Start()
@@ -119,6 +120,8 @@ public class PlayerObj : MonoBehaviour
 
     public void UpdateText()
     {
+        text_name.text = p.n;
+
         if (selected)
             text_stats.text = p.GetString() + $"\n[SELECTED]";
         else
