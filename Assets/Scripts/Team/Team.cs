@@ -60,16 +60,16 @@ public class Team : MonoBehaviour
 
     private void Awake()
     {
-        button_update.onClick.AddListener(Recalc);
-        button_saveTeam.onClick.AddListener(SaveTeam);
-        button_loadTeam.onClick.AddListener(LoadTeam);
-        input_teamName.onEndEdit.AddListener(delegate {InputField_onNameChange(); });
+        if (button_update != null) button_update.onClick.AddListener(Recalc);
+        if (button_saveTeam != null) button_saveTeam.onClick.AddListener(SaveTeam);
+        if (button_loadTeam != null) button_loadTeam.onClick.AddListener(LoadTeam);
+        if (input_teamName != null) input_teamName.onEndEdit.AddListener(delegate {InputField_onNameChange(); });
 
-        button_home.onClick.AddListener(ShowHome);
-        button_lineup.onClick.AddListener(ShowLineup);
-        button_add.onClick.AddListener(ShowPlayerPool);
+        if (button_home != null) button_home.onClick.AddListener(ShowHome);
+        if (button_lineup != null) button_lineup.onClick.AddListener(ShowLineup);
+        if (button_add != null) button_add.onClick.AddListener(ShowPlayerPool);
 
-        button_playGame.onClick.AddListener(PlayGame);
+        if (button_playGame != null) button_playGame.onClick.AddListener(PlayGame);
 
         totalPower = 0;
     }
@@ -140,10 +140,10 @@ public class Team : MonoBehaviour
 
     private void Recalc()
     {
-        lineup.Recalc();
-        roster.Recalc();
+        if (lineup != null) lineup.Recalc();
+        if (roster != null) roster.Recalc();
 
-        totalPower = lineup.totalPower + roster.totalPower;
+        if (lineup != null) totalPower = lineup.totalPower + roster.totalPower;
 
         UpdateText();
     }
@@ -151,11 +151,11 @@ public class Team : MonoBehaviour
     public void UpdateText()
     {
         //update team name
-        input_teamName.text = teamName;
+        if (input_teamName != null) input_teamName.text = teamName;
 
 
         //update season text
-        seasonObj.UpdateText();
+        if (seasonObj != null) seasonObj.UpdateText();
 
 
         //$"Game: {gameNum}\n" +"Total = Lineup + Roll1 + Roll2 + Lineup\n" +
@@ -178,7 +178,7 @@ public class Team : MonoBehaviour
             gameText += $" *[{rollDef0}] ";
         }
 
-        text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}" +
+        if (text_teamStats != null) text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}" +
             $" - Total: {totalPower}\n" + 
             gameText;
     }
@@ -186,15 +186,15 @@ public class Team : MonoBehaviour
     //Panel controller
     public void HideAll()
     {
-        panel_home.gameObject.SetActive(false);
-        panel_lineup.gameObject.SetActive(false);
-        panel_playerpool.gameObject.SetActive(false);
+        if (panel_home != null) panel_home.gameObject.SetActive(false);
+        if (panel_lineup != null) panel_lineup.gameObject.SetActive(false);
+        if (panel_playerpool != null) panel_playerpool.gameObject.SetActive(false);
     }
 
     public void ShowHome()
     {
         HideAll();
-        panel_home.gameObject.SetActive(true);
+        if (panel_home != null) panel_home.gameObject.SetActive(true);
     }
 
     public void ShowLineup()

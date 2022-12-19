@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class PlayerObj : MonoBehaviour
 {
-    [SerializeField] public Image image_back;
-    [SerializeField] public Button select;
-    [SerializeField] public TextMeshProUGUI text_name;
-    [SerializeField] public TextMeshProUGUI text_stats;
-    [SerializeField] public TextMeshProUGUI text_value;
-
-    [SerializeField] public Image image_leftChem;
-    [SerializeField] public Image image_rightChem;
+    [SerializeField] public SpriteRenderer image_back;
+    [SerializeField] public SpriteRenderer image_leftChem;
+    [SerializeField] public SpriteRenderer image_rightChem;
+    // [SerializeField] public Button select;
+    [SerializeField] public TextMeshPro text_name;
+    [SerializeField] public TextMeshPro text_power;
+    [SerializeField] public TextMeshPro text_stats;
+    [SerializeField] public TextMeshPro text_value;
 
     public Player p;
     public Team team;
@@ -25,7 +25,7 @@ public class PlayerObj : MonoBehaviour
         selected = false;
         rostered = false;
 
-        if (select != null) select.onClick.AddListener(onPlayerSelected);
+        //if (select != null) select.onClick.AddListener(onPlayerSelected);
     }
 
     void Start()

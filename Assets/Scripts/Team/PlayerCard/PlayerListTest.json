@@ -1,0 +1,43 @@
+﻿{
+    "playerlist": [
+            {
+                "id": 0,
+                "n": "Given",
+                "pos": 6,
+                "pow": 1,
+                "mpow": -1,
+                "chem": 0,
+                "tval": 0,
+                "sval": 0,
+                "game": 0
+            },
+            {
+                "id": 1,
+                "n": "Test",
+                "pos": 3,
+                "pow": 2,
+                "tval": 20,
+                "sval": 10,
+                "game": 0
+            },
+            {
+                "id": 2,
+                "n": "Balog",
+                "pos": 5,
+                "pow": 5,
+                "chem": 2,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            },
+            {
+                "id": 3,
+                "n": "Vanwinkle",
+                "pos": 5,
+                "pow": 5,
+                "tval": 50,
+                "sval": 30,
+                "game": 0
+            }
+        ]
+}

@@ -6,6 +6,7 @@ public class PlayerPool : MonoBehaviour
 {
     [SerializeField] public GameObject prefabPlayer;
     [SerializeField] public TextAsset playerListJson;
+    [SerializeField] public Canvas canvas_root;
 
     //Init in playerpoolgrid
     [SerializeField] public GameObject playerpoolgrid;
@@ -28,10 +29,10 @@ public class PlayerPool : MonoBehaviour
     {
         GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
         newPlayerObject.name = n;
-        newPlayerObject.transform.SetParent(playerpoolgrid.transform);
-        //newPlayerObject.transform.SetParent(this.transform);
+        newPlayerObject.transform.SetParent(this.transform);
 
         newPlayerObject.GetComponent<PlayerObj>().InitPlayer(team, id, n, (Pos)position, power, (Chem)chem, tval, sval);
+        newPlayerObject.GetComponent<DragDrop>().canvas = canvas_root;
 
         pObjList.Add(newPlayerObject);
 
@@ -45,6 +46,8 @@ public class PlayerPool : MonoBehaviour
         foreach (Player p in playersInJson.playerlist)
         {
             AddPlayerToPool(p.id, p.n, p.pos, p.pow, p.chem, p.tval, p.sval);
+            //p.transform.SetParent(playerpoolgrid.transform);
+            
         }
     }
 }
