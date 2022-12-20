@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class LineupSlot : MonoBehaviour
 {
-    [SerializeField] public Image image_back;
-    [SerializeField] public Button select;
-    [SerializeField] public TextMeshProUGUI text_stats;
 
+}
+
+/*
     public Team team;
     public GameObject slotPlayer;
 
@@ -71,4 +71,4 @@ public class LineupSlot : MonoBehaviour
             slotPlayer = null;
         }
     }
-}
+*/

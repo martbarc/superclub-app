@@ -69,7 +69,7 @@ public class Team : MonoBehaviour
         if (button_lineup != null) button_lineup.onClick.AddListener(ShowLineup);
         if (button_add != null) button_add.onClick.AddListener(ShowPlayerPool);
 
-        if (button_playGame != null) button_playGame.onClick.AddListener(PlayGame);
+        //if (button_playGame != null) button_playGame.onClick.AddListener(PlayGame);
 
         totalPower = 0;
     }
@@ -140,10 +140,10 @@ public class Team : MonoBehaviour
 
     private void Recalc()
     {
-        if (lineup != null) lineup.Recalc();
+        //if (lineup != null) lineup.Recalc();
         if (roster != null) roster.Recalc();
 
-        if (lineup != null) totalPower = lineup.totalPower + roster.totalPower;
+        //if (lineup != null) totalPower = lineup.totalPower + roster.totalPower;
 
         UpdateText();
     }
@@ -178,9 +178,9 @@ public class Team : MonoBehaviour
             gameText += $" *[{rollDef0}] ";
         }
 
-        if (text_teamStats != null) text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}" +
-            $" - Total: {totalPower}\n" + 
-            gameText;
+        // if (text_teamStats != null) text_teamStats.text = $"Att: {lineup.att} - Mid: {lineup.mid} - Def: {lineup.def}" +
+        //     $" - Total: {totalPower}\n" + 
+        //     gameText;
     }
 
     //Panel controller
@@ -214,42 +214,42 @@ public class Team : MonoBehaviour
         gameNum = 0; 
     }
 
-    public void PlayGame()
-    {
-        Recalc();
+    // public void PlayGame()
+    // {
+    //     Recalc();
 
-        gameNum++;
+    //     gameNum++;
 
-        rollAtt0 = RollD6();
-        rollAtt1 = RollD6();
+    //     rollAtt0 = RollD6();
+    //     rollAtt1 = RollD6();
         
-        rollMid0 = RollD6();
-        rollMid1 = RollD6();
+    //     rollMid0 = RollD6();
+    //     rollMid1 = RollD6();
 
-        rollDef0 = RollD6();
-        rollDef1 = RollD6();
+    //     rollDef0 = RollD6();
+    //     rollDef1 = RollD6();
 
-        simAtt = rollAtt0 + rollAtt1 + lineup.att;
-        simMid = rollMid0 + rollMid1 + lineup.mid;
-        simDef = rollDef0 + rollDef1 + lineup.def;
+    //     simAtt = rollAtt0 + rollAtt1 + lineup.att;
+    //     simMid = rollMid0 + rollMid1 + lineup.mid;
+    //     simDef = rollDef0 + rollDef1 + lineup.def;
 
-        //if (rollAtt0 == rollAtt1) 
-        //{
-        //    gameText += $"*Injured Player: Att_{rollAtt0}\n";
-        //}
+    //     //if (rollAtt0 == rollAtt1) 
+    //     //{
+    //     //    gameText += $"*Injured Player: Att_{rollAtt0}\n";
+    //     //}
 
-        //if (rollMid0== rollMid1)
-        //{
-        //    gameText += $"*Injured Player: Mid_{rollMid0}\n";
-        //}
+    //     //if (rollMid0== rollMid1)
+    //     //{
+    //     //    gameText += $"*Injured Player: Mid_{rollMid0}\n";
+    //     //}
 
-        //if (rollDef0 == rollDef1)
-        //{
-        //    gameText += $"*Injured Player: Def_{rollDef0}\n";
-        //}
+    //     //if (rollDef0 == rollDef1)
+    //     //{
+    //     //    gameText += $"*Injured Player: Def_{rollDef0}\n";
+    //     //}
 
-        UpdateText();
-    }
+    //     UpdateText();
+    // }
 
     public int RollD6()
     {
