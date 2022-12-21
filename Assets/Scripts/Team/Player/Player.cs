@@ -69,13 +69,13 @@ public class Player
     public void InitPlayer()
     {
         id = 0;
-        n = "";
-        pos = 0;
-        pow = 0f;
+        n = "Default";
+        pos = 2;
+        pow = 1f;
         mpow = 0f;
         chem = 0;
-        tval = 0;
-        sval = 0;
+        tval = 2;
+        sval = 1;
         game = 0;
 
         formationSetting = new Dictionary<string, int>();

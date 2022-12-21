@@ -21,9 +21,14 @@ public class DropSlot : MonoBehaviour
         Vector3 p = gObj.transform.position;
         if (IsPositionClose(p))
         {
-            //gObj.transform.SetParent(this.transform);
-            curGameObject = gObj;
-            gObj.transform.position = this.transform.position;
+            if (gObj.GetComponent<PlayerObj>() != null)
+            {
+                curGameObject = gObj;
+                gObj.transform.position = this.transform.position;
+
+                gObj.GetComponent<PlayerObj>().team.Recalc();
+            }
+
             return true;
         }
         return false;

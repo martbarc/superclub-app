@@ -3,21 +3,177 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // using UnityEngine.UI;
-// using TMPro;
+using TMPro;
 
 public class Lineup : MonoBehaviour
 {
-    [SerializeField] public List<DropSlot> slots;
+    [SerializeField] public Team team;
+    
+    [SerializeField] public TextMeshPro text_att;
+    [SerializeField] public TextMeshPro text_mid;
+    [SerializeField] public TextMeshPro text_def;
 
-    public List<Vector3> slotsPos;
+    // Field
+    [SerializeField] public DropSlot slot_att_0;
+    [SerializeField] public DropSlot slot_att_1;
+    [SerializeField] public DropSlot slot_att_2;
+    [SerializeField] public DropSlot slot_att_3;
+    [SerializeField] public DropSlot slot_mid_0;
+    [SerializeField] public DropSlot slot_mid_1;
+    [SerializeField] public DropSlot slot_mid_2;
+    [SerializeField] public DropSlot slot_mid_3;
+    [SerializeField] public DropSlot slot_mid_4;
+    [SerializeField] public DropSlot slot_def_0;
+    [SerializeField] public DropSlot slot_def_1;
+    [SerializeField] public DropSlot slot_def_2;
+    [SerializeField] public DropSlot slot_def_3;
+    [SerializeField] public DropSlot slot_goalie;
+
+    // Bench
+    [SerializeField] public DropSlot slot_ben_0;
+    [SerializeField] public DropSlot slot_ben_1;
+    [SerializeField] public DropSlot slot_ben_2;
+    [SerializeField] public DropSlot slot_ben_3;
+    [SerializeField] public DropSlot slot_ben_4;
+    [SerializeField] public DropSlot slot_ben_5;
+    [SerializeField] public DropSlot slot_ben_6;
+    [SerializeField] public DropSlot slot_ben_7;
+    [SerializeField] public DropSlot slot_ben_8;
+    [SerializeField] public DropSlot slot_ben_9;
+    [SerializeField] public DropSlot slot_ben_10;
+    [SerializeField] public DropSlot slot_ben_11;
+
+    public List<DropSlot> slots;
+    // public List<Vector3> slotsPos;
+
+    public float att = 0;
+    public float mid = 0;
+    public float def = 0;
+
+    private Player lastP;
 
     void Awake()
     {
-        slotsPos = new List<Vector3>();
-        foreach(DropSlot p in slots)
+        slots = new List<DropSlot>();
+        slots.Add(slot_att_0);
+        slots.Add(slot_att_1);
+        slots.Add(slot_att_2);
+        slots.Add(slot_att_3);
+        slots.Add(slot_mid_0);
+        slots.Add(slot_mid_1);
+        slots.Add(slot_mid_2);
+        slots.Add(slot_mid_3);
+        slots.Add(slot_mid_4);
+        slots.Add(slot_def_0);
+        slots.Add(slot_def_1);
+        slots.Add(slot_def_2);
+        slots.Add(slot_def_3);
+        slots.Add(slot_goalie);
+
+        slots.Add(slot_ben_0);
+        slots.Add(slot_ben_1);
+        slots.Add(slot_ben_2);
+        slots.Add(slot_ben_3);
+        slots.Add(slot_ben_4);
+        slots.Add(slot_ben_5);
+        slots.Add(slot_ben_6);
+        slots.Add(slot_ben_7);
+        slots.Add(slot_ben_8);
+        slots.Add(slot_ben_9);
+        slots.Add(slot_ben_10);
+        slots.Add(slot_ben_11);
+
+        // slotsPos = new List<Vector3>();
+        // foreach(DropSlot p in slots)
+        // {
+        //     slotsPos.Add(p.transform.position);
+        // }
+    }
+
+    public void Recalc()
+    {
+        att = 0f;
+        mid = 0f;
+        def = 0f;
+
+        //Att
+        if (SetPlayerFromSlot(slot_att_0))
         {
-            slotsPos.Add(p.transform.position);
+            att += lastP.GetPositionPower(Pos.Attacker);
         }
+        if (SetPlayerFromSlot(slot_att_1))
+        {
+            att += lastP.GetPositionPower(Pos.Attacker);
+        }
+        if (SetPlayerFromSlot(slot_att_2))
+        {
+            att += lastP.GetPositionPower(Pos.Attacker);
+        }
+        if (SetPlayerFromSlot(slot_att_3))
+        {
+            att += lastP.GetPositionPower(Pos.Attacker);
+        }
+
+        //Mid
+        if (SetPlayerFromSlot(slot_mid_0))
+        {
+            mid += lastP.GetPositionPower(Pos.Midfielder);
+        }
+        if (SetPlayerFromSlot(slot_mid_1))
+        {
+            mid += lastP.GetPositionPower(Pos.Midfielder);
+        }
+        if (SetPlayerFromSlot(slot_mid_2))
+        {
+            mid += lastP.GetPositionPower(Pos.Midfielder);
+        }
+        if (SetPlayerFromSlot(slot_mid_3))
+        {
+            mid += lastP.GetPositionPower(Pos.Midfielder);
+        }
+        if (SetPlayerFromSlot(slot_mid_4))
+        {
+            mid += lastP.GetPositionPower(Pos.Midfielder);
+        }
+
+        //Def
+        if (SetPlayerFromSlot(slot_goalie))
+        {
+            def += lastP.GetPositionPower(Pos.Defender);
+        }
+        if (SetPlayerFromSlot(slot_def_0))
+        {
+            def += lastP.GetPositionPower(Pos.Defender);
+        }
+        if (SetPlayerFromSlot(slot_def_1))
+        {
+            def += lastP.GetPositionPower(Pos.Defender);
+        }
+        if (SetPlayerFromSlot(slot_def_2))
+        {
+            def += lastP.GetPositionPower(Pos.Defender);
+        }
+        if (SetPlayerFromSlot(slot_def_3))
+        {
+            def += lastP.GetPositionPower(Pos.Defender);
+        }
+
+        UpdateText();
+    }
+
+    public void UpdateText()
+    {
+        text_att.text = $"{att}";
+        text_mid.text = $"{mid}";
+        text_def.text = $"{def}";
+    }
+
+    public bool SetPlayerFromSlot(DropSlot ds)
+    {
+        if (ds.curGameObject == null) return false;
+
+        lastP = ds.curGameObject.GetComponent<PlayerObj>().p;
+        return true;
     }
 }
 

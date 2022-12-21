@@ -14,12 +14,11 @@ public class PlayerObj : MonoBehaviour
     [SerializeField] public TextMeshPro text_value;
 
     // OBJ
+    [SerializeField] public Team team;
     [SerializeField] public Dragger dragger;
-    [SerializeField] public Lineup lineup;
 
     public Player p;
     //public Team team;
-    
 
     public bool selected;
     public bool rostered;
@@ -35,8 +34,8 @@ public class PlayerObj : MonoBehaviour
 
     void Start()
     {
-        dragger.Init(lineup.slots);
-        //UpdateText();
+        dragger.Init(team.lineup.slots);
+        UpdateText();
     }
 
     public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem, ushort tval, ushort sval)
@@ -47,11 +46,12 @@ public class PlayerObj : MonoBehaviour
     public void UpdateText()
     {
         text_name.text = p.n;
+        text_power.text = $"{p.pow}";
 
-        if (selected)
-            text_stats.text = p.GetString() + $"\n[SELECTED]";
-        else
-            text_stats.text = p.GetString();
+        // if (selected)
+        //     text_stats.text = p.GetString() + $"\n[SELECTED]";
+        // else
+        //     text_stats.text = p.GetString();
 
         text_value.text = p.GetValueString();
         //text_slot.text = $"( {perferredSlot} )";
