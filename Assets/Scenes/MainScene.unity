@@ -773,9 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909e4ef2dc3aa44bc8a35ca1f011c8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPlayer: {fileID: 8153267849525469214, guid: baf6a2dd8202c334e90dc5b5327d2ac0, type: 3}
   prefabAddPlayer: {fileID: 6943863559295625216, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
-  addPlayerLocation: {fileID: 0}
   playerListJson: {fileID: 4900000, guid: 1c55984cae892da4baa1b0f352bf1da9, type: 3}
   playerpoolgrid: {fileID: 7476485464851605715}
   team: {fileID: 906373395}
@@ -3066,7 +3064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3074,7 +3072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3114,11 +3112,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -470
       objectReference: {fileID: 0}
     - target: {fileID: 1328963655087678710, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3267,6 +3265,10 @@ PrefabInstance:
     - target: {fileID: 6943863559295625216, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_Name
       value: Player_AddCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943863559295625216, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8491874324898129774, guid: 1ac42ca21b2257a43ae888b0aff88845, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5568,7 +5570,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50,000
+  m_text: 30M
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1324a7b79a8db4423a43a918b38a37bd, type: 2}
   m_sharedMaterial: {fileID: 3788668012099067831, guid: 1324a7b79a8db4423a43a918b38a37bd, type: 2}
@@ -5685,10 +5687,10 @@ RectTransform:
   m_Father: {fileID: 4634674100102949270}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 80}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 192.5, y: -40}
+  m_SizeDelta: {x: 385, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &2517497212524155222
 AudioSource:
@@ -6774,7 +6776,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8096,7 +8098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7488526382923728397
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8504,10 +8506,10 @@ RectTransform:
   m_Father: {fileID: 4634674100102949270}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 80}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 607.5, y: -40}
+  m_SizeDelta: {x: 385, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &7948569519483600238
 AudioSource:
@@ -8677,7 +8679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50,000
+  m_text: 100M
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1324a7b79a8db4423a43a918b38a37bd, type: 2}
   m_sharedMaterial: {fileID: 3788668012099067831, guid: 1324a7b79a8db4423a43a918b38a37bd, type: 2}

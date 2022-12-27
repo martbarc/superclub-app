@@ -26,7 +26,7 @@ public class Player_AddCard : MonoBehaviour
 
     void Awake()
     {
-        button_add.onClick.AddListener(AddPlayerToGame);
+        button_add.onClick.AddListener(AddPlayerToTeam);
     }
     
     // Start is called before the first frame update
@@ -89,7 +89,7 @@ public class Player_AddCard : MonoBehaviour
         UpdateText();
     }
 
-    public void AddPlayerToGame()
+    public void AddPlayerToTeam()
     {
         GameObject newPlayerObject = Instantiate(prefab_playercard, transform.position, Quaternion.identity);
         newPlayerObject.name = p.n;

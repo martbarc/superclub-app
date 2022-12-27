@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlayerPool : MonoBehaviour
 {
-    [SerializeField] public GameObject prefabPlayer;
     [SerializeField] public GameObject prefabAddPlayer;
-
-    [SerializeField] public GameObject addPlayerLocation;
 
     [SerializeField] public TextAsset playerListJson;
 
@@ -17,8 +14,6 @@ public class PlayerPool : MonoBehaviour
     [SerializeField] public Team team;
 
     public List<GameObject> pObjList;
-
-    
 
     private void Awake()
     {
@@ -41,8 +36,6 @@ public class PlayerPool : MonoBehaviour
         addPlayerObject.GetComponent<Player_AddCard>().InitPlayer(team, id, n, (Pos)position, power, (Chem)chem, tval, sval);
 
         pObjList.Add(addPlayerObject);
-
-        //Debug.Log("Loaded player: " + n + " " + position);
     }
 
     public void LoadNewPool()
@@ -53,7 +46,6 @@ public class PlayerPool : MonoBehaviour
         {
             AddPlayerToPool(p.id, p.n, p.pos, p.pow, p.chem, p.tval, p.sval);
             //p.transform.SetParent(playerpoolgrid.transform);
-            
         }
     }
 }
