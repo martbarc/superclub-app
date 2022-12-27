@@ -66,6 +66,23 @@ public class Player
         GetString();
     }
 
+    public Player(Player newP)
+    {
+        InitPlayer();
+
+        this.id = newP.id;
+        this.n = newP.n;
+        this.pos = (ushort)newP.pos;
+        this.pow = newP.pow;
+        this.chem = (ushort)newP.chem;
+        this.tval = newP.tval;
+        this.sval = newP.sval;
+
+        init = true;
+
+        GetString();
+    }
+
     public void InitPlayer()
     {
         id = 0;

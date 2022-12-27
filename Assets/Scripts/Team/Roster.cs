@@ -64,7 +64,7 @@ public class Roster : MonoBehaviour
         //Find all child obj and store to that array
         foreach (Transform child in transform)
         {
-            PlayerObj p = child.gameObject.GetComponent<PlayerObj>();
+            Player_Card p = child.gameObject.GetComponent<Player_Card>();
 
             if (p != null)
             {

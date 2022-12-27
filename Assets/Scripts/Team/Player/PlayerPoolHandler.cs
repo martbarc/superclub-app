@@ -34,7 +34,7 @@ public class PlayerPoolHandler : MonoBehaviour
         {
             searchedElements++;
 
-            PlayerObj pObj = e.GetComponent<PlayerObj>();
+            Player_AddCard pObj = e.GetComponent<Player_AddCard>();
             if (pObj.p.n.Length >= searchTxtlength)
             {
                 if (pObj.p.n.Substring(0, searchTxtlength).ToLower().Contains(SearchText.ToLower()))

@@ -62,14 +62,20 @@ public class Dragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         //Debug.Log("OnEndDrag");
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
+        CheckDropSlots();
+    }
+
+    public bool CheckDropSlots()
+    {
         foreach (DropSlot s in slots)
         {
             if (s.SetIfPositionClose(this.gameObject))
             {
                 curSlot = s;
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     //Add Event System to the Camera

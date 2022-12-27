@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 
 
     //UI
+    [SerializeField] public CleanButton button_addPlayer;
     [SerializeField] public Popup popup_shop;
     public bool pshopShow = false;
 
@@ -19,26 +20,22 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         season_num = 1;
+        button_addPlayer.onClick.AddListener(ShowShop);
     }
 
     void Start()
     {
-        //ShowShop();
+        HideShop();
+    }
+
+    public void HideShop()
+    {
+        popup_shop.gameObject.SetActive(false);
     }
 
     public void ShowShop()
     {
-        if (pshopShow == false)
-        {
-            popup_shop.Open();
-            pshopShow = true;
-        }
-        else
-        {
-            popup_shop.Close();
-            pshopShow = false;
-        }
-        
+        popup_shop.gameObject.SetActive(true);
     }
 
     // // Start is called before the first frame update

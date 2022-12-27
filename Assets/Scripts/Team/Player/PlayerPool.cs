@@ -5,15 +5,20 @@ using UnityEngine;
 public class PlayerPool : MonoBehaviour
 {
     [SerializeField] public GameObject prefabPlayer;
+    [SerializeField] public GameObject prefabAddPlayer;
+
+    [SerializeField] public GameObject addPlayerLocation;
+
     [SerializeField] public TextAsset playerListJson;
-    [SerializeField] public Canvas canvas_root;
 
     //Init in playerpoolgrid
     [SerializeField] public GameObject playerpoolgrid;
 
+    [SerializeField] public Team team;
+
     public List<GameObject> pObjList;
 
-    [SerializeField] public Team team;
+    
 
     private void Awake()
     {
@@ -27,13 +32,15 @@ public class PlayerPool : MonoBehaviour
 
     public void AddPlayerToPool(ushort id, string n, ushort position, float power, ushort chem, ushort tval, ushort sval)
     {
-        GameObject newPlayerObject = Instantiate(prefabPlayer, transform.position, Quaternion.identity);
-        newPlayerObject.name = n;
-        newPlayerObject.transform.SetParent(this.transform);
+        GameObject addPlayerObject = Instantiate(prefabAddPlayer, transform.position, Quaternion.identity);
+        addPlayerObject.name = n;
+        addPlayerObject.GetComponent<Player_AddCard>().targetTeam = this.team;
+        addPlayerObject.transform.SetParent(playerpoolgrid.transform);
+        addPlayerObject.transform.localScale = new Vector3(1f, 1f, 1f);
 
-        newPlayerObject.GetComponent<PlayerObj>().InitPlayer(team, id, n, (Pos)position, power, (Chem)chem, tval, sval);
+        addPlayerObject.GetComponent<Player_AddCard>().InitPlayer(team, id, n, (Pos)position, power, (Chem)chem, tval, sval);
 
-        pObjList.Add(newPlayerObject);
+        pObjList.Add(addPlayerObject);
 
         //Debug.Log("Loaded player: " + n + " " + position);
     }

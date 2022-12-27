@@ -43,6 +43,9 @@ public class Lineup : MonoBehaviour
     [SerializeField] public DropSlot slot_ben_10;
     [SerializeField] public DropSlot slot_ben_11;
 
+    //New Players
+    [SerializeField] public DropSlot slot_newPlayer;
+
     public List<DropSlot> slots;
     // public List<Vector3> slotsPos;
 
@@ -172,7 +175,7 @@ public class Lineup : MonoBehaviour
     {
         if (ds.curGameObject == null) return false;
 
-        lastP = ds.curGameObject.GetComponent<PlayerObj>().p;
+        lastP = ds.curGameObject.GetComponent<Player_Card>().p;
         return true;
     }
 }
