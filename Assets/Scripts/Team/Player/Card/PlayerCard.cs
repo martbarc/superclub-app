@@ -30,7 +30,6 @@ public class PlayerCard : MonoBehaviour
 
     void Start()
     {
-        
         UpdateText();
     }
 
@@ -39,6 +38,8 @@ public class PlayerCard : MonoBehaviour
         p = new Player(newP);
         team = targetTeam;
         dragger.Init(team.lineup.allSlots);
+
+        p.posAct = (ushort)Pos.Bench;
 
         Debug.Log($"Player_Card {p.n} Initialized");
     }

@@ -12,8 +12,10 @@ public class GameController : MonoBehaviour
 
     //UI
     [SerializeField] public CleanButton button_addPlayer;
+    [SerializeField] public CleanButton button_stats;
+    [SerializeField] public CleanButton button_bench;
     [SerializeField] public Popup popup_shop;
-    public bool pshopShow = false;
+    [SerializeField] public Popup popup_stats;
 
     public int season_num;
 
@@ -21,11 +23,14 @@ public class GameController : MonoBehaviour
     {
         season_num = 1;
         button_addPlayer.onClick.AddListener(ShowShop);
+        button_stats.onClick.AddListener(ShowStats);
+        button_bench.onClick.AddListener(team.lineup.SwitchLineupView);
     }
 
     void Start()
     {
         HideShop();
+        HideStats();
     }
 
     public void HideShop()
@@ -38,17 +43,14 @@ public class GameController : MonoBehaviour
         popup_shop.gameObject.SetActive(true);
     }
 
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
+    public void HideStats()
+    {
+        popup_stats.gameObject.SetActive(false);
+    }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
+    public void ShowStats()
+    {
+        popup_stats.gameObject.SetActive(true);
+    }
 
-    
 }

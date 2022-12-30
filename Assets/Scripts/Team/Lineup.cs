@@ -8,20 +8,20 @@ using TMPro;
 public class Lineup : MonoBehaviour
 {
     [SerializeField] public GameObject prefab_playercard;
-
+    [SerializeField] public CardSlot prefab_cardslot;
     [SerializeField] public Team team;
-    
     [SerializeField] public TextMeshPro text_att;
     [SerializeField] public TextMeshPro text_mid;
     [SerializeField] public TextMeshPro text_def;
-
-    // FieldW
-    [SerializeField] public CardSlot slotPrefab;
+    [SerializeField] public GameObject FieldObject;
+    [SerializeField] public GameObject BenchObject;
  
-    public List<CardSlot> attSlots;
-    public List<CardSlot> midSlots;
-    public List<CardSlot> defSlots;
-    public List<CardSlot> benSlots;
+    private List<CardSlot> attSlots;
+    private List<CardSlot> midSlots;
+    private List<CardSlot> defSlots;
+    private List<CardSlot> benSlots_0;
+    private List<CardSlot> benSlots_1;
+    private List<CardSlot> benSlots_2;
 
     public List<CardSlot> allSlots;
 
@@ -32,7 +32,7 @@ public class Lineup : MonoBehaviour
     // Private
     private Player lastP;
     private float _slotOffsetPosition = 15f;
-    private float _slotTextOffsetPosition = 15f;
+    private bool benchView;
 
     void Awake()
     {
@@ -41,12 +41,21 @@ public class Lineup : MonoBehaviour
 
     void Start()
     {
-        //att
-        attSlots = GenerateRow(4, _slotOffsetPosition, text_att.transform.position.y);
-        //mid
-        midSlots = GenerateRow(5, _slotOffsetPosition, text_mid.transform.position.y);
-        //def
-        defSlots = GenerateRow(5, _slotOffsetPosition, text_def.transform.position.y);
+        float fieldx = FieldObject.transform.position.x - (2 * _slotOffsetPosition); //right of text
+        float fieldy = FieldObject.transform.position.y;
+        attSlots = GenerateRow("AttSlot", Pos.Attacker, FieldObject, 4, fieldx, fieldy + text_att.transform.position.y);
+        midSlots = GenerateRow("MidSlot", Pos.Midfielder, FieldObject, 5, fieldx, fieldy + text_mid.transform.position.y);
+        defSlots = GenerateRow("DefSlot", Pos.Defender, FieldObject, 5, fieldx, fieldy + text_def.transform.position.y);
+
+        //bench (16 slots + 11 extra (overfill???) = 27)
+        float benchx = BenchObject.transform.position.x - (3 * _slotOffsetPosition);
+        float benchy = BenchObject.transform.position.y;
+        benSlots_0 = GenerateRow("Ben0Slot", Pos.Bench, BenchObject, 7, benchx, benchy + text_att.transform.position.y);
+        benSlots_1 = GenerateRow("Ben1Slot", Pos.Bench, BenchObject, 7, benchx, benchy + text_mid.transform.position.y);
+        benSlots_2 = GenerateRow("Ben2Slot", Pos.Bench, BenchObject, 7, benchx, benchy + text_def.transform.position.y);
+
+        benchView = true; //Switch to field view
+        SwitchLineupView();
         Recalc();
     }
 
@@ -93,37 +102,152 @@ public class Lineup : MonoBehaviour
         text_def.text = $"{def}";
     }
 
-    public void AddPlayerToLineup(Player p)
+    public bool AddPlayerToLineup(Player p)
     {
-        GameObject newPlayerObject = Instantiate(prefab_playercard, transform.position, Quaternion.identity);
-        newPlayerObject.name = p.n;
-
         // setup position find slot in bench
-        //newPlayerObject.transform.position = this.slot_newPlayer.transform.position;
-        newPlayerObject.GetComponent<PlayerCard>().dragger.CheckDropSlots();
+        foreach(CardSlot s in benSlots_0)
+        {
+            if (s.card == null)
+            {
+                CreatePlayerCard(p, s.transform.position);
+                return true;
+            }
+        }
+        foreach(CardSlot s in benSlots_1)
+        {
+            if (s.card == null)
+            {
+                CreatePlayerCard(p, s.transform.position);
+                return true;
+            }
+        }
+        foreach(CardSlot s in benSlots_2)
+        {
+            if (s.card == null)
+            {
+                CreatePlayerCard(p, s.transform.position);
+                return true;
+            }
+        }
 
-        //Init player in object
-        newPlayerObject.GetComponent<PlayerCard>().InitPlayer(p, team);
-        //Debug.Log("Loaded player: " + n + " " + position);
+        return false;
     }
 
-    private List<CardSlot> GenerateRow(int width, float offset_x, float offset_y) 
+    public bool MovePlayerCardToBench(GameObject playerGameObject)
+    {
+        PlayerCard pCard = playerGameObject.GetComponent<PlayerCard>();
+        // setup position find slot in bench
+        foreach(CardSlot s in benSlots_0)
+        {
+            if (s.card == null)
+            {
+                return s.SlotCard(playerGameObject, false);
+            }
+        }
+        foreach(CardSlot s in benSlots_1)
+        {
+            if (s.card == null)
+            {
+                return s.SlotCard(playerGameObject, false);
+            }
+        }
+        foreach(CardSlot s in benSlots_2)
+        {
+            if (s.card == null)
+            {
+                return s.SlotCard(playerGameObject, false);
+            }
+        }
+
+        return false;
+    }
+
+    public void SwitchLineupView()
+    {
+        benchView = !benchView;
+        SetBenchView(benchView);
+    }
+
+    public void SetBenchView(bool e)
+    {
+        benchView = e;
+        if (benchView)
+        {
+            EnableFieldObject(false);
+            EnableBenchObject(true);
+        }
+        else
+        {
+            EnableFieldObject(true);
+            EnableBenchObject(false);
+        }
+    }
+
+    public void EnableFieldObject(bool e)
+    {
+        foreach(CardSlot s in attSlots)
+        {
+            s.gameObject.SetActive(e);
+        }
+        foreach(CardSlot s in midSlots)
+        {
+            s.gameObject.SetActive(e);
+        }
+        foreach(CardSlot s in defSlots)
+        {
+            s.gameObject.SetActive(e);
+        }
+        FieldObject.SetActive(e);
+    }
+
+    public void EnableBenchObject(bool e)
+    {
+        foreach(CardSlot s in benSlots_0)
+        {
+            s.gameObject.SetActive(e);
+        }
+        foreach(CardSlot s in benSlots_1)
+        {
+            s.gameObject.SetActive(e);
+        }
+        foreach(CardSlot s in benSlots_2)
+        {
+            s.gameObject.SetActive(e);
+        }
+        BenchObject.SetActive(e);
+    }
+
+    private GameObject CreatePlayerCard(Player p, Vector2 position)
+    {
+        SetBenchView(true);
+
+        GameObject newPlayerCard = Instantiate(prefab_playercard, position, Quaternion.identity);
+        //Init player in object
+        newPlayerCard.name = p.n;
+        newPlayerCard.GetComponent<PlayerCard>().InitPlayer(p, team);
+        newPlayerCard.GetComponent<PlayerCard>().dragger.CheckDropSlots();
+
+        //Debug.Log("Loaded player: " + n + " " + position);
+        return newPlayerCard;
+    }
+
+    private List<CardSlot> GenerateRow(string name, Pos pos, GameObject parent, int width, float offset_x, float offset_y) 
     { // offset_x >= 1f offset_y >= 1f
         List<CardSlot> cslots = new List<CardSlot>();
         int y = 1;
-        float yl = (offset_y) + this.transform.position.y;
+        float yl = offset_y;
 
         for (int x = 0; x < width; x++) {
-            float xl = (x * offset_x) + this.transform.position.x + _slotTextOffsetPosition;
+            float xl = (x * _slotOffsetPosition) + offset_x;
 
-            var spawnedSlot = Instantiate(slotPrefab, new Vector3(xl, yl), Quaternion.identity);
-            spawnedSlot.transform.SetParent(this.transform);
-            spawnedSlot.name = $"CardSlot_{x}";
+            var spawnedSlot = Instantiate(prefab_cardslot, new Vector3(xl, yl), Quaternion.identity);
+            spawnedSlot.transform.SetParent(parent.transform);
+            spawnedSlot.name = $"{name}_{x}";
 
             //Debug.Log($"{spawnedSlot.name} spawned: x[{xl}] y[{yl}]");
 
             var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-            spawnedSlot.Init(isOffset);
+            spawnedSlot.Init(pos, isOffset);
 
             cslots.Add(spawnedSlot);
             allSlots.Add(spawnedSlot);
@@ -133,9 +257,9 @@ public class Lineup : MonoBehaviour
 
     private bool SetPlayerFromSlot(CardSlot s)
     {
-        if (s.curGameObject == null) return false;
+        if (s.cardObj == null) return false;
 
-        lastP = s.curGameObject.GetComponent<PlayerCard>().p;
+        lastP = s.cardObj.GetComponent<PlayerCard>().p;
         if (lastP == null) return false;
         return true;
     }

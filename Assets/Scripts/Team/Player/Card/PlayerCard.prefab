@@ -987,11 +987,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd9fa03dfcd00e42b2c7358ae80a5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 3916781564637663566}
   mainCamera: {fileID: 0}
   zAxis: 0
   clickOffset: {x: 0, y: 0, z: 0}
   slots: []
-  curSlot: {fileID: 0}
+  connectedSlot: {fileID: 0}
 --- !u!114 &3916781564637663566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,7 +1012,6 @@ MonoBehaviour:
   text_power: {fileID: 3528444311868149515}
   text_stats: {fileID: 4071964397779039853}
   text_value: {fileID: 5770160885938197197}
-  team: {fileID: 0}
   dragger: {fileID: 4274410067262638739}
   p:
     id: 0
@@ -1027,5 +1027,5 @@ MonoBehaviour:
     slotAct: 0
     init: 0
     playerString: 
-  selected: 0
+  team: {fileID: 0}
   rostered: 0

@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI; // Required when Using UI elements.
 
 public class PlayerPoolHandler : MonoBehaviour
 {
     [SerializeField] public PlayerPool playerPool;
 
-    public GameObject SearchBar;
+    [SerializeField] public GameObject searchContent;
+    [SerializeField] public TMP_InputField SearchBar;
 
     public int totalElements;
+    public string lastSearch;
+
+    void Awake()
+    {
+        //SearchBar.onValueChanged.AddListener(delegate {Search(); });
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,25 +33,35 @@ public class PlayerPoolHandler : MonoBehaviour
 
     public void Search()
     {
-        string SearchText = SearchBar.GetComponent<TMP_InputField>().text;
+        string SearchText = SearchBar.text;
+        lastSearch = SearchText;
         int searchTxtlength = SearchText.Length;
+
+        if (SearchText.Length < 2)
+        {
+            return;
+        }
 
         int searchedElements = 0;
 
-        foreach (GameObject e in playerPool.pObjList)
+        foreach (Transform c in searchContent.transform)
         {
-            searchedElements++;
+            Player_AddCard pObj = c.gameObject.GetComponent<Player_AddCard>();
+            if (pObj == null)
+            {
+                continue;
+            }
 
-            Player_AddCard pObj = e.GetComponent<Player_AddCard>();
+            searchedElements++;
             if (pObj.p.n.Length >= searchTxtlength)
             {
                 if (pObj.p.n.Substring(0, searchTxtlength).ToLower().Contains(SearchText.ToLower()))
                 {
-                    e.SetActive(true);
+                    c.gameObject.SetActive(true);
                 }
                 else
                 {
-                    e.SetActive(false);
+                    c.gameObject.SetActive(false);
                 }
             }
         }

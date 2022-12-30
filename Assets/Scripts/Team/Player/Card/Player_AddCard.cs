@@ -90,7 +90,14 @@ public class Player_AddCard : MonoBehaviour
 
     public void AddPlayerToTeam()
     {
-        targetTeam.lineup.AddPlayerToLineup(p);
+        if (targetTeam.lineup.AddPlayerToLineup(p))
+        {
+            //Debug.Log("Player added to lineup");
+        }
+        else
+        {
+            Debug.Log("ERROR: Player failed to add to lineup!");
+        }
 
         //Close Shop
     }

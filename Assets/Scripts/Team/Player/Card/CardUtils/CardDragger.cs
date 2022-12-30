@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 
 public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Camera mainCamera;
-    public float zAxis = 0;
+    [SerializeField] public PlayerCard card;
+
+    private Camera mainCamera;
+    private float zAxis = 0;
     public Vector3 clickOffset = Vector3.zero;
 
     public List<CardSlot> slots;
-    public CardSlot curSlot;
+    public CardSlot connectedSlot;
 
     //private bool isMouseDrag;
 
@@ -34,9 +36,17 @@ public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         clickOffset = transform.position - mainCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, zAxis)) + new Vector3(0, 3, 0);
         transform.position = new Vector3(transform.position.x, transform.position.y, zAxis);
 
-        if (curSlot != null)
-            curSlot.ClearSlot();
-            curSlot = null;
+        if (connectedSlot != null)
+        {
+            connectedSlot.ClearSlot();
+            connectedSlot = null;
+
+            if (card.p.posAct == (ushort)Pos.Bench)
+            {
+                //Switch to lineup view
+                card.team.lineup.SetBenchView(false);
+            }
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -53,16 +63,22 @@ public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //Debug.Log("OnEndDrag");
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
-        CheckDropSlots();
+        if (CheckDropSlots() == false)
+        {
+            Debug.Log("CardSlot not found, moving to bench");
+            if (card.team.lineup.MovePlayerCardToBench(this.gameObject))
+            {
+                
+            }
+        }
     }
 
     public bool CheckDropSlots()
     {
         foreach (CardSlot s in slots)
         {
-            if (s.SetIfPositionClose(this.gameObject))
+            if (s.SlotCardIfClose(this.gameObject))
             {
-                curSlot = s;
                 return true;
             }
         }

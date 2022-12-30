@@ -11,34 +11,72 @@ public class CardSlot : MonoBehaviour
     private float xTol = 4f;
     private float yTol = 5f;
 
-    public GameObject curGameObject;
+    public GameObject cardObj;
+    public PlayerCard card;
+
+    public Pos pos;
  
-    public void Init(bool isOffset) {
+    public void Init(Pos position, bool isOffset)
+    {
         _renderer.color = isOffset ? _offsetColor : _baseColor;
+        this.pos = position;
     }
  
-    void OnMouseEnter() {
-        _highlight.SetActive(true);
+    void OnMouseEnter() 
+    {
+        if (cardObj == null) _highlight.SetActive(true);
     }
  
     void OnMouseExit()
     {
-        _highlight.SetActive(false);
+        if (cardObj == null) _highlight.SetActive(false);
     }
 
-    public bool SetIfPositionClose(GameObject gObj)
+    public bool SlotCard(GameObject newCardObj, bool checkActive = true)
     {
-        Vector3 p = gObj.transform.position;
-        if (IsPositionClose(p))
+        if (checkActive)
         {
-            if (gObj.GetComponent<PlayerCard>() != null)
+            if (this.gameObject.activeSelf == false)
             {
-                curGameObject = gObj;
-                gObj.transform.position = this.transform.position;
-
-                gObj.GetComponent<PlayerCard>().team.Recalc();
+                return false;
             }
+        }
 
+        newCardObj.transform.position = this.transform.position;
+
+        if(SlotCardIfClose(newCardObj, checkActive))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool SlotCardIfClose(GameObject cardObj, bool checkActive = true)
+    {
+        if (checkActive)
+        {
+            if (this.gameObject.activeSelf == false)
+            {
+                return false;
+            }
+        }
+        
+        if (IsPositionClose(cardObj.transform.position))
+        {
+            PlayerCard c = cardObj.GetComponent<PlayerCard>();
+            if (c != null)
+            {
+                this.cardObj = cardObj;
+                this.cardObj.transform.position = this.transform.position;
+                this.cardObj.transform.SetParent(this.transform);
+
+                this.card = c;
+                this.card.p.posAct = (ushort)pos;
+                this.card.dragger.connectedSlot = this;
+                this.card.team.Recalc(); //trigger recalc
+            }
+            Debug.Log($"PlayerCard added to {this.name}");
             return true;
         }
         return false;
@@ -55,8 +93,10 @@ public class CardSlot : MonoBehaviour
 
     public GameObject ClearSlot()
     {
-        GameObject gObj = curGameObject;
-        curGameObject = null;
+        GameObject gObj = cardObj;
+        card.gameObject.transform.SetParent(card.team.lineup.transform);
+        cardObj = null;
+        card = null;
         return gObj;
     }
 }
