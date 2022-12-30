@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Dragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Camera mainCamera;
     public float zAxis = 0;
     public Vector3 clickOffset = Vector3.zero;
 
-    public List<DropSlot> slots;
-    public DropSlot curSlot;
+    public List<CardSlot> slots;
+    public CardSlot curSlot;
 
     //private bool isMouseDrag;
 
@@ -22,19 +22,10 @@ public class Dragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             mainCamera.gameObject.AddComponent<Physics2DRaycaster>();
     }
 
-    public void Init(List<DropSlot> s)
+    public void Init(List<CardSlot> s)
     {
         slots = s;
     }
-
-    // void Update()
-    // {
-    //     if (isMouseDrag)
-    //     {
-    //         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-    //         transform.Translate(mousePosition);
-    //     }
-    // }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -67,7 +58,7 @@ public class Dragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     public bool CheckDropSlots()
     {
-        foreach (DropSlot s in slots)
+        foreach (CardSlot s in slots)
         {
             if (s.SetIfPositionClose(this.gameObject))
             {

@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 using TMPro;
 
@@ -57,7 +58,7 @@ public class PlayerObj : MonoBehaviour
         //text_slot.text = $"( {perferredSlot} )";
     }
 }
-
+*/
 /*
 
     public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem, ushort tval, ushort sval)

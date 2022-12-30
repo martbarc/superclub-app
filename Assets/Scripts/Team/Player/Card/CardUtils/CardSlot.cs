@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class DropSlot : MonoBehaviour
+public class CardSlot : MonoBehaviour
 {
-    public Vector3 v;
-    public float xTol = 3f;
-    public float yTol = 3f;
+    [SerializeField] private Color _baseColor, _offsetColor;
+    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private GameObject _highlight;
+
+    private float xTol = 4f;
+    private float yTol = 5f;
 
     public GameObject curGameObject;
-
-    void Awake()
+ 
+    public void Init(bool isOffset) {
+        _renderer.color = isOffset ? _offsetColor : _baseColor;
+    }
+ 
+    void OnMouseEnter() {
+        _highlight.SetActive(true);
+    }
+ 
+    void OnMouseExit()
     {
-        v = this.transform.position;
+        _highlight.SetActive(false);
     }
 
     public bool SetIfPositionClose(GameObject gObj)
@@ -21,12 +31,12 @@ public class DropSlot : MonoBehaviour
         Vector3 p = gObj.transform.position;
         if (IsPositionClose(p))
         {
-            if (gObj.GetComponent<Player_Card>() != null)
+            if (gObj.GetComponent<PlayerCard>() != null)
             {
                 curGameObject = gObj;
                 gObj.transform.position = this.transform.position;
 
-                gObj.GetComponent<Player_Card>().team.Recalc();
+                gObj.GetComponent<PlayerCard>().team.Recalc();
             }
 
             return true;

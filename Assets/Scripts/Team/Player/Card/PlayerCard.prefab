@@ -866,11 +866,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8153267849525469212}
   - component: {fileID: 8153267849525469215}
-  - component: {fileID: 8153267849525469210}
   - component: {fileID: 8153267849525469211}
-  - component: {fileID: 7644059319789813914}
+  - component: {fileID: 4274410067262638739}
+  - component: {fileID: 3916781564637663566}
   m_Layer: 0
-  m_Name: Player_Card
+  m_Name: PlayerCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,23 +949,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8153267849525469210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153267849525469214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a859a50c2cbb5ff4a83db52f608f70f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  zAxis: 0
-  clickOffset: {x: 0, y: 0, z: 0}
-  slots: []
-  curSlot: {fileID: 0}
 --- !u!61 &8153267849525469211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -992,7 +975,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 20.4}
   m_EdgeRadius: 0
---- !u!114 &7644059319789813914
+--- !u!114 &4274410067262638739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153267849525469214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd9fa03dfcd00e42b2c7358ae80a5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  zAxis: 0
+  clickOffset: {x: 0, y: 0, z: 0}
+  slots: []
+  curSlot: {fileID: 0}
+--- !u!114 &3916781564637663566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   text_stats: {fileID: 4071964397779039853}
   text_value: {fileID: 5770160885938197197}
   team: {fileID: 0}
-  dragger: {fileID: 8153267849525469210}
+  dragger: {fileID: 4274410067262638739}
   p:
     id: 0
     n: Default

@@ -7,7 +7,6 @@ using UltimateClean;
 
 public class Player_AddCard : MonoBehaviour
 {
-    [SerializeField] public GameObject prefab_playercard;
     [SerializeField] public Team targetTeam;
     [SerializeField] public TextMeshProUGUI text_name;
     [SerializeField] public TextMeshProUGUI text_power;
@@ -91,16 +90,7 @@ public class Player_AddCard : MonoBehaviour
 
     public void AddPlayerToTeam()
     {
-        GameObject newPlayerObject = Instantiate(prefab_playercard, transform.position, Quaternion.identity);
-        newPlayerObject.name = p.n;
-        //newPlayerObject.transform.SetParent(this.targetTeam.lineup.slot_newPlayer.transform);
-        newPlayerObject.transform.position = this.targetTeam.lineup.slot_newPlayer.transform.position;
-        newPlayerObject.GetComponent<Player_Card>().dragger.CheckDropSlots();
-
-        newPlayerObject.GetComponent<Player_Card>().InitPlayer(p, targetTeam);
-        //Debug.Log("Loaded player: " + n + " " + position);
-
-        //Disable this card?
+        targetTeam.lineup.AddPlayerToLineup(p);
 
         //Close Shop
     }

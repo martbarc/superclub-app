@@ -7,90 +7,47 @@ using TMPro;
 
 public class Lineup : MonoBehaviour
 {
+    [SerializeField] public GameObject prefab_playercard;
+
     [SerializeField] public Team team;
     
     [SerializeField] public TextMeshPro text_att;
     [SerializeField] public TextMeshPro text_mid;
     [SerializeField] public TextMeshPro text_def;
 
-    // Field
-    [SerializeField] public DropSlot slot_att_0;
-    [SerializeField] public DropSlot slot_att_1;
-    [SerializeField] public DropSlot slot_att_2;
-    [SerializeField] public DropSlot slot_att_3;
-    [SerializeField] public DropSlot slot_mid_0;
-    [SerializeField] public DropSlot slot_mid_1;
-    [SerializeField] public DropSlot slot_mid_2;
-    [SerializeField] public DropSlot slot_mid_3;
-    [SerializeField] public DropSlot slot_mid_4;
-    [SerializeField] public DropSlot slot_def_0;
-    [SerializeField] public DropSlot slot_def_1;
-    [SerializeField] public DropSlot slot_def_2;
-    [SerializeField] public DropSlot slot_def_3;
-    [SerializeField] public DropSlot slot_goalie;
+    // FieldW
+    [SerializeField] public CardSlot slotPrefab;
+ 
+    public List<CardSlot> attSlots;
+    public List<CardSlot> midSlots;
+    public List<CardSlot> defSlots;
+    public List<CardSlot> benSlots;
 
-    // Bench
-    [SerializeField] public DropSlot slot_ben_0;
-    [SerializeField] public DropSlot slot_ben_1;
-    [SerializeField] public DropSlot slot_ben_2;
-    [SerializeField] public DropSlot slot_ben_3;
-    [SerializeField] public DropSlot slot_ben_4;
-    [SerializeField] public DropSlot slot_ben_5;
-    [SerializeField] public DropSlot slot_ben_6;
-    [SerializeField] public DropSlot slot_ben_7;
-    [SerializeField] public DropSlot slot_ben_8;
-    [SerializeField] public DropSlot slot_ben_9;
-    [SerializeField] public DropSlot slot_ben_10;
-    [SerializeField] public DropSlot slot_ben_11;
-
-    //New Players
-    [SerializeField] public DropSlot slot_newPlayer;
-
-    public List<DropSlot> slots;
-    // public List<Vector3> slotsPos;
+    public List<CardSlot> allSlots;
 
     public float att = 0;
     public float mid = 0;
     public float def = 0;
 
+    // Private
     private Player lastP;
+    private float _slotOffsetPosition = 15f;
+    private float _slotTextOffsetPosition = 15f;
 
     void Awake()
     {
-        slots = new List<DropSlot>();
-        slots.Add(slot_att_0);
-        slots.Add(slot_att_1);
-        slots.Add(slot_att_2);
-        slots.Add(slot_att_3);
-        slots.Add(slot_mid_0);
-        slots.Add(slot_mid_1);
-        slots.Add(slot_mid_2);
-        slots.Add(slot_mid_3);
-        slots.Add(slot_mid_4);
-        slots.Add(slot_def_0);
-        slots.Add(slot_def_1);
-        slots.Add(slot_def_2);
-        slots.Add(slot_def_3);
-        slots.Add(slot_goalie);
+        allSlots = new List<CardSlot>();
+    }
 
-        slots.Add(slot_ben_0);
-        slots.Add(slot_ben_1);
-        slots.Add(slot_ben_2);
-        slots.Add(slot_ben_3);
-        slots.Add(slot_ben_4);
-        slots.Add(slot_ben_5);
-        slots.Add(slot_ben_6);
-        slots.Add(slot_ben_7);
-        slots.Add(slot_ben_8);
-        slots.Add(slot_ben_9);
-        slots.Add(slot_ben_10);
-        slots.Add(slot_ben_11);
-
-        // slotsPos = new List<Vector3>();
-        // foreach(DropSlot p in slots)
-        // {
-        //     slotsPos.Add(p.transform.position);
-        // }
+    void Start()
+    {
+        //att
+        attSlots = GenerateRow(4, _slotOffsetPosition, text_att.transform.position.y);
+        //mid
+        midSlots = GenerateRow(5, _slotOffsetPosition, text_mid.transform.position.y);
+        //def
+        defSlots = GenerateRow(5, _slotOffsetPosition, text_def.transform.position.y);
+        Recalc();
     }
 
     public void Recalc()
@@ -100,65 +57,30 @@ public class Lineup : MonoBehaviour
         def = 0f;
 
         //Att
-        if (SetPlayerFromSlot(slot_att_0))
+        foreach(CardSlot s in attSlots)
         {
-            att += lastP.GetPositionPower(Pos.Attacker);
-        }
-        if (SetPlayerFromSlot(slot_att_1))
-        {
-            att += lastP.GetPositionPower(Pos.Attacker);
-        }
-        if (SetPlayerFromSlot(slot_att_2))
-        {
-            att += lastP.GetPositionPower(Pos.Attacker);
-        }
-        if (SetPlayerFromSlot(slot_att_3))
-        {
-            att += lastP.GetPositionPower(Pos.Attacker);
+            if (SetPlayerFromSlot(s))
+            {
+                att += lastP.GetPositionPower(Pos.Attacker);
+            }
         }
 
         //Mid
-        if (SetPlayerFromSlot(slot_mid_0))
+        foreach(CardSlot s in midSlots)
         {
-            mid += lastP.GetPositionPower(Pos.Midfielder);
-        }
-        if (SetPlayerFromSlot(slot_mid_1))
-        {
-            mid += lastP.GetPositionPower(Pos.Midfielder);
-        }
-        if (SetPlayerFromSlot(slot_mid_2))
-        {
-            mid += lastP.GetPositionPower(Pos.Midfielder);
-        }
-        if (SetPlayerFromSlot(slot_mid_3))
-        {
-            mid += lastP.GetPositionPower(Pos.Midfielder);
-        }
-        if (SetPlayerFromSlot(slot_mid_4))
-        {
-            mid += lastP.GetPositionPower(Pos.Midfielder);
+            if (SetPlayerFromSlot(s))
+            {
+                mid += lastP.GetPositionPower(Pos.Midfielder);
+            }
         }
 
         //Def
-        if (SetPlayerFromSlot(slot_goalie))
+        foreach(CardSlot s in defSlots)
         {
-            def += lastP.GetPositionPower(Pos.Defender);
-        }
-        if (SetPlayerFromSlot(slot_def_0))
-        {
-            def += lastP.GetPositionPower(Pos.Defender);
-        }
-        if (SetPlayerFromSlot(slot_def_1))
-        {
-            def += lastP.GetPositionPower(Pos.Defender);
-        }
-        if (SetPlayerFromSlot(slot_def_2))
-        {
-            def += lastP.GetPositionPower(Pos.Defender);
-        }
-        if (SetPlayerFromSlot(slot_def_3))
-        {
-            def += lastP.GetPositionPower(Pos.Defender);
+            if (SetPlayerFromSlot(s))
+            {
+                def += lastP.GetPositionPower(Pos.Defender);
+            }
         }
 
         UpdateText();
@@ -171,11 +93,50 @@ public class Lineup : MonoBehaviour
         text_def.text = $"{def}";
     }
 
-    public bool SetPlayerFromSlot(DropSlot ds)
+    public void AddPlayerToLineup(Player p)
     {
-        if (ds.curGameObject == null) return false;
+        GameObject newPlayerObject = Instantiate(prefab_playercard, transform.position, Quaternion.identity);
+        newPlayerObject.name = p.n;
 
-        lastP = ds.curGameObject.GetComponent<Player_Card>().p;
+        // setup position find slot in bench
+        //newPlayerObject.transform.position = this.slot_newPlayer.transform.position;
+        newPlayerObject.GetComponent<PlayerCard>().dragger.CheckDropSlots();
+
+        //Init player in object
+        newPlayerObject.GetComponent<PlayerCard>().InitPlayer(p, team);
+        //Debug.Log("Loaded player: " + n + " " + position);
+    }
+
+    private List<CardSlot> GenerateRow(int width, float offset_x, float offset_y) 
+    { // offset_x >= 1f offset_y >= 1f
+        List<CardSlot> cslots = new List<CardSlot>();
+        int y = 1;
+        float yl = (offset_y) + this.transform.position.y;
+
+        for (int x = 0; x < width; x++) {
+            float xl = (x * offset_x) + this.transform.position.x + _slotTextOffsetPosition;
+
+            var spawnedSlot = Instantiate(slotPrefab, new Vector3(xl, yl), Quaternion.identity);
+            spawnedSlot.transform.SetParent(this.transform);
+            spawnedSlot.name = $"CardSlot_{x}";
+
+            //Debug.Log($"{spawnedSlot.name} spawned: x[{xl}] y[{yl}]");
+
+            var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+            spawnedSlot.Init(isOffset);
+
+            cslots.Add(spawnedSlot);
+            allSlots.Add(spawnedSlot);
+        }
+        return cslots;
+    }
+
+    private bool SetPlayerFromSlot(CardSlot s)
+    {
+        if (s.curGameObject == null) return false;
+
+        lastP = s.curGameObject.GetComponent<PlayerCard>().p;
+        if (lastP == null) return false;
         return true;
     }
 }

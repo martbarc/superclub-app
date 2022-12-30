@@ -1,32 +1,28 @@
 using UnityEngine;
 using TMPro;
 
-public class Player_Card : MonoBehaviour
+public class PlayerCard : MonoBehaviour
 {
     // UI
     [SerializeField] public SpriteRenderer image_back;
     [SerializeField] public SpriteRenderer image_leftChem;
     [SerializeField] public SpriteRenderer image_rightChem;
-    // [SerializeField] public Button select;
     [SerializeField] public TextMeshPro text_name;
     [SerializeField] public TextMeshPro text_power;
     [SerializeField] public TextMeshPro text_stats;
     [SerializeField] public TextMeshPro text_value;
 
     // OBJ
-    [SerializeField] public Team team;
-    [SerializeField] public Dragger dragger;
+    [SerializeField] public CardDragger dragger;
 
     public Player p;
-    //public Team team;
+    public Team team;
 
-    public bool selected;
     public bool rostered;
 
     void Awake()
     {
         p = new Player();
-        selected = false;
         rostered = false;
 
         //if (select != null) select.onClick.AddListener(onPlayerSelected);
@@ -42,7 +38,7 @@ public class Player_Card : MonoBehaviour
     {
         p = new Player(newP);
         team = targetTeam;
-        dragger.Init(team.lineup.slots);
+        dragger.Init(team.lineup.allSlots);
 
         Debug.Log($"Player_Card {p.n} Initialized");
     }
