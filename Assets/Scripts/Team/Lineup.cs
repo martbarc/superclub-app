@@ -28,8 +28,10 @@ public class Lineup : MonoBehaviour
     public float att = 0;
     public float mid = 0;
     public float def = 0;
+    public int totalStars = 0;
 
     // Private
+    private Chem lastChem = Chem.None;
     private Player lastP;
     private float _slotOffsetPosition = 15f;
     private bool benchView;
@@ -46,6 +48,7 @@ public class Lineup : MonoBehaviour
         attSlots = GenerateRow("AttSlot", Pos.Attacker, FieldObject, 4, fieldx, fieldy + text_att.transform.position.y);
         midSlots = GenerateRow("MidSlot", Pos.Midfielder, FieldObject, 5, fieldx, fieldy + text_mid.transform.position.y);
         defSlots = GenerateRow("DefSlot", Pos.Defender, FieldObject, 5, fieldx, fieldy + text_def.transform.position.y);
+        defSlots[0].Init(Pos.Goalie);
 
         //bench (16 slots + 11 extra (overfill???) = 27)
         float benchx = BenchObject.transform.position.x - (3 * _slotOffsetPosition);
@@ -61,6 +64,7 @@ public class Lineup : MonoBehaviour
 
     public void Recalc()
     {
+        float stars = 0;
         att = 0f;
         mid = 0f;
         def = 0f;
@@ -68,30 +72,59 @@ public class Lineup : MonoBehaviour
         //Att
         foreach(CardSlot s in attSlots)
         {
-            if (SetPlayerFromSlot(s))
+            if (SetLocalPlayerVarFromSlot(s))
             {
                 att += lastP.GetPositionPower(Pos.Attacker);
+                stars += lastP.pow;
             }
         }
 
         //Mid
         foreach(CardSlot s in midSlots)
         {
-            if (SetPlayerFromSlot(s))
+            if (SetLocalPlayerVarFromSlot(s))
             {
                 mid += lastP.GetPositionPower(Pos.Midfielder);
+                stars += lastP.pow;
             }
         }
 
         //Def
         foreach(CardSlot s in defSlots)
         {
-            if (SetPlayerFromSlot(s))
+            if (SetLocalPlayerVarFromSlot(s))
             {
                 def += lastP.GetPositionPower(Pos.Defender);
+                stars += lastP.pow;
             }
         }
 
+        //Bench
+        foreach(CardSlot s in benSlots_0)
+        {
+            if (SetLocalPlayerVarFromSlot(s))
+            {
+                stars += lastP.pow;
+            }
+        }
+
+        foreach(CardSlot s in benSlots_1)
+        {
+            if (SetLocalPlayerVarFromSlot(s))
+            {
+                stars += lastP.pow;
+            }
+        }
+
+        foreach(CardSlot s in benSlots_2)
+        {
+            if (SetLocalPlayerVarFromSlot(s))
+            {
+                stars += lastP.pow;
+            }
+        }
+
+        this.totalStars = (int) stars;
         UpdateText();
     }
 
@@ -234,7 +267,7 @@ public class Lineup : MonoBehaviour
     private List<CardSlot> GenerateRow(string name, Pos pos, GameObject parent, int width, float offset_x, float offset_y) 
     { // offset_x >= 1f offset_y >= 1f
         List<CardSlot> cslots = new List<CardSlot>();
-        int y = 1;
+        //int y = 1;
         float yl = offset_y;
 
         for (int x = 0; x < width; x++) {
@@ -246,8 +279,7 @@ public class Lineup : MonoBehaviour
 
             //Debug.Log($"{spawnedSlot.name} spawned: x[{xl}] y[{yl}]");
 
-            var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-            spawnedSlot.Init(pos, isOffset);
+            spawnedSlot.Init(pos);
 
             cslots.Add(spawnedSlot);
             allSlots.Add(spawnedSlot);
@@ -255,7 +287,7 @@ public class Lineup : MonoBehaviour
         return cslots;
     }
 
-    private bool SetPlayerFromSlot(CardSlot s)
+    private bool SetLocalPlayerVarFromSlot(CardSlot s)
     {
         if (s.cardObj == null) return false;
 

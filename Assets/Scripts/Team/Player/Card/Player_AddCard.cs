@@ -37,53 +37,8 @@ public class Player_AddCard : MonoBehaviour
     public void InitPlayer(Team team, ushort id, string name, Pos pos, float power, Chem chem, ushort tval, ushort sval)
     {
         p = new Player(id, name, pos, power, chem, tval, sval);
-
-        Pos tpos = p.GetPos();
-        switch (tpos)
-        {
-            case Pos.Attacker:
-                player_image.color = new Color32(19, 87, 14, 255);
-                break;
-            case Pos.Midfielder:
-                player_image.color = new Color32(87, 78, 14, 255);
-                break;
-            case Pos.Defender:
-                player_image.color = new Color32(87, 19, 14, 255);
-                break;
-            case Pos.Goalie:
-                player_image.color = new Color32(158, 103, 103, 255);
-                break;
-            case Pos.Wild:
-                player_image.color = new Color32(47, 14, 87, 255);
-                break;
-            default:
-                player_image.color = new Color32(0, 0, 0, 255);
-                break;
-        }
-
-        switch (chem)
-        {
-            case Chem.None:
-                image_leftChem.color = new Color32(0, 0, 0, 0);
-                image_rightChem.color = new Color32(0, 0, 0, 0);
-                break;
-            case Chem.Left:
-                image_leftChem.color = new Color32(0, 0, 0, 200);
-                image_rightChem.color = new Color32(0, 0, 0, 0);
-                break;
-            case Chem.Right:
-                image_leftChem.color = new Color32(0, 0, 0, 0);
-                image_rightChem.color = new Color32(0, 0, 0, 200);
-                break;
-            case Chem.Both:
-                image_leftChem.color = new Color32(0, 0, 0, 200);
-                image_rightChem.color = new Color32(0, 0, 0, 200);
-                break;
-            default:
-                image_leftChem.color = new Color32(0, 0, 0, 0);
-                image_rightChem.color = new Color32(0, 0, 0, 0);
-                break;
-        }
+        player_image.color = p.GetPlayerColor();
+        (image_leftChem.color, image_rightChem.color) = p.GetPlayerChemColor();
 
         UpdateText();
     }

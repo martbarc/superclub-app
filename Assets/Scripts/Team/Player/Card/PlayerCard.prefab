@@ -719,8 +719,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -6.9}
-  m_SizeDelta: {x: 12, y: 5}
+  m_AnchoredPosition: {x: 0, y: -7.9507}
+  m_SizeDelta: {x: 12, y: 2.8986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7847525498605852162
 MeshRenderer:
@@ -988,8 +988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 3916781564637663566}
-  mainCamera: {fileID: 0}
-  zAxis: 0
   clickOffset: {x: 0, y: 0, z: 0}
   slots: []
   connectedSlot: {fileID: 0}

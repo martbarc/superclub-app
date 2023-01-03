@@ -12,21 +12,21 @@ public class Team : MonoBehaviour
     // [SerializeField] public Roster roster;
     // [SerializeField] public PlayerPoolHandler playerPoolHandler;
 
-    // // HOME PANEL
+    // HOME PANEL
+    [SerializeField] public TextMeshProUGUI text_totalstars;
     // [SerializeField] public Button button_saveTeam;
 
     // [SerializeField] public PlayerSelectPanel panel_playerSettings;
 
     [SerializeField] public SaveManager saveManager;
 
-    public float totalPower;
-
     //TEAM PARAMS
     public string teamName;
+    public int teamBank;
 
     private void Awake()
     {
-        totalPower = 0;
+        teamBank = 90;
     }
 
     private void Start()
@@ -37,6 +37,7 @@ public class Team : MonoBehaviour
     public void Recalc()
     {
         lineup.Recalc();
+        UpdateText();
     }
 
     public void SaveTeam()
@@ -47,6 +48,11 @@ public class Team : MonoBehaviour
     public void LoadTeam()
     {
         saveManager.Load();
+    }
+
+    public void UpdateText()
+    {
+        text_totalstars.text = $"{lineup.totalStars}";
     }
 }
 

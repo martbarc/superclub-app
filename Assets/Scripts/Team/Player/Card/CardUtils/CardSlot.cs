@@ -16,21 +16,29 @@ public class CardSlot : MonoBehaviour
 
     public Pos pos;
  
-    public void Init(Pos position, bool isOffset)
+    public void Init(Pos position)
     {
-        _renderer.color = isOffset ? _offsetColor : _baseColor;
+        Player ptemp = new Player();
+        ptemp.pos = (ushort)position;
+        //var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+        _renderer.color = ptemp.GetPlayerColor();//isOffset ? _offsetColor : _baseColor;
         this.pos = position;
+
+        if (position == Pos.Bench)
+        {
+            _renderer.sortingOrder = 27;
+        }
     }
  
-    void OnMouseEnter() 
-    {
-        if (cardObj == null) _highlight.SetActive(true);
-    }
+    // void OnMouseEnter() 
+    // {
+    //     if (cardObj == null) _highlight.SetActive(true);
+    // }
  
-    void OnMouseExit()
-    {
-        if (cardObj == null) _highlight.SetActive(false);
-    }
+    // void OnMouseExit()
+    // {
+    //     if (cardObj == null) _highlight.SetActive(false);
+    // }
 
     public bool SlotCard(GameObject newCardObj, bool checkActive = true)
     {
@@ -54,14 +62,6 @@ public class CardSlot : MonoBehaviour
 
     public bool SlotCardIfClose(GameObject cardObj, bool checkActive = true)
     {
-        if (checkActive)
-        {
-            if (this.gameObject.activeSelf == false)
-            {
-                return false;
-            }
-        }
-        
         if (IsPositionClose(cardObj.transform.position))
         {
             PlayerCard c = cardObj.GetComponent<PlayerCard>();
@@ -82,8 +82,16 @@ public class CardSlot : MonoBehaviour
         return false;
     }
 
-    public bool IsPositionClose(Vector3 p)
+    public bool IsPositionClose(Vector3 p, bool checkActive = true)
     {
+        if (checkActive)
+        {
+            if (this.gameObject.activeSelf == false)
+            {
+                return false;
+            }
+        }
+
         if (Mathf.Abs(this.transform.position.x - p.x) <= xTol && Mathf.Abs(this.transform.position.y - p.y) <= yTol)
         {
             return true;

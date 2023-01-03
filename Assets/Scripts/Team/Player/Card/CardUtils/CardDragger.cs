@@ -34,7 +34,8 @@ public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //Debug.Log("OnBeginDrag");
         zAxis=transform.position.z;
         clickOffset = transform.position - mainCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, zAxis)) + new Vector3(0, 3, 0);
-        transform.position = new Vector3(transform.position.x, transform.position.y, zAxis);
+        this.transform.position = new Vector3(transform.position.x, transform.position.y, zAxis);
+        card.SelectCard(true);
 
         if (connectedSlot != null)
         {
@@ -62,6 +63,7 @@ public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         //Debug.Log("OnEndDrag");
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        card.SelectCard(false);
 
         if (CheckDropSlots() == false)
         {

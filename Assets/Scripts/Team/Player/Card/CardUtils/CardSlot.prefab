@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 29
   m_Sprite: {fileID: 21300000, guid: fc3b7dfbac89b154484d22dcd8108783, type: 3}
-  m_Color: {r: 0.24951048, g: 0.26175672, b: 0.5943396, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 28
   m_Sprite: {fileID: 21300000, guid: fc3b7dfbac89b154484d22dcd8108783, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4669811, g: 1, b: 0.9500953, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -213,6 +213,6 @@ MonoBehaviour:
   _offsetColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   _renderer: {fileID: 4888835815203495438}
   _highlight: {fileID: 2454186232643599219}
-  xTol: 3
-  yTol: 3
-  curGameObject: {fileID: 0}
+  cardObj: {fileID: 0}
+  card: {fileID: 0}
+  pos: 0

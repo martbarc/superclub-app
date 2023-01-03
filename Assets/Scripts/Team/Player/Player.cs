@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 public enum Pos : ushort
 {
@@ -136,6 +137,12 @@ public class Player
         return (Pos)posAct;
     }
 
+    public void SetPosAct(Pos position)
+    {
+        this.posAct = (ushort)position;
+    }
+
+
     public float GetPositionPower(Pos tarPos)
     {
         float power = pow;
@@ -164,8 +171,40 @@ public class Player
         //return power;
     }
 
-    public void SetPosAct(Pos position)
+    public Color32 GetPlayerColor()
     {
-        this.posAct = (ushort)position;
+        switch (GetPos())
+        {
+            case Pos.Attacker:
+                return new Color32(131, 255, 131, 255);
+            case Pos.Midfielder:
+                return new Color32(255, 255, 131, 255);
+            case Pos.Defender:
+                return new Color32(255, 133, 131, 255);
+            case Pos.Goalie:
+                return new Color32(171, 171, 171, 255);
+            case Pos.Wild:
+                return new Color32(175, 131, 255, 255);
+            default:
+                return new Color32(0, 0, 0, 255);
+        }
+    }
+
+    // Left, right
+    public (Color32, Color32) GetPlayerChemColor()
+    {
+        switch (GetChem())
+        {
+            case Chem.None:
+                return (new Color32(0, 0, 0, 0), new Color32(0, 0, 0, 0));
+            case Chem.Left:
+                return (new Color32(0, 0, 0, 200), new Color32(0, 0, 0, 0));
+            case Chem.Right:
+                return (new Color32(0, 0, 0, 0), new Color32(0, 0, 0, 200));
+            case Chem.Both:
+                return (new Color32(0, 0, 0, 200), new Color32(0, 0, 0, 200));
+            default:
+                return (new Color32(0, 0, 0, 0), new Color32(0, 0, 0, 0));
+        }
     }
 }
