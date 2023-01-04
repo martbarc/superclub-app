@@ -1,23 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class Team : MonoBehaviour
 {
     // PUBLIC SETTINGS
+    [SerializeField] public GameController gc;
     [SerializeField] public PlayerPool pp;
     [SerializeField] public Lineup lineup;
     // [SerializeField] public Roster roster;
     // [SerializeField] public PlayerPoolHandler playerPoolHandler;
 
-    // HOME PANEL
-    [SerializeField] public BonusSlider loophole_att;
-    [SerializeField] public BonusSlider loophole_mid;
-    [SerializeField] public BonusSlider loophole_def;
-
-    [SerializeField] public TextMeshProUGUI text_totalstars;
     // [SerializeField] public Button button_saveTeam;
 
     // [SerializeField] public PlayerSelectPanel panel_playerSettings;
@@ -26,7 +19,7 @@ public class Team : MonoBehaviour
 
     //TEAM PARAMS
     public string teamName;
-    public int teamBank;
+    public int teamFunds;
     public int curSeason;
 
     public float attBonus;
@@ -36,7 +29,7 @@ public class Team : MonoBehaviour
     private void Awake()
     {
         curSeason = 0;
-        teamBank = 90;
+        teamFunds = 90;
 
         attBonus = 0f;
         midBonus = 0f;
@@ -46,13 +39,15 @@ public class Team : MonoBehaviour
     private void Start()
     {
         //LoadTeam();
+
+        //Recalc(); Lineup Recalcs after it's Start() finishes
     }
 
     public void Recalc()
     {
-        attBonus = loophole_att.currentIndex;
-        midBonus = loophole_mid.currentIndex;
-        defBonus = loophole_def.currentIndex;
+        attBonus = gc.loophole_att.currentIndex;
+        midBonus = gc.loophole_mid.currentIndex;
+        defBonus = gc.loophole_def.currentIndex;
 
         lineup.Recalc();
         UpdateText();
@@ -70,7 +65,14 @@ public class Team : MonoBehaviour
 
     public void UpdateText()
     {
-        text_totalstars.text = $"{lineup.totalStars}";
+        gc.text_totalstars.text = $"{lineup.totalStars}";
+        gc.text_teamFunds.text = $"{teamFunds} M";
+    }
+
+    public void IncreaseFunds_1()
+    {
+        teamFunds += 1;
+        Recalc();
     }
 
     public void AddRandomPlayers()

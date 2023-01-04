@@ -65,7 +65,41 @@ public class Lineup : MonoBehaviour
 
         benchView = true; //Switch to field view
         SwitchLineupView();
-        Recalc();
+
+        team.Recalc(); //Runs this Recalc() function also
+    }
+
+    public bool AddPlayerToLineup(Player p)
+    {
+        team.teamFunds -= p.tval;
+
+        // setup position find slot in bench
+        foreach (CardSlot s in benSlots_0)
+        {
+            if (s.card == null)
+            {
+                CreatePlayerCard(p, s.transform.position);
+                return true;
+            }
+        }
+        foreach (CardSlot s in benSlots_1)
+        {
+            if (s.card == null)
+            {
+                CreatePlayerCard(p, s.transform.position);
+                return true;
+            }
+        }
+        foreach (CardSlot s in benSlots_2)
+        {
+            if (s.card == null)
+            {
+                CreatePlayerCard(p, s.transform.position);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void RefreshPlayers()
@@ -216,37 +250,6 @@ public class Lineup : MonoBehaviour
         text_att.text = $"{att}";
         text_mid.text = $"{mid}";
         text_def.text = $"{def}";
-    }
-
-    public bool AddPlayerToLineup(Player p)
-    {
-        // setup position find slot in bench
-        foreach(CardSlot s in benSlots_0)
-        {
-            if (s.card == null)
-            {
-                CreatePlayerCard(p, s.transform.position);
-                return true;
-            }
-        }
-        foreach(CardSlot s in benSlots_1)
-        {
-            if (s.card == null)
-            {
-                CreatePlayerCard(p, s.transform.position);
-                return true;
-            }
-        }
-        foreach(CardSlot s in benSlots_2)
-        {
-            if (s.card == null)
-            {
-                CreatePlayerCard(p, s.transform.position);
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public bool MovePlayerCardToBench(GameObject playerGameObject)
