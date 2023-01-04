@@ -40,12 +40,19 @@ public class PlayerPool : MonoBehaviour
 
     public void LoadNewPool()
     {
+        Debug.Log("NOTE: Loading player list from json file...");
         PlayerList playersInJson = JsonUtility.FromJson<PlayerList>(playerListJson.text);
+        Debug.Log("NOTE: ... Json util finished loading file...");
 
         foreach (Player p in playersInJson.playerlist)
         {
+            //FOR DEBUG ONLY MORON, REMOVE THIS LINE BEFORE BUILDING
+            //if (p.game != 0) continue; //SKIP NON BASE PLAYERS
+            // !!!
+            
             AddPlayerToPool(p.id, p.n, p.pos, p.pow, p.chem, p.tval, p.sval);
             //p.transform.SetParent(playerpoolgrid.transform);
         }
+        Debug.Log("NOTE: ... Done player list from json file!!!");
     }
 }

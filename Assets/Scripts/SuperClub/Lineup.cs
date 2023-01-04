@@ -2,20 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEngine.UI;
 using TMPro;
 
 public class Lineup : MonoBehaviour
 {
     [SerializeField] public GameObject prefab_playercard;
     [SerializeField] public CardSlot prefab_cardslot;
+
     [SerializeField] public Team team;
+
+    //UI
     [SerializeField] public TextMeshPro text_att;
     [SerializeField] public TextMeshPro text_mid;
     [SerializeField] public TextMeshPro text_def;
     [SerializeField] public GameObject FieldObject;
     [SerializeField] public GameObject BenchObject;
- 
+
+    public List<CardSlot> allSlots;
     private List<CardSlot> attSlots;
     private List<CardSlot> midSlots;
     private List<CardSlot> defSlots;
@@ -23,12 +26,15 @@ public class Lineup : MonoBehaviour
     private List<CardSlot> benSlots_1;
     private List<CardSlot> benSlots_2;
 
-    public List<CardSlot> allSlots;
+    public List<Player> attP;
+    public List<Player> midP;
+    public List<Player> defP;
+    public List<Player> benP;
 
     public float att = 0;
     public float mid = 0;
     public float def = 0;
-    public int totalStars = 0;
+    public float totalStars = 0;
 
     // Private
     private Chem lastChem = Chem.None;
@@ -62,69 +68,146 @@ public class Lineup : MonoBehaviour
         Recalc();
     }
 
-    public void Recalc()
+    public void RefreshPlayers()
     {
-        float stars = 0;
-        att = 0f;
-        mid = 0f;
-        def = 0f;
+        attP = new List<Player>(); // { null, null, null, null };
+        midP = new List<Player>(); // { null, null, null, null, null };
+        defP = new List<Player>(); // { null, null, null, null, null };
+        benP = new List<Player>();
 
         //Att
-        foreach(CardSlot s in attSlots)
+        foreach (CardSlot s in attSlots)
         {
-            if (SetLocalPlayerVarFromSlot(s))
+            if (s.card != null)
             {
-                att += lastP.GetPositionPower(Pos.Attacker);
-                stars += lastP.pow;
+                attP.Add(s.card.p);
+            }
+            else
+            {
+                attP.Add(null);
             }
         }
 
         //Mid
-        foreach(CardSlot s in midSlots)
+        foreach (CardSlot s in midSlots)
         {
-            if (SetLocalPlayerVarFromSlot(s))
+            if (s.card != null)
             {
-                mid += lastP.GetPositionPower(Pos.Midfielder);
-                stars += lastP.pow;
+                midP.Add(s.card.p);
+            }
+            else
+            {
+                midP.Add(null);
             }
         }
 
         //Def
-        foreach(CardSlot s in defSlots)
+        foreach (CardSlot s in defSlots)
         {
-            if (SetLocalPlayerVarFromSlot(s))
+            if (s.card != null)
             {
-                def += lastP.GetPositionPower(Pos.Defender);
-                stars += lastP.pow;
+                defP.Add(s.card.p);
+            }
+            else
+            {
+                defP.Add(null);
             }
         }
 
         //Bench
-        foreach(CardSlot s in benSlots_0)
+        foreach (CardSlot s in benSlots_0)
         {
-            if (SetLocalPlayerVarFromSlot(s))
+            if (s.card != null)
             {
-                stars += lastP.pow;
+                benP.Add(s.card.p);
             }
         }
 
-        foreach(CardSlot s in benSlots_1)
+        foreach (CardSlot s in benSlots_1)
         {
-            if (SetLocalPlayerVarFromSlot(s))
+            if (s.card != null)
             {
-                stars += lastP.pow;
+                benP.Add(s.card.p);
             }
         }
 
-        foreach(CardSlot s in benSlots_2)
+        foreach (CardSlot s in benSlots_2)
         {
-            if (SetLocalPlayerVarFromSlot(s))
+            if (s.card != null)
             {
-                stars += lastP.pow;
+                benP.Add(s.card.p);
             }
         }
+    }
 
-        this.totalStars = (int) stars;
+    //Returns power from target position and adds it to total stars
+    private float AddToPower(Pos pos, Player p)
+    {
+        float ret = 0f;
+
+        if (p != null)
+        {
+            if (pos != Pos.Bench)
+            {
+                ret = p.GetPositionPower(pos);
+
+                if (lastChem == Chem.Right || lastChem == Chem.Both)
+                {
+                    if (p.GetChem() == Chem.Left || p.GetChem() == Chem.Both)
+                    {
+                        ret += 1f;
+                    }
+                }
+            }
+            
+            totalStars += p.pow;
+            lastChem = p.GetChem();
+        }
+        else
+        {
+            lastChem = Chem.None;
+        }
+
+        return ret;
+    }
+
+    public void Recalc()
+    {
+        lastChem = Chem.None;
+        totalStars = 0;
+        att = team.attBonus; //0f;
+        mid = team.midBonus;
+        def = team.defBonus;
+
+        RefreshPlayers();
+
+        //Att
+        foreach (Player p in attP)
+        {
+            att += AddToPower(Pos.Attacker, p);
+        }
+        lastChem = Chem.None;
+
+        //Mid
+        foreach (Player p in midP)
+        {
+            mid += AddToPower(Pos.Midfielder, p);
+        }
+        lastChem = Chem.None;
+
+        //Def
+        foreach (Player p in defP)
+        {
+            def += AddToPower(Pos.Defender, p);
+        }
+        lastChem = Chem.None;
+
+        //bench
+        foreach (Player p in benP)
+        {
+            AddToPower(Pos.Bench, p);
+        }
+
         UpdateText();
     }
 
@@ -293,6 +376,9 @@ public class Lineup : MonoBehaviour
 
         lastP = s.cardObj.GetComponent<PlayerCard>().p;
         if (lastP == null) return false;
+
+        lastChem = lastP.GetChem();
+
         return true;
     }
 }

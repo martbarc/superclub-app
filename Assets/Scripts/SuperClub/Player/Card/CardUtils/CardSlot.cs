@@ -40,6 +40,11 @@ public class CardSlot : MonoBehaviour
     //     if (cardObj == null) _highlight.SetActive(false);
     // }
 
+    public void HighlightSlot(bool b)
+    {
+        _highlight.SetActive(b);
+    }
+
     public bool SlotCard(GameObject newCardObj, bool checkActive = true)
     {
         if (checkActive)
@@ -62,27 +67,36 @@ public class CardSlot : MonoBehaviour
 
     public bool SlotCardIfClose(GameObject cardObj, bool checkActive = true)
     {
-        if (IsPositionClose(cardObj.transform.position))
+        if (IsPositionClose(cardObj, checkActive))
         {
-            PlayerCard c = cardObj.GetComponent<PlayerCard>();
-            if (c != null)
-            {
-                this.cardObj = cardObj;
-                this.cardObj.transform.position = this.transform.position;
-                this.cardObj.transform.SetParent(this.transform);
+            LinkCardPosition(cardObj);
+            LinkCardObject(cardObj);
 
-                this.card = c;
-                this.card.p.posAct = (ushort)pos;
-                this.card.dragger.connectedSlot = this;
-                this.card.team.Recalc(); //trigger recalc
-            }
-            Debug.Log($"PlayerCard added to {this.name}");
+            this.card.team.Recalc(); //trigger recalc
+
             return true;
         }
         return false;
     }
 
-    public bool IsPositionClose(Vector3 p, bool checkActive = true)
+    public void LinkCardPosition(GameObject cardObj)
+    {
+        cardObj.transform.position = this.transform.position;
+        cardObj.transform.SetParent(this.transform);
+    }
+
+    public void LinkCardObject(GameObject cardObj)
+    {
+        this.cardObj = cardObj;
+
+        this.card = this.cardObj.GetComponent<PlayerCard>();
+        this.card.p.posAct = (ushort)pos;
+        this.card.dragger.connectedSlot = this;
+
+        Debug.Log($"PlayerCard linked to {this.name}");
+    }
+
+    public bool IsPositionClose(GameObject cardObj, bool checkActive = true)
     {
         if (checkActive)
         {
@@ -92,6 +106,7 @@ public class CardSlot : MonoBehaviour
             }
         }
 
+        Vector3 p = cardObj.transform.position;
         if (Mathf.Abs(this.transform.position.x - p.x) <= xTol && Mathf.Abs(this.transform.position.y - p.y) <= yTol)
         {
             return true;

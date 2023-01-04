@@ -57,6 +57,19 @@ public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         tempVec.z = zAxis; //Make sure that the z zxis never change
 
         transform.position = tempVec;
+
+        foreach (CardSlot s in slots)
+        {
+            if (s.IsPositionClose(this.gameObject))
+            {
+                s.HighlightSlot(true);
+                s.LinkCardPosition(this.gameObject);
+            }
+            else
+            {
+                s.HighlightSlot(false);
+            }
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -71,6 +84,10 @@ public class CardDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             if (card.team.lineup.MovePlayerCardToBench(this.gameObject))
             {
                 
+            }
+            else
+            {
+                Debug.Log("ERROR: Card failed to move to bench!!!");
             }
         }
     }

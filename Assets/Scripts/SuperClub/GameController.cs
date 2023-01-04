@@ -10,21 +10,23 @@ public class GameController : MonoBehaviour
 
     [SerializeField] public Team team;
 
-
     //UI
     [SerializeField] public CleanButton button_addPlayer;
-    [SerializeField] public CleanButton button_stats;
-    [SerializeField] public CleanButton button_bench;
     [SerializeField] public Popup popup_shop;
+    [SerializeField] public CleanButton button_debug_addPlayer;
+
+    [SerializeField] public CleanButton button_stats;
     [SerializeField] public Popup popup_stats;
 
-    public int season_num;
+    [SerializeField] public CleanButton button_bench;
 
     private void Awake()
     {
-        season_num = 1;
         button_addPlayer.onClick.AddListener(ShowShop);
+        button_debug_addPlayer.onClick.AddListener(team.AddRandomPlayers);
+
         button_stats.onClick.AddListener(ShowStats);
+
         button_bench.onClick.AddListener(team.lineup.SwitchLineupView);
     }
 

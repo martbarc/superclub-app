@@ -19,7 +19,6 @@ public class Player_AddCard : MonoBehaviour
     [SerializeField] public Image image_rightChem;
 
     [SerializeField] public CleanButton button_add;
-    
 
     public Player p;
 
