@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UltimateClean;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -11,31 +12,33 @@ public class GameController : MonoBehaviour
     [SerializeField] public Team team;
 
     //UI
-    [SerializeField] public CleanButton button_addPlayer;
-    [SerializeField] public Popup popup_shop;
-    [SerializeField] public CleanButton button_debug_addPlayer;
-
-    [SerializeField] public CleanButton button_funds;
-    [SerializeField] public TextMeshProUGUI text_teamFunds;
-    [SerializeField] public CleanButton button_addFunds;
+    //[SerializeField] public CleanButton button_funds;
+    //[SerializeField] public TextMeshProUGUI text_teamFunds;
+    //[SerializeField] public CleanButton button_addFunds;
 
     [SerializeField] public CleanButton button_stats;
     [SerializeField] public Popup popup_stats;
 
-    [SerializeField] public BonusSlider loophole_att;
-    [SerializeField] public BonusSlider loophole_mid;
-    [SerializeField] public BonusSlider loophole_def;
+    [SerializeField] public Counter counter_funds;
+
+    [SerializeField] public Counter counter_att;
+    [SerializeField] public Counter counter_mid;
+    [SerializeField] public Counter counter_def;
 
     [SerializeField] public TextMeshProUGUI text_totalstars;
 
+    [SerializeField] public Slider slider_totalstars;
+
     [SerializeField] public CleanButton button_bench;
+
+    [SerializeField] public CleanButton button_addPlayer;
+    [SerializeField] public Popup popup_shop;
+    [SerializeField] public CleanButton button_debug_addPlayer;
 
     private void Awake()
     {
         button_addPlayer.onClick.AddListener(ShowShop);
         button_debug_addPlayer.onClick.AddListener(team.AddRandomPlayers);
-
-        button_addFunds.onClick.AddListener(team.IncreaseFunds_1);
 
         button_stats.onClick.AddListener(ShowStats);
 

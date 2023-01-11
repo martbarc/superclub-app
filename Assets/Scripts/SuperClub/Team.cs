@@ -38,6 +38,15 @@ public class Team : MonoBehaviour
 
     private void Start()
     {
+        gc.counter_funds.UpdateCounter(teamFunds);
+        gc.counter_att.UpdateCounter(attBonus);
+        gc.counter_mid.UpdateCounter(midBonus);
+        gc.counter_def.UpdateCounter(defBonus);
+
+        gc.counter_att.inc = 0.5f;
+        gc.counter_mid.inc = 0.5f;
+        gc.counter_def.inc = 0.5f;
+
         //LoadTeam();
 
         //Recalc(); Lineup Recalcs after it's Start() finishes
@@ -45,9 +54,11 @@ public class Team : MonoBehaviour
 
     public void Recalc()
     {
-        attBonus = gc.loophole_att.currentIndex;
-        midBonus = gc.loophole_mid.currentIndex;
-        defBonus = gc.loophole_def.currentIndex;
+        teamFunds = (int)gc.counter_funds.counter;
+
+        attBonus = gc.counter_att.counter;
+        midBonus = gc.counter_mid.counter;
+        defBonus = gc.counter_def.counter;
 
         lineup.Recalc();
         UpdateText();
@@ -66,13 +77,8 @@ public class Team : MonoBehaviour
     public void UpdateText()
     {
         gc.text_totalstars.text = $"{lineup.totalStars}";
-        gc.text_teamFunds.text = $"{teamFunds} M";
-    }
-
-    public void IncreaseFunds_1()
-    {
-        teamFunds += 1;
-        Recalc();
+        gc.slider_totalstars.value = lineup.totalStars;
+        gc.counter_funds.UpdateText();
     }
 
     public void AddRandomPlayers()
