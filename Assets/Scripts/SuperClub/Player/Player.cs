@@ -23,6 +23,7 @@ public enum Chem : ushort
     Both = 3
 }
 
+
 [System.Serializable]
 public class Player
 {
@@ -45,6 +46,11 @@ public class Player
     public bool init;
     public string playerString;
 
+    public bool custom;
+
+    public int CHEM_MAX = 3;
+    public int POSITION_MAX = 6;
+
     public Player()
     {
         InitPlayer();
@@ -63,6 +69,7 @@ public class Player
         this.sval = sval;
 
         init = true;
+        custom = false;
 
         GetString();
     }
@@ -80,6 +87,7 @@ public class Player
         this.sval = newP.sval;
 
         init = true;
+        custom = false;
 
         GetString();
     }
@@ -101,6 +109,20 @@ public class Player
         slotAct = 0;
 
         init = false;
+        custom = false;
+    }
+
+    public void InitCustom()
+    {
+        InitPlayer();
+
+        n = "Custom";
+
+        tval = 0;
+        sval = 0;
+
+        init = true;
+        custom = true;
     }
 
     public string GetString()
@@ -127,9 +149,33 @@ public class Player
         return (Pos)pos;
     }
 
+    public void SetPosVal(ushort v)
+    {
+        if (v <= POSITION_MAX && v > 0)
+        {
+            this.pos = v;
+        }
+        else
+        {
+            this.pos = 0;
+        }
+    }
+
     public Chem GetChem()
     {
         return (Chem)chem;
+    }
+
+    public void SetChemVal(ushort v)
+    {
+        if (v <= CHEM_MAX && v > 0)
+        {
+            this.chem = v;
+        }
+        else
+        {
+            this.chem = 0;
+        }
     }
 
     public Pos GetPosAct()

@@ -8,15 +8,17 @@ public class PlayerPoolHandler : MonoBehaviour
 {
     [SerializeField] public PlayerPool playerPool;
 
+    [SerializeField] public Button button_loadPlayers;
+
     [SerializeField] public GameObject searchContent;
     [SerializeField] public TMP_InputField SearchBar;
 
-    public int totalElements;
     public string lastSearch;
 
     void Awake()
     {
         //SearchBar.onValueChanged.AddListener(delegate {Search(); });
+        button_loadPlayers.onClick.AddListener(playerPool.LoadNewPool);
     }
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class PlayerPoolHandler : MonoBehaviour
         //     GameObject.Destroy(child.gameObject);
         // }
 
-        totalElements = playerPool.transform.childCount;
+        //playerPool.LoadNewPool();
     }
 
     public void Search()
@@ -43,6 +45,7 @@ public class PlayerPoolHandler : MonoBehaviour
         }
 
         int searchedElements = 0;
+        int totalElements = playerPool.transform.childCount;
 
         foreach (Transform c in searchContent.transform)
         {

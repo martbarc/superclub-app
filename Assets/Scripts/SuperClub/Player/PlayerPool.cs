@@ -20,10 +20,10 @@ public class PlayerPool : MonoBehaviour
         pObjList = new List<GameObject>();
     }
 
-    void Start()
-    {
-        LoadNewPool();
-    }
+    //void Start()
+    //{
+    //    LoadNewPool();
+    //}
 
     public void AddPlayerToPool(ushort id, string n, ushort position, float power, ushort chem, ushort tval, ushort sval)
     {
