@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour
     [SerializeField] public Popup popup_shop;
     [SerializeField] public CleanButton button_debug_addPlayer;
 
+    [SerializeField] public Popup popup_development;
+    [SerializeField] public PlayerDevelopment playerDevelopment;
+
     private void Awake()
     {
         button_addPlayer.onClick.AddListener(ShowShop);
@@ -59,6 +62,21 @@ public class GameController : MonoBehaviour
     public void ShowShop()
     {
         popup_shop.gameObject.SetActive(true);
+    }
+
+    public void HideDevelopment()
+    {
+        popup_development.gameObject.SetActive(false);
+    }
+
+    public void ShowDevelopment(PlayerCard card)
+    {
+        if (card ==null)
+        {
+            return;
+        }
+        playerDevelopment.SetupPanel(card);
+        popup_development.gameObject.SetActive(true);
     }
 
     public void HideStats()

@@ -19,9 +19,11 @@ public class Lineup : MonoBehaviour
     [SerializeField] public GameObject BenchObject;
 
     public List<CardSlot> allSlots;
+    [SerializeField] public CardSlot developPlayerSlot;
     private List<CardSlot> attSlots;
     private List<CardSlot> midSlots;
     private List<CardSlot> defSlots;
+    
     private List<CardSlot> benSlots_0;
     private List<CardSlot> benSlots_1;
     private List<CardSlot> benSlots_2;
@@ -65,6 +67,8 @@ public class Lineup : MonoBehaviour
 
         benchView = true; //Switch to field view
         SwitchLineupView();
+
+        allSlots.Add(developPlayerSlot);
 
         team.Recalc(); //Runs this Recalc() function also
     }

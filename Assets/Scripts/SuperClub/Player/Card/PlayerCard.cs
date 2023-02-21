@@ -71,5 +71,10 @@ public class PlayerCard : MonoBehaviour
         }
 
     }
+
+    public void TriggerPlayerDevelopment()
+    {
+        this.team.OpenPlayerDevelopment(this);
+    }
 }
 

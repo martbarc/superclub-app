@@ -253,4 +253,34 @@ public class Player
                 return (new Color32(0, 0, 0, 0), new Color32(0, 0, 0, 0));
         }
     }
+
+    public int GetPowInt()
+    {
+        return (int)this.pow;
+    }
+
+    public List<string> GetPosList()
+    {
+        return new List<string>
+        {
+            "Unsigned",
+            "Bench",
+            "Wild",
+            "Attacker",
+            "Midfielder",
+            "Defender",
+            "Goalie"
+        };
+    }
+
+    public List<string> GetChemList()
+    {
+        return new List<string>
+        {
+            "None",
+            "Left",
+            "Right",
+            "Both"
+        };
+    }
 }

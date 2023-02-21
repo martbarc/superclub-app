@@ -15,6 +15,8 @@ public class CardSlot : MonoBehaviour
     public PlayerCard card;
 
     public Pos pos;
+
+    public bool isDevelopmentSlot = false;
  
     public void Init(Pos position)
     {
@@ -93,7 +95,12 @@ public class CardSlot : MonoBehaviour
         this.card.p.posAct = (ushort)pos;
         this.card.dragger.connectedSlot = this;
 
-        Debug.Log($"PlayerCard linked to {this.name}");
+        Debug.Log($"{card.name} linked to {this.name}");
+
+        if (isDevelopmentSlot)
+        {
+            this.card.TriggerPlayerDevelopment();
+        }
     }
 
     public bool IsPositionClose(GameObject cardObj, bool checkActive = true)

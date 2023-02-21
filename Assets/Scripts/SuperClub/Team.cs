@@ -6,6 +6,7 @@ public class Team : MonoBehaviour
 {
     // PUBLIC SETTINGS
     [SerializeField] public GameController gc;
+
     [SerializeField] public PlayerPool pp;
     [SerializeField] public Lineup lineup;
     // [SerializeField] public Roster roster;
@@ -91,6 +92,11 @@ public class Team : MonoBehaviour
             int pnum = Random.Range(0, numPlayers - 1);
             pp.pObjList[pnum].GetComponent<Player_AddCard>().AddPlayerToTeam();
         }
+    }
+
+    public void OpenPlayerDevelopment(PlayerCard card)
+    {
+        gc.ShowDevelopment(card);
     }
 }
 
