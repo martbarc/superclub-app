@@ -20,6 +20,7 @@ public class Lineup : MonoBehaviour
 
     public List<CardSlot> allSlots;
     [SerializeField] public CardSlot developPlayerSlot;
+    [SerializeField] public CardSlot sellPlayerSlot;
     private List<CardSlot> attSlots;
     private List<CardSlot> midSlots;
     private List<CardSlot> defSlots;
@@ -69,6 +70,7 @@ public class Lineup : MonoBehaviour
         SwitchLineupView();
 
         allSlots.Add(developPlayerSlot);
+        allSlots.Add(sellPlayerSlot);
 
         team.Recalc(); //Runs this Recalc() function also
     }
@@ -239,6 +241,11 @@ public class Lineup : MonoBehaviour
             def += AddToPower(Pos.Defender, p);
         }
         lastChem = Chem.None;
+
+        if (defP[0] == null)
+        {
+            def += 1;
+        }
 
         //bench
         foreach (Player p in benP)

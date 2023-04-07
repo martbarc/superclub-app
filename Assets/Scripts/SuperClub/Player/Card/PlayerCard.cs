@@ -76,5 +76,10 @@ public class PlayerCard : MonoBehaviour
     {
         this.team.OpenPlayerDevelopment(this);
     }
+
+    public void TriggerPlayerSell()
+    {
+        this.team.SellPlayer(this);
+    }
 }
 

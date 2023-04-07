@@ -98,6 +98,12 @@ public class Team : MonoBehaviour
     {
         gc.ShowDevelopment(card);
     }
+
+    public void SellPlayer(PlayerCard card)
+    {
+        teamFunds += card.p.sval;
+        Destroy(card.gameObject);
+    }
 }
 
 /*

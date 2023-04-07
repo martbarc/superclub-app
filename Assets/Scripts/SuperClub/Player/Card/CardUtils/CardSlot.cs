@@ -17,6 +17,7 @@ public class CardSlot : MonoBehaviour
     public Pos pos;
 
     public bool isDevelopmentSlot = false;
+    public bool isSellPlayerSlot = false;
  
     public void Init(Pos position)
     {
@@ -100,6 +101,11 @@ public class CardSlot : MonoBehaviour
         if (isDevelopmentSlot)
         {
             this.card.TriggerPlayerDevelopment();
+        }
+
+        if (isSellPlayerSlot)
+        {
+            this.card.TriggerPlayerSell();
         }
     }
 
